@@ -1,16 +1,6 @@
 <script lang="ts">
-  export let artists: Array<{
-    id: number;
-    name: string;
-    image: string;
-    members: string[];
-    creationDate: number;
-    firstAlbum: string;
-    locations: string;
-    concertDates: string;
-    relations: string;
-  }> = [];
-  let current = 0;
+  let { artists = [] } = $props();
+  let current = $state(0);
 
   function prev() {
     current = (current - 1 + artists.length) % artists.length;
@@ -42,6 +32,7 @@
     justify-content: center;
     opacity: 0.7;
     transition: opacity 0.2s;
+    z-index: 10;
   }
   .arrow:hover {
     opacity: 1;
@@ -50,40 +41,62 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 1000px;
+    position: relative;
+    width: 70vw;
+    height: 60vh;
   }
   .card {
     background: #ddd;
-    border-radius: 16px;
-    width: 300px;
-    height: 300px;
-    margin: 0 1rem;
-    box-shadow: 0 8px 32px #0004;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px #0006;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s, box-shadow 0.4s;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.5s, opacity 0.5s, filter 0.5s;
     z-index: 2;
+    width: 400px;
+    height: 400px;
+    opacity: 1;
   }
   .card.side {
-    width: 220px;
-    height: 220px;
-    opacity: 0.6;
+    width: 200px;
+    height: 200px;
     z-index: 1;
-    box-shadow: 0 4px 16px #0002;
-    transform: scale(0.85) translateY(30px);
+    box-shadow: 0 2px 8px #0002;
+    filter: grayscale(0.7);
+    transform: translateY(-50%) scale(0.7);
+    pointer-events: none;
   }
+  .card.leftleft  { transform: translate(-50%, -50%) translateX(-235px) scale(1); z-index: 1; }
+  .card.left      { transform: translate(-50%, -50%) translateX(-150px) scale(1.4); z-index: 2; }
+  .card.center    { transform: translate(-50%, -50%) scale(0.9); z-index: 3; }
+  .card.right     { transform: translate(-50%, -50%) translateX(150px) scale(1.4); z-index: 2; }
+  .card.rightright{ transform: translate(-50%, -50%) translateX(235px) scale(1); z-index: 1; }
+
   .card img {
-    width: 80%;
-    border-radius: 12px;
-    margin-bottom: 1rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px #0005;
   }
   .card h2 {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: #222;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    padding: 0.3em 1em;
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
   }
 </style>
 
@@ -92,26 +105,35 @@
 {/if}
 
 <div class="carousel-container">
-  <button class="arrow" on:click={prev}>&larr;</button>
+  <button class="arrow" onclick={prev}>&larr;</button>
   <div class="cards">
     {#if artists.length}
-      {#if artists[current - 1]}
-        <div class="card side">
-          <img src={artists[(current - 1 + artists.length) % artists.length].image} alt="artist" />
-          <h2>{artists[(current - 1 + artists.length) % artists.length].name}</h2>
-        </div>
-      {/if}
-      <div class="card">
-        <img src={artists[current].image} alt="artist" />
+      <!-- Left++ side image (hidden behind, blurred) -->
+      <div class="card side leftleft">
+        <img src={artists[(current - 2 + artists.length) % artists.length].image} alt="artist" />
+        <h2>{artists[(current - 2 + artists.length) % artists.length].name}</h2>
+      </div>
+      <!-- Left side image (hidden behind, blurred) -->
+      <div class="card side left">
+        <img src={artists[(current - 1 + artists.length) % artists.length].image} alt="artist" />
+        <h2>{artists[(current - 1 + artists.length) % artists.length].name}</h2>
+      </div>
+      <!-- Center image (large, always present) -->
+      <div class="card center">
+        <img src={artists[current].image} alt={artists[current].name} />
         <h2>{artists[current].name}</h2>
       </div>
-      {#if artists[current + 1]}
-        <div class="card side">
-          <img src={artists[(current + 1) % artists.length].image} alt="artist" />
-          <h2>{artists[(current + 1) % artists.length].name}</h2>
-        </div>
-      {/if}
+      <!-- Right side image (hidden behind, blurred) -->
+      <div class="card side right">
+        <img src={artists[(current + 1) % artists.length].image} alt="artist" />
+        <h2>{artists[(current + 1) % artists.length].name}</h2>
+      </div>
+      <!-- Right++ side image (hidden behind, blurred) -->
+      <div class="card side rightright">
+        <img src={artists[(current + 2) % artists.length].image} alt="artist" />
+        <h2>{artists[(current + 2) % artists.length].name}</h2>
+      </div>
     {/if}
   </div>
-  <button class="arrow" on:click={next}>&rarr;</button>
+  <button class="arrow" onclick={next}>&rarr;</button>
 </div>

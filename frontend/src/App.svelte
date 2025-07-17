@@ -38,7 +38,7 @@
 <style>
   main {
     min-height: 100vh;
-    background: #000;
+    background: #4e4e4e;
     box-sizing: border-box;
     padding: 2rem 0 4rem 0;
     display: flex;
