@@ -133,6 +133,9 @@
         <img src={artists[(current + 2) % artists.length].image} alt="artist" />
         <h2>{artists[(current + 2) % artists.length].name}</h2>
       </div>
+
+      <img src={artists[(current + 3) % artists.length].image} alt="artist" style="display: none;" />
+      <img src={artists[(current - 3 + artists.length) % artists.length].image} alt="artist" style="display: none;" />
     {/if}
   </div>
   <button class="arrow" onclick={next}>&rarr;</button>
