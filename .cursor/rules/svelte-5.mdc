@@ -1,0 +1,436 @@
+---
+globs: *.svelte,*.svelte.ts
+alwaysApply: false
+---
+
+# SVELTE 5 SYNTAX REQUIREMENTS
+
+**CRITICAL: You MUST use Svelte 5 syntax when editing any .svelte files. Do NOT use legacy Svelte 4 patterns.**
+
+## RUNES SYSTEM (MANDATORY)
+
+Svelte 5 introduces runes - the new reactivity system. You MUST use runes instead of legacy reactive statements.
+
+### State Management with $state()
+
+```svelte
+<script>
+  // ✅ CORRECT - Use $state() for reactive variables
+  let count = $state(0);
+  let user = $state({ name: 'John', age: 25 });
+
+  // ❌ WRONG - Don't use legacy reactive declarations
+  // let count = 0; // This won't be reactive in Svelte 5
+</script>
+```
+
+### Derived State with $derived()
+
+```svelte
+<script>
+  let count = $state(0);
+
+  // ✅ CORRECT - Use $derived() for computed values
+  let doubled = $derived(count * 2);
+  let message = $derived(`Count is ${count}`);
+
+  // ❌ WRONG - Don't use legacy reactive statements
+  // $: doubled = count * 2;
+</script>
+```
+
+### Effects with $effect()
+
+```svelte
+<script>
+  let count = $state(0);
+
+  // ✅ CORRECT - Use $effect() for side effects
+  $effect(() => {
+    console.log(`Count changed to ${count}`);
+  });
+
+  // ❌ WRONG - Don't use legacy reactive statements for side effects
+  // $: console.log(`Count changed to ${count}`);
+</script>
+```
+
+### Props with $props()
+
+```svelte
+<script>
+  // ✅ CORRECT - Use $props() to declare component props
+  let { title, count = 0, onClick } = $props();
+
+  // ❌ WRONG - Don't use export for props
+  // export let title;
+  // export let count = 0;
+</script>
+```
+
+## EVENT HANDLING
+
+### New Event Syntax
+
+```svelte
+<!-- ✅ CORRECT - Use onclick (lowercase) for DOM events -->
+<button onclick={() => count++}>
+  Click me
+</button>
+
+<!-- ✅ CORRECT - Custom events still use on: -->
+<MyComponent on:customEvent={handleCustomEvent} />
+
+<!-- ❌ WRONG - Don't use on:click for DOM events -->
+<!-- <button on:click={() => count++}> -->
+```
+
+## COMPONENT LIFECYCLE
+
+### Lifecycle Runes
+
+```svelte
+<script>
+  import { onMount } from 'svelte';
+
+  // ✅ CORRECT - onMount still works but prefer $effect when possible
+  onMount(() => {
+    console.log('Component mounted');
+  });
+
+  // ✅ PREFERRED - Use $effect for most lifecycle needs
+  $effect(() => {
+    // This runs when component mounts and when dependencies change
+    console.log('Effect runs');
+  });
+</script>
+```
+
+## BINDING SYNTAX
+
+### Two-way Binding
+
+```svelte
+<script>
+  let value = $state('');
+</script>
+
+<!-- ✅ CORRECT - bind: syntax remains the same -->
+<input bind:value />
+
+<!-- ✅ CORRECT - For custom components -->
+<MyInput bind:value />
+```
+
+## STORES (Updated)
+
+### Store Usage with Runes
+
+```svelte
+<script>
+  import { writable } from 'svelte/store';
+
+  const store = writable(0);
+
+  // ✅ CORRECT - Use $state() to make store reactive in component
+  let storeValue = $state(0);
+
+  $effect(() => {
+    return store.subscribe(value => {
+      storeValue = value;
+    });
+  });
+
+  // ❌ WRONG - Don't use $ prefix for auto-subscription in Svelte 5
+  // $store is deprecated in favor of explicit patterns
+</script>
+```
+
+## COMPONENT COMPOSITION
+
+### Children and Slots
+
+```svelte
+<script>
+  let { children } = $props();
+</script>
+
+<!-- ✅ CORRECT - Render children with @render -->
+{@render children()}
+
+<!-- ✅ CORRECT - Named slots still work -->
+<slot name="header" />
+<slot /> <!-- default slot -->
+```
+
+## CLASS AND STYLE DIRECTIVES
+
+```svelte
+<script>
+  let isActive = $state(false);
+  let color = $state('blue');
+</script>
+
+<!-- ✅ CORRECT - class: and style: directives work the same -->
+<div class:active={isActive} style:color>
+  Content
+</div>
+```
+
+## MIGRATION NOTES
+
+- Replace all `export let` with `let { } = $props()`
+- Replace `$:` reactive statements with `$derived()` or `$effect()`
+- Use `onclick`, `onsubmit`, etc. instead of `on:click`, `on:submit` for DOM events
+- Keep `on:` prefix only for custom component events
+- Use `$state()` for all reactive variables
+- Avoid auto-subscription (`$store`) in favor of explicit patterns
+
+## EXAMPLE COMPLETE COMPONENT
+
+```svelte
+<script>
+  // Props
+  let { title, initialCount = 0, onCountChange } = $props();
+
+  // State
+  let count = $state(initialCount);
+  let doubled = $derived(count * 2);
+
+  // Effects
+  $effect(() => {
+    onCountChange?.(count);
+  });
+
+  function increment() {
+    count++;
+  }
+</script>
+
+<div>
+  <h1>{title}</h1>
+  <p>Count: {count}</p>
+  <p>Doubled: {doubled}</p>
+  <button onclick={increment}>
+    Increment
+  </button>
+</div>
+```
+
+**REMEMBER: Always use Svelte 5 runes and syntax. Do not mix with legacy Svelte 4 patterns.**
+
+# SVELTE 5 SYNTAX REQUIREMENTS
+
+**CRITICAL: You MUST use Svelte 5 syntax when editing any .svelte files. Do NOT use legacy Svelte 4 patterns.**
+
+## RUNES SYSTEM (MANDATORY)
+
+Svelte 5 introduces runes - the new reactivity system. You MUST use runes instead of legacy reactive statements.
+
+### State Management with $state()
+
+```svelte
+<script>
+  // ✅ CORRECT - Use $state() for reactive variables
+  let count = $state(0);
+  let user = $state({ name: 'John', age: 25 });
+
+  // ❌ WRONG - Don't use legacy reactive declarations
+  // let count = 0; // This won't be reactive in Svelte 5
+</script>
+```
+
+### Derived State with $derived()
+
+```svelte
+<script>
+  let count = $state(0);
+
+  // ✅ CORRECT - Use $derived() for computed values
+  let doubled = $derived(count * 2);
+  let message = $derived(`Count is ${count}`);
+
+  // ❌ WRONG - Don't use legacy reactive statements
+  // $: doubled = count * 2;
+</script>
+```
+
+### Effects with $effect()
+
+```svelte
+<script>
+  let count = $state(0);
+
+  // ✅ CORRECT - Use $effect() for side effects
+  $effect(() => {
+    console.log(`Count changed to ${count}`);
+  });
+
+  // ❌ WRONG - Don't use legacy reactive statements for side effects
+  // $: console.log(`Count changed to ${count}`);
+</script>
+```
+
+### Props with $props()
+
+```svelte
+<script>
+  // ✅ CORRECT - Use $props() to declare component props
+  let { title, count = 0, onClick } = $props();
+
+  // ❌ WRONG - Don't use export for props
+  // export let title;
+  // export let count = 0;
+</script>
+```
+
+## EVENT HANDLING
+
+### New Event Syntax
+
+```svelte
+<!-- ✅ CORRECT - Use onclick (lowercase) for DOM events -->
+<button onclick={() => count++}>
+  Click me
+</button>
+
+<!-- ✅ CORRECT - Custom events still use on: -->
+<MyComponent on:customEvent={handleCustomEvent} />
+
+<!-- ❌ WRONG - Don't use on:click for DOM events -->
+<!-- <button on:click={() => count++}> -->
+```
+
+## COMPONENT LIFECYCLE
+
+### Lifecycle Runes
+
+```svelte
+<script>
+  import { onMount } from 'svelte';
+
+  // ✅ CORRECT - onMount still works but prefer $effect when possible
+  onMount(() => {
+    console.log('Component mounted');
+  });
+
+  // ✅ PREFERRED - Use $effect for most lifecycle needs
+  $effect(() => {
+    // This runs when component mounts and when dependencies change
+    console.log('Effect runs');
+  });
+</script>
+```
+
+## BINDING SYNTAX
+
+### Two-way Binding
+
+```svelte
+<script>
+  let value = $state('');
+</script>
+
+<!-- ✅ CORRECT - bind: syntax remains the same -->
+<input bind:value />
+
+<!-- ✅ CORRECT - For custom components -->
+<MyInput bind:value />
+```
+
+## STORES (Updated)
+
+### Store Usage with Runes
+
+```svelte
+<script>
+  import { writable } from 'svelte/store';
+
+  const store = writable(0);
+
+  // ✅ CORRECT - Use $state() to make store reactive in component
+  let storeValue = $state(0);
+
+  $effect(() => {
+    return store.subscribe(value => {
+      storeValue = value;
+    });
+  });
+
+  // ❌ WRONG - Don't use $ prefix for auto-subscription in Svelte 5
+  // $store is deprecated in favor of explicit patterns
+</script>
+```
+
+## COMPONENT COMPOSITION
+
+### Children and Slots
+
+```svelte
+<script>
+  let { children } = $props();
+</script>
+
+<!-- ✅ CORRECT - Render children with @render -->
+{@render children()}
+
+<!-- ✅ CORRECT - Named slots still work -->
+<slot name="header" />
+<slot /> <!-- default slot -->
+```
+
+## CLASS AND STYLE DIRECTIVES
+
+```svelte
+<script>
+  let isActive = $state(false);
+  let color = $state('blue');
+</script>
+
+<!-- ✅ CORRECT - class: and style: directives work the same -->
+<div class:active={isActive} style:color>
+  Content
+</div>
+```
+
+## MIGRATION NOTES
+
+- Replace all `export let` with `let { } = $props()`
+- Replace `$:` reactive statements with `$derived()` or `$effect()`
+- Use `onclick`, `onsubmit`, etc. instead of `on:click`, `on:submit` for DOM events
+- Keep `on:` prefix only for custom component events
+- Use `$state()` for all reactive variables
+- Avoid auto-subscription (`$store`) in favor of explicit patterns
+
+## EXAMPLE COMPLETE COMPONENT
+
+```svelte
+<script>
+  // Props
+  let { title, initialCount = 0, onCountChange } = $props();
+
+  // State
+  let count = $state(initialCount);
+  let doubled = $derived(count * 2);
+
+  // Effects
+  $effect(() => {
+    onCountChange?.(count);
+  });
+
+  function increment() {
+    count++;
+  }
+</script>
+
+<div>
+  <h1>{title}</h1>
+  <p>Count: {count}</p>
+  <p>Doubled: {doubled}</p>
+  <button onclick={increment}>
+    Increment
+  </button>
+</div>
+```
+
+**REMEMBER: Always use Svelte 5 runes and syntax. Do not mix with legacy Svelte 4 patterns.**
