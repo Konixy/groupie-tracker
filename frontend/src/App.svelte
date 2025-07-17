@@ -1,47 +1,54 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import { onMount } from 'svelte';
+  import Logo from './lib/logo.svelte';
+  import Carousel from './lib/Carousel.svelte';
+  import SearchBar from './lib/SearchBar.svelte';
+
+  type Artist = {
+    id: number;
+    name: string;
+    image: string;
+    members: string[];
+    creationDate: number;
+    firstAlbum: string;
+    locations: string;
+    concertDates: string;
+    relations: string;
+  };
+
+  let artists: Artist[] = [];
+  let filteredArtists: Artist[] = [];
+
+  onMount(async () => {
+    const res = await fetch('http://localhost:8080/artists');
+    const data = await res.json();
+    console.log(data);
+    // Supporte à la fois l'API locale (data.artists) et distante (data)
+    artists = Array.isArray(data) ? data : data.artists;
+    filteredArtists = artists;
+  });
+
+  function handleSearch(query: string) {
+    filteredArtists = artists.filter(artist =>
+      artist.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }
 </script>
 
-<main>
-  <div>
-    <a href="https://vite.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-</main>
-
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
+  main {
+    min-height: 100vh;
+    background: #000;
+    box-sizing: border-box;
+    padding: 2rem 0 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>
+
+<main>
+  <Logo />
+  <Carousel artists={filteredArtists} />
+  <SearchBar on:search={e => handleSearch(e.detail)} />
+</main>
