@@ -53,10 +53,71 @@
       return;
     }
 
-    // Trouver tous les artistes qui commencent par la recherche
-    const results = artists.filter(artist =>
-      artist.name.toLowerCase().startsWith(query.toLowerCase())
-    );
+    const searchTerm = query.toLowerCase();
+    
+    // Créer un tableau avec les artistes et leur score de pertinence
+    const scoredResults = artists.map(artist => {
+      const artistName = artist.name.toLowerCase();
+      let score = 0;
+      
+      // Score le plus élevé : commence par la recherche
+      if (artistName.startsWith(searchTerm)) {
+        score = 1000;
+      }
+      // Score élevé : contient la recherche quelque part dans le nom
+      else if (artistName.includes(searchTerm)) {
+        const index = artistName.indexOf(searchTerm);
+        score = 1000 - index; // Plus tôt dans le nom = score plus élevé
+      }
+      
+      return { artist, score };
+    });
+    
+    // Filtrer les artistes qui correspondent et les trier par score
+    let results = scoredResults
+      .filter(item => item.score > 0)
+      .sort((a, b) => {
+        // Tri par score décroissant
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        // Si même score, trier par ordre alphabétique
+        return a.artist.name.localeCompare(b.artist.name);
+      })
+      .map(item => item.artist)
+      // Éliminer les doublons en gardant seulement la première occurrence
+      .filter((artist, index, self) => 
+        index === self.findIndex(a => a.id === artist.id)
+      );
+
+    // Si on a moins de 3 résultats, ajouter des artistes similaires
+    if (results.length < 3 && results.length > 0) {
+      const exactMatches = results;
+      const remainingArtists = artists.filter(artist => 
+        !exactMatches.some(exact => exact.id === artist.id)
+      );
+      
+      // Trouver des artistes qui ont au moins 2 lettres en commun avec la recherche
+      const similarResults = remainingArtists.map(artist => {
+        const artistName = artist.name.toLowerCase();
+        let commonLetters = 0;
+        
+        // Compter les lettres communes
+        for (let i = 0; i < searchTerm.length; i++) {
+          if (artistName.includes(searchTerm[i])) {
+            commonLetters++;
+          }
+        }
+        
+        return { artist, commonLetters };
+      })
+      .filter(item => item.commonLetters >= 2) // Au moins 2 lettres en commun
+      .sort((a, b) => b.commonLetters - a.commonLetters) // Plus de lettres communes = meilleur score
+      .map(item => item.artist)
+      .slice(0, 5 - results.length); // Compléter jusqu'à 5 artistes max
+      
+      results = [...exactMatches, ...similarResults];
+    }
     
     searchResults = results;
     
@@ -92,6 +153,6 @@
   <main>
     <Logo />
     <Carousel artists={filteredArtists} searchResults={searchResults} />
-    <SearchBar on:search={e => handleSearch(e.detail)} />
+    <SearchBar />
   </main>
 {/if}

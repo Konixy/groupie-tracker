@@ -2,9 +2,11 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
+	"strings"
 )
 
 // BaseURL est l'adresse racine de l'API groupie tracker
@@ -65,4 +67,112 @@ func FetchArtists() ([]Artist, error) {
 	}
 
 	return artists, nil
+}
+
+// Concert représente un concert avec sa date et ses lieux
+type Concert struct {
+	Date      string   `json:"date"`
+	Locations []string `json:"locations"`
+}
+
+// ArtistConcerts représente les concerts d'un artiste
+type ArtistConcerts struct {
+	ID      int                `json:"id"`
+	Concerts map[string][]string `json:"concerts"`
+}
+
+// FetchArtistConcerts récupère les concerts d'un artiste spécifique depuis l'API Groupie Tracker
+func FetchArtistConcerts(artistID int) (*ArtistConcerts, error) {
+	// Récupère les dates de concerts
+	datesResponse, err := http.Get(BaseURL + "/dates/" + fmt.Sprintf("%d", artistID))
+	if err != nil {
+		log.Printf("Error fetching dates: %v", err)
+		return nil, err
+	}
+	defer datesResponse.Body.Close()
+
+	// Récupère les lieux de concerts
+	locationsResponse, err := http.Get(BaseURL + "/locations/" + fmt.Sprintf("%d", artistID))
+	if err != nil {
+		log.Printf("Error fetching locations: %v", err)
+		return nil, err
+	}
+	defer locationsResponse.Body.Close()
+
+	// Parse les dates
+	var datesData struct {
+		ID    int      `json:"id"`
+		Dates []string `json:"dates"`
+	}
+	
+	datesBody, err := io.ReadAll(datesResponse.Body)
+	if err != nil {
+		log.Printf("Error reading dates response: %v", err)
+		return nil, err
+	}
+	
+	err = json.Unmarshal(datesBody, &datesData)
+	if err != nil {
+		log.Printf("Error unmarshaling dates JSON: %v", err)
+		return nil, err
+	}
+
+	// Parse les lieux
+	var locationsData struct {
+		ID        int      `json:"id"`
+		Locations []string `json:"locations"`
+	}
+	
+	locationsBody, err := io.ReadAll(locationsResponse.Body)
+	if err != nil {
+		log.Printf("Error reading locations response: %v", err)
+		return nil, err
+	}
+	
+	err = json.Unmarshal(locationsBody, &locationsData)
+	if err != nil {
+		log.Printf("Error unmarshaling locations JSON: %v", err)
+		return nil, err
+	}
+
+	// Combine les dates et lieux
+	concerts := make(map[string][]string)
+	
+	// Assure que nous avons le même nombre de dates et de lieux
+	minLen := len(datesData.Dates)
+	if len(locationsData.Locations) < minLen {
+		minLen = len(locationsData.Locations)
+	}
+	
+	for i := 0; i < minLen; i++ {
+		date := datesData.Dates[i]
+		location := locationsData.Locations[i]
+		
+		// Nettoyer la date (enlever l'astérisque si présente)
+		cleanDate := strings.TrimPrefix(date, "*")
+		
+		// Formater la location pour la rendre plus lisible
+		formattedLocation := formatLocation(location)
+		
+		concerts[cleanDate] = append(concerts[cleanDate], formattedLocation)
+	}
+
+	return &ArtistConcerts{
+		ID:       artistID,
+		Concerts: concerts,
+	}, nil
+}
+
+// formatLocation formate une location pour la rendre plus lisible
+func formatLocation(location string) string {
+	// Remplacer les underscores par des espaces et capitaliser
+	parts := strings.Split(location, "-")
+	if len(parts) >= 2 {
+		city := strings.ReplaceAll(parts[0], "_", " ")
+		country := strings.ToUpper(parts[1])
+		return strings.Title(city) + ", " + country
+	}
+	
+	// Si pas de format attendu, juste nettoyer les underscores
+	return strings.Title(strings.ReplaceAll(location, "_", " "))
 }

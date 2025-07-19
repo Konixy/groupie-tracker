@@ -11,6 +11,7 @@ import (
 func main() {
 	// Route API REST
 	http.HandleFunc("/artists", handlers.IndexHandler)
+	http.HandleFunc("/artists/", handlers.ArtistConcertsHandler)
 
 	// Message d'accueil sur /
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

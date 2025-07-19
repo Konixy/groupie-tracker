@@ -1,8 +1,65 @@
 <script lang="ts">
   let { artist, onBack } = $props();
+  let concerts = $state<Record<string, string[]>>({});
+  let loadingConcerts = $state(false);
+
+  $effect(() => {
+    if (artist) {
+      fetchConcerts();
+    }
+  });
+
+  async function fetchConcerts() {
+    try {
+      loadingConcerts = true;
+      const response = await fetch(`http://localhost:8080/artists/${artist.id}`);
+      if (response.ok) {
+        const data = await response.json();
+        concerts = data.concerts || {};
+      }
+    } catch (err) {
+      console.error('Erreur lors de la récupération des concerts:', err);
+    } finally {
+      loadingConcerts = false;
+    }
+  }
 
   function formatDate(timestamp: number) {
     return new Date(timestamp * 1000).getFullYear();
+  }
+
+  function formatConcertDate(dateStr: string) {
+    try {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('fr-FR', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+    } catch {
+      return dateStr;
+    }
+  }
+
+  function isPastDate(dateStr: string): boolean {
+    try {
+      const date = new Date(dateStr);
+      const now = new Date();
+      return date < now;
+    } catch {
+      return false;
+    }
+  }
+
+  function getPastConcerts() {
+    const entries = Object.entries(concerts);
+    return entries
+      .filter(([date]) => isPastDate(date))
+      .sort(([dateA], [dateB]) => {
+        const dateObjA = new Date(dateA);
+        const dateObjB = new Date(dateB);
+        return dateObjB.getTime() - dateObjA.getTime(); // Plus récent en premier
+      }); // Afficher TOUS les concerts passés
   }
 </script>
 
@@ -120,6 +177,55 @@
     font-size: 1.2rem;
     font-weight: bold;
   }
+
+  .concerts-section {
+    margin-top: 2rem;
+  }
+
+  .concerts-section h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .concerts-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .concert-item {
+    background: #fff3e0;
+    border-radius: 12px;
+    padding: 1rem;
+    border-left: 4px solid #FF9800;
+    opacity: 0.9;
+  }
+
+  .concert-date {
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .concert-locations {
+    color: #666;
+  }
+
+  .location-item {
+    margin: 0.2rem 0;
+    padding-left: 0.5rem;
+    border-left: 2px solid #ddd;
+    font-size: 0.9rem;
+  }
+
+  .loading {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin: 1rem 0;
+  }
+
+
 </style>
 
 <div class="detail-container">
@@ -161,6 +267,33 @@
           <p>{artist.members.length}</p>
         </div>
       </div>
+
+      {#if loadingConcerts}
+        <div class="concerts-section">
+          <h2>Concerts passés</h2>
+          <div class="loading">Chargement des concerts...</div>
+        </div>
+      {:else if getPastConcerts().length > 0}
+        <div class="concerts-section">
+          <h2>Tous les concerts passés</h2>
+          <div class="concerts-list">
+            {#each getPastConcerts() as [date, locations]}
+              <div class="concert-item">
+                <div class="concert-date">{formatConcertDate(date)}</div>
+                <div class="concert-locations">
+                  {#each locations.slice(0, 2) as location}
+                    <div class="location-item">📍 {location}</div>
+                  {/each}
+                  {#if locations.length > 2}
+                    <div class="location-item">... et {locations.length - 2} autres lieux</div>
+                  {/if}
+                </div>
+              </div>
+            {/each}
+          </div>
+
+        </div>
+      {/if}
     </div>
   {/if}
 </div> 

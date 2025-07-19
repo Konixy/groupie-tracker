@@ -109,6 +109,7 @@
     text-overflow: ellipsis;
     max-width: 90%;
   }
+
   .clickable-card {
     background: #ddd;
     border-radius: 20px;
@@ -199,7 +200,24 @@
 <div class="carousel-container">
   <button class="arrow" onclick={prev}>&larr;</button>
   <div class="cards">
-    {#if displayArtists.length}
+    {#if displayArtists.length === 1}
+      <!-- Si un seul artiste, afficher seulement la carte centrale -->
+      <button class="clickable-card center" onclick={() => handleCardClick(0)} onkeydown={(event) => handleKeyDown(event, 0)} aria-label="Artiste actuel">
+        <img src={displayArtists[0].image} alt={displayArtists[0].name} />
+        <h2>{displayArtists[0].name}</h2>
+      </button>
+    {:else if displayArtists.length === 2}
+      <!-- Si deux artistes, afficher seulement les cartes left et right -->
+      <button class="clickable-card left" onclick={() => handleCardClick(0)} onkeydown={(event) => handleKeyDown(event, 0)} aria-label="Artiste précédent">
+        <img src={displayArtists[0].image} alt="artist" />
+        <h2>{displayArtists[0].name}</h2>
+      </button>
+      <button class="clickable-card right" onclick={() => handleCardClick(1)} onkeydown={(event) => handleKeyDown(event, 1)} aria-label="Artiste suivant">
+        <img src={displayArtists[1].image} alt="artist" />
+        <h2>{displayArtists[1].name}</h2>
+      </button>
+    {:else if displayArtists.length >= 3}
+      <!-- Si 3 artistes ou plus, afficher le carousel complet -->
       <!-- Left++ side image (hidden behind, blurred) -->
       <button class="clickable-card leftleft" onclick={() => handleCardClick((current - 2 + displayArtists.length) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current - 2 + displayArtists.length) % displayArtists.length)} aria-label="Artiste précédent">
         <img src={displayArtists[(current - 2 + displayArtists.length) % displayArtists.length].image} alt="artist" />
