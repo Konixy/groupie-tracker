@@ -56,7 +56,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%);
     transition: transform 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.5s, opacity 0.5s, filter 0.5s;
     z-index: 2;
     width: 400px;
@@ -69,14 +69,14 @@
     z-index: 1;
     box-shadow: 0 2px 8px #0002;
     filter: grayscale(0.7);
-    transform: translateY(-50%) scale(0.7);
+    transform: translateY(-50%);
     pointer-events: none;
   }
-  .card.leftleft  { transform: translate(-50%, -50%) translateX(-235px) scale(1); z-index: 1; }
-  .card.left      { transform: translate(-50%, -50%) translateX(-150px) scale(1.4); z-index: 2; }
-  .card.center    { transform: translate(-50%, -50%) scale(0.9); z-index: 3; }
-  .card.right     { transform: translate(-50%, -50%) translateX(150px) scale(1.4); z-index: 2; }
-  .card.rightright{ transform: translate(-50%, -50%) translateX(235px) scale(1); z-index: 1; }
+  .card.leftleft  { transform: translate(-50%, -50%) translateX(-235px); z-index: 1; width: 200px; height: 200px; }
+  .card.left      { transform: translate(-50%, -50%) translateX(-150px); z-index: 2; width: 300px; height: 300px; }
+  .card.center    { transform: translate(-50%, -50%); z-index: 3; width: 400px; height: 400px; }
+  .card.right     { transform: translate(-50%, -50%) translateX(150px); z-index: 2; width: 300px; height: 300px; }
+  .card.rightright{ transform: translate(-50%, -50%) translateX(235px); z-index: 1; width: 200px; height: 200px; }
 
   .card img {
     width: 100%;
@@ -134,6 +134,7 @@
         <h2>{artists[(current + 2) % artists.length].name}</h2>
       </div>
 
+      <!-- Hidden images used to cache the images before displaying them -->
       <img src={artists[(current + 3) % artists.length].image} alt="artist" style="display: none;" />
       <img src={artists[(current - 3 + artists.length) % artists.length].image} alt="artist" style="display: none;" />
     {/if}
