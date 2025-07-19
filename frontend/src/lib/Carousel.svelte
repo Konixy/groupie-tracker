@@ -1,18 +1,34 @@
 <script lang="ts">
-  let { artists = [] } = $props();
+  let { artists = [], searchResults = [] } = $props();
   let current = $state(0);
 
+  // Écouter les événements de centrage sur un artiste
+  $effect(() => {
+    const handleCenterOnArtist = (event: any) => {
+      current = event.detail.index;
+    };
+    
+    document.addEventListener('centerOnArtist', handleCenterOnArtist);
+    
+    return () => {
+      document.removeEventListener('centerOnArtist', handleCenterOnArtist);
+    };
+  });
+
+  // Utiliser les résultats de recherche s'ils existent, sinon tous les artistes
+  let displayArtists = $derived(searchResults.length > 0 ? searchResults : artists);
+
   function prev() {
-    current = (current - 1 + artists.length) % artists.length;
+    current = (current - 1 + displayArtists.length) % displayArtists.length;
   }
   function next() {
-    current = (current + 1) % artists.length;
+    current = (current + 1) % displayArtists.length;
   }
 
   function handleCardClick(artistIndex: number) {
     // Émettre un événement pour ouvrir les détails de l'artiste
     const event = new CustomEvent('artistClick', {
-      detail: artists[artistIndex]
+      detail: displayArtists[artistIndex]
     });
     document.dispatchEvent(event);
   }
@@ -20,7 +36,7 @@
   function handleViewMore() {
     // Émettre un événement pour ouvrir les détails de l'artiste central
     const event = new CustomEvent('artistClick', {
-      detail: artists[current]
+      detail: displayArtists[current]
     });
     document.dispatchEvent(event);
   }
@@ -176,45 +192,45 @@
   }
 </style>
 
-{#if !artists.length}
+{#if !displayArtists.length}
   <div style="color: #fff; text-align: center; margin: 2rem;">Aucun artiste à afficher.</div>
 {/if}
 
 <div class="carousel-container">
   <button class="arrow" onclick={prev}>&larr;</button>
   <div class="cards">
-    {#if artists.length}
+    {#if displayArtists.length}
       <!-- Left++ side image (hidden behind, blurred) -->
-      <button class="clickable-card leftleft" onclick={() => handleCardClick((current - 2 + artists.length) % artists.length)} onkeydown={(event) => handleKeyDown(event, (current - 2 + artists.length) % artists.length)} aria-label="Artiste précédent">
-        <img src={artists[(current - 2 + artists.length) % artists.length].image} alt="artist" />
-        <h2>{artists[(current - 2 + artists.length) % artists.length].name}</h2>
+      <button class="clickable-card leftleft" onclick={() => handleCardClick((current - 2 + displayArtists.length) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current - 2 + displayArtists.length) % displayArtists.length)} aria-label="Artiste précédent">
+        <img src={displayArtists[(current - 2 + displayArtists.length) % displayArtists.length].image} alt="artist" />
+        <h2>{displayArtists[(current - 2 + displayArtists.length) % displayArtists.length].name}</h2>
       </button>
       <!-- Left side image (hidden behind, blurred) -->
-      <button class="clickable-card left" onclick={() => handleCardClick((current - 1 + artists.length) % artists.length)} onkeydown={(event) => handleKeyDown(event, (current - 1 + artists.length) % artists.length)} aria-label="Artiste précédent">
-        <img src={artists[(current - 1 + artists.length) % artists.length].image} alt="artist" />
-        <h2>{artists[(current - 1 + artists.length) % artists.length].name}</h2>
+      <button class="clickable-card left" onclick={() => handleCardClick((current - 1 + displayArtists.length) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current - 1 + displayArtists.length) % displayArtists.length)} aria-label="Artiste précédent">
+        <img src={displayArtists[(current - 1 + displayArtists.length) % displayArtists.length].image} alt="artist" />
+        <h2>{displayArtists[(current - 1 + displayArtists.length) % displayArtists.length].name}</h2>
       </button>
       <!-- Center image (large, always present) -->
       <button class="clickable-card center" onclick={() => handleCardClick(current)} onkeydown={(event) => handleKeyDown(event, current)} aria-label="Artiste actuel">
-        <img src={artists[current].image} alt={artists[current].name} />
-        <h2>{artists[current].name}</h2>
+        <img src={displayArtists[current].image} alt={displayArtists[current].name} />
+        <h2>{displayArtists[current].name}</h2>
       </button>
       <!-- Right side image (hidden behind, blurred) -->
-      <button class="clickable-card right" onclick={() => handleCardClick((current + 1) % artists.length)} onkeydown={(event) => handleKeyDown(event, (current + 1) % artists.length)} aria-label="Artiste suivant">
-        <img src={artists[(current + 1) % artists.length].image} alt="artist" />
-        <h2>{artists[(current + 1) % artists.length].name}</h2>
+      <button class="clickable-card right" onclick={() => handleCardClick((current + 1) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current + 1) % displayArtists.length)} aria-label="Artiste suivant">
+        <img src={displayArtists[(current + 1) % displayArtists.length].image} alt="artist" />
+        <h2>{displayArtists[(current + 1) % displayArtists.length].name}</h2>
       </button>
       <!-- Right++ side image (hidden behind, blurred) -->
-      <button class="clickable-card rightright" onclick={() => handleCardClick((current + 2) % artists.length)} onkeydown={(event) => handleKeyDown(event, (current + 2) % artists.length)} aria-label="Artiste suivant">
-        <img src={artists[(current + 2) % artists.length].image} alt="artist" />
-        <h2>{artists[(current + 2) % artists.length].name}</h2>
+      <button class="clickable-card rightright" onclick={() => handleCardClick((current + 2) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current + 2) % displayArtists.length)} aria-label="Artiste suivant">
+        <img src={displayArtists[(current + 2) % displayArtists.length].image} alt="artist" />
+        <h2>{displayArtists[(current + 2) % displayArtists.length].name}</h2>
       </button>
     {/if}
   </div>
   <button class="arrow" onclick={next}>&rarr;</button>
 </div>
 
-{#if artists.length}
+{#if displayArtists.length}
   <button class="view-more-button" onclick={handleViewMore}>
     Voir plus
   </button>

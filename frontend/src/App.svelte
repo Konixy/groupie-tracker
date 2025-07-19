@@ -19,6 +19,7 @@
 
   let artists: Artist[] = [];
   let filteredArtists = $state<Artist[]>([]);
+  let searchResults = $state<Artist[]>([]);
   let selectedArtist = $state<Artist | null>(null);
 
   onMount(async () => {
@@ -33,12 +34,39 @@
     document.addEventListener('artistClick', (event: any) => {
       selectedArtist = event.detail;
     });
+
+    // Écouter les événements de recherche
+    document.addEventListener('search', (event: any) => {
+      handleSearch(event.detail);
+    });
   });
 
   function handleSearch(query: string) {
-    filteredArtists = artists.filter(artist =>
-      artist.name.toLowerCase().includes(query.toLowerCase())
+    if (!query.trim()) {
+      filteredArtists = artists;
+      searchResults = [];
+      // Réinitialiser le carrousel à la position 0
+      const event = new CustomEvent('centerOnArtist', {
+        detail: { index: 0 }
+      });
+      document.dispatchEvent(event);
+      return;
+    }
+
+    // Trouver tous les artistes qui commencent par la recherche
+    const results = artists.filter(artist =>
+      artist.name.toLowerCase().startsWith(query.toLowerCase())
     );
+    
+    searchResults = results;
+    
+    if (results.length > 0) {
+      // Centrer le carrousel sur le premier artiste trouvé
+      const event = new CustomEvent('centerOnArtist', {
+        detail: { index: 0 }
+      });
+      document.dispatchEvent(event);
+    }
   }
 
   function handleBack() {
@@ -63,7 +91,7 @@
 {:else}
   <main>
     <Logo />
-    <Carousel artists={filteredArtists} />
+    <Carousel artists={filteredArtists} searchResults={searchResults} />
     <SearchBar on:search={e => handleSearch(e.detail)} />
   </main>
 {/if}

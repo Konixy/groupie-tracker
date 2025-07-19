@@ -1,10 +1,20 @@
 <script lang="ts">
-  export let dispatch: (type: string, detail?: any) => void = () => {};
-  let query = '';
+  let query = $state('');
 
   function search() {
-    dispatch('search', { detail: query });
+    // Émettre un événement Svelte
+    const event = new CustomEvent('search', {
+      detail: query
+    });
+    document.dispatchEvent(event);
   }
+
+  // Recherche en temps réel
+  $effect(() => {
+    if (query !== undefined) {
+      search();
+    }
+  });
 </script>
 
 <style>
@@ -39,7 +49,7 @@
     type="text"
     placeholder="Chercher un artiste ou un groupe…"
     bind:value={query}
-    on:keydown={(e) => e.key === 'Enter' && search()}
+    onkeydown={(e) => e.key === 'Enter' && search()}
   />
-  <button on:click={search}>🔍</button>
+  <button onclick={search}>🔍</button>
 </div>
