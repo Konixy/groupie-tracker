@@ -8,6 +8,29 @@
   function next() {
     current = (current + 1) % artists.length;
   }
+
+  function handleCardClick(artistIndex: number) {
+    // Émettre un événement pour ouvrir les détails de l'artiste
+    const event = new CustomEvent('artistClick', {
+      detail: artists[artistIndex]
+    });
+    document.dispatchEvent(event);
+  }
+
+  function handleViewMore() {
+    // Émettre un événement pour ouvrir les détails de l'artiste central
+    const event = new CustomEvent('artistClick', {
+      detail: artists[current]
+    });
+    document.dispatchEvent(event);
+  }
+
+  function handleKeyDown(event: KeyboardEvent, artistIndex: number) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleCardClick(artistIndex);
+    }
+  }
 </script>
 
 <style>
@@ -18,7 +41,7 @@
     margin: 2rem 0;
   }
   .arrow {
-    background: radial-gradient(circle, #444 60%, #222 100%);
+    background: #fff3;
     border: none;
     border-radius: 50%;
     color: #fff;
@@ -36,6 +59,7 @@
   }
   .arrow:hover {
     opacity: 1;
+    background: #fff6;
   }
   .cards {
     display: flex;
@@ -45,7 +69,31 @@
     width: 70vw;
     height: 60vh;
   }
-  .card {
+  .clickable-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px #0005;
+  }
+  .clickable-card h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #222;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    padding: 0.3em 1em;
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+  }
+  .clickable-card {
     background: #ddd;
     border-radius: 20px;
     box-shadow: 0 8px 32px #0006;
@@ -62,41 +110,69 @@
     width: 400px;
     height: 400px;
     opacity: 1;
+    cursor: pointer;
+    border: none;
+    padding: 0;
   }
-  .card.side {
-    width: 200px;
-    height: 200px;
-    z-index: 1;
-    box-shadow: 0 2px 8px #0002;
-    filter: grayscale(0.7);
-    transform: translateY(-50%);
-    pointer-events: none;
+  .clickable-card:hover {
+    box-shadow: 0 12px 40px #0008;
+    transform: translate(-50%, -50%) scale(1.02);
   }
-  .card.leftleft  { transform: translate(-50%, -50%) translateX(-235px); z-index: 1; width: 200px; height: 200px; }
-  .card.left      { transform: translate(-50%, -50%) translateX(-150px); z-index: 2; width: 300px; height: 300px; }
-  .card.center    { transform: translate(-50%, -50%); z-index: 3; width: 400px; height: 400px; }
-  .card.right     { transform: translate(-50%, -50%) translateX(150px); z-index: 2; width: 300px; height: 300px; }
-  .card.rightright{ transform: translate(-50%, -50%) translateX(235px); z-index: 1; width: 200px; height: 200px; }
-
-  .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px #0005;
+  .clickable-card:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
   }
-  .card h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #222;
-    background: rgba(255,255,255,0.7);
-    border-radius: 8px;
-    padding: 0.3em 1em;
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
+  .clickable-card.left {
+    transform: translate(-50%, -50%) translateX(-220px);
+    z-index: 2;
+    width: 300px;
+    height: 300px;
+  }
+  .clickable-card.center {
+    transform: translate(-50%, -50%);
     z-index: 3;
+    width: clamp(250px, 30vw, 400px);
+    height: clamp(250px, 30vw, 400px);
+  }
+  .clickable-card.right {
+    transform: translate(-50%, -50%) translateX(220px);
+    z-index: 2;
+    width: 300px;
+    height: 300px;
+  }
+  .clickable-card.leftleft {
+    transform: translate(-50%, -50%) translateX(-180px);
+    z-index: 1;
+    width: 250px;
+    height: 250px;
+  }
+  .clickable-card.rightright {
+    transform: translate(-50%, -50%) translateX(180px);
+    z-index: 1;
+    width: 250px;
+    height: 250px;
+  }
+  .view-more-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 2rem auto 0 auto;
+  }
+  .view-more-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  .view-more-button:active {
+    transform: translateY(0);
   }
 </style>
 
@@ -109,35 +185,37 @@
   <div class="cards">
     {#if artists.length}
       <!-- Left++ side image (hidden behind, blurred) -->
-      <div class="card side leftleft">
+      <button class="clickable-card leftleft" onclick={() => handleCardClick((current - 2 + artists.length) % artists.length)} onkeydown={(event) => handleKeyDown(event, (current - 2 + artists.length) % artists.length)} aria-label="Artiste précédent">
         <img src={artists[(current - 2 + artists.length) % artists.length].image} alt="artist" />
         <h2>{artists[(current - 2 + artists.length) % artists.length].name}</h2>
-      </div>
+      </button>
       <!-- Left side image (hidden behind, blurred) -->
-      <div class="card side left">
+      <button class="clickable-card left" onclick={() => handleCardClick((current - 1 + artists.length) % artists.length)} onkeydown={(event) => handleKeyDown(event, (current - 1 + artists.length) % artists.length)} aria-label="Artiste précédent">
         <img src={artists[(current - 1 + artists.length) % artists.length].image} alt="artist" />
         <h2>{artists[(current - 1 + artists.length) % artists.length].name}</h2>
-      </div>
+      </button>
       <!-- Center image (large, always present) -->
-      <div class="card center">
+      <button class="clickable-card center" onclick={() => handleCardClick(current)} onkeydown={(event) => handleKeyDown(event, current)} aria-label="Artiste actuel">
         <img src={artists[current].image} alt={artists[current].name} />
         <h2>{artists[current].name}</h2>
-      </div>
+      </button>
       <!-- Right side image (hidden behind, blurred) -->
-      <div class="card side right">
+      <button class="clickable-card right" onclick={() => handleCardClick((current + 1) % artists.length)} onkeydown={(event) => handleKeyDown(event, (current + 1) % artists.length)} aria-label="Artiste suivant">
         <img src={artists[(current + 1) % artists.length].image} alt="artist" />
         <h2>{artists[(current + 1) % artists.length].name}</h2>
-      </div>
+      </button>
       <!-- Right++ side image (hidden behind, blurred) -->
-      <div class="card side rightright">
+      <button class="clickable-card rightright" onclick={() => handleCardClick((current + 2) % artists.length)} onkeydown={(event) => handleKeyDown(event, (current + 2) % artists.length)} aria-label="Artiste suivant">
         <img src={artists[(current + 2) % artists.length].image} alt="artist" />
         <h2>{artists[(current + 2) % artists.length].name}</h2>
-      </div>
-
-      <!-- Hidden images used to cache the images before displaying them -->
-      <img src={artists[(current + 3) % artists.length].image} alt="artist" style="display: none;" />
-      <img src={artists[(current - 3 + artists.length) % artists.length].image} alt="artist" style="display: none;" />
+      </button>
     {/if}
   </div>
   <button class="arrow" onclick={next}>&rarr;</button>
 </div>
+
+{#if artists.length}
+  <button class="view-more-button" onclick={handleViewMore}>
+    Voir plus
+  </button>
+{/if}

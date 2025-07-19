@@ -3,6 +3,7 @@
   import Logo from './lib/logo.svelte';
   import Carousel from './lib/Carousel.svelte';
   import SearchBar from './lib/SearchBar.svelte';
+  import ArtistDetail from './lib/ArtistDetail.svelte';
 
   type Artist = {
     id: number;
@@ -17,7 +18,8 @@
   };
 
   let artists: Artist[] = [];
-  let filteredArtists: Artist[] = [];
+  let filteredArtists = $state<Artist[]>([]);
+  let selectedArtist = $state<Artist | null>(null);
 
   onMount(async () => {
     const res = await fetch('http://localhost:8080/artists');
@@ -26,12 +28,21 @@
     // Supporte à la fois l'API locale (data.artists) et distante (data)
     artists = Array.isArray(data) ? data : data.artists;
     filteredArtists = artists;
+
+    // Écouter les événements de clic sur les artistes
+    document.addEventListener('artistClick', (event: any) => {
+      selectedArtist = event.detail;
+    });
   });
 
   function handleSearch(query: string) {
     filteredArtists = artists.filter(artist =>
       artist.name.toLowerCase().includes(query.toLowerCase())
     );
+  }
+
+  function handleBack() {
+    selectedArtist = null;
   }
 </script>
 
@@ -47,8 +58,12 @@
   }
 </style>
 
-<main>
-  <Logo />
-  <Carousel artists={filteredArtists} />
-  <SearchBar on:search={e => handleSearch(e.detail)} />
-</main>
+{#if selectedArtist}
+  <ArtistDetail artist={selectedArtist} onBack={handleBack} />
+{:else}
+  <main>
+    <Logo />
+    <Carousel artists={filteredArtists} />
+    <SearchBar on:search={e => handleSearch(e.detail)} />
+  </main>
+{/if}
