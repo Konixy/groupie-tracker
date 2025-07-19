@@ -9,13 +9,17 @@
 
 // TODO: add state management for the artists api and share the currently selected artist in it.
 
-function getLocation(l: string) {
-
-}
 
     onMount(() => {
-        L.marker([49.43814906784801, 1.1023802854095484]).addTo(map)
-            .bindPopup('📍 Zone01').openPopup()
+      // On peut mettre les logos des artistes directement sur la map comme icone de marker
+        L.marker([49.43814906784801, 1.1023802854095484]).addTo(map).setIcon(L.icon({
+          iconUrl: '/z01.png',
+          iconSize: [38, 38],
+          iconAnchor: [19, 19],
+          popupAnchor: [0, -19],
+          className: 'z01-icon',
+        }))
+            .bindPopup('📍 Zone01')
 
             L.tileLayer(
 	    'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
@@ -51,6 +55,10 @@ function getLocation(l: string) {
     margin-top: 2rem;
     border-radius: 1rem;
     font-size: 1.5rem;
+  }
+
+  :global(.z01-icon) {
+    border-radius: 100%;
   }
 </style>  
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
