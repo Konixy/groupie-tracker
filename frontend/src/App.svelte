@@ -4,6 +4,7 @@
   import Carousel from './lib/Carousel.svelte';
   import SearchBar from './lib/SearchBar.svelte';
   import ArtistDetail from './lib/ArtistDetail.svelte';
+  import ConcertsMap from './lib/ConcertsMap.svelte';
 
   type Artist = {
     id: number;
@@ -25,7 +26,6 @@
   onMount(async () => {
     const res = await fetch('http://localhost:8080/artists');
     const data = await res.json();
-    console.log(data);
     // Supporte à la fois l'API locale (data.artists) et distante (data)
     artists = Array.isArray(data) ? data : data.artists;
     filteredArtists = artists;
@@ -152,7 +152,8 @@
 {:else}
   <main>
     <Logo />
-    <Carousel artists={filteredArtists} searchResults={searchResults} />
     <SearchBar />
+    <Carousel artists={filteredArtists} searchResults={searchResults} />
+    <ConcertsMap />
   </main>
 {/if}

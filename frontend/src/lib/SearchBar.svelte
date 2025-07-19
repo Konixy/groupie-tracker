@@ -21,7 +21,7 @@
   .search-bar {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 4rem;
   }
   input {
     border-radius: 20px 0 0 20px;
