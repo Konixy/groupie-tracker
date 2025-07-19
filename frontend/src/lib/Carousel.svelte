@@ -1,6 +1,7 @@
 <script lang="ts">
   let { artists = [], searchResults = [] } = $props();
   let current = $state(0);
+  let isAnimating = $state(false);
 
   // Écouter les événements de centrage sur un artiste
   $effect(() => {
@@ -18,11 +19,116 @@
   // Utiliser les résultats de recherche s'ils existent, sinon tous les artistes
   let displayArtists = $derived(searchResults.length > 0 ? searchResults : artists);
 
-  function prev() {
-    current = (current - 1 + displayArtists.length) % displayArtists.length;
+  // Calculer la position de chaque carte en fonction de sa position relative au centre
+  function getCardPosition(index: number) {
+    const total = displayArtists.length;
+    if (total === 0) return { transform: '', opacity: 0, zIndex: 0, width: 0, height: 0 };
+    
+    // Calculer la position relative au centre
+    let relativePos = index - current;
+    
+    // Gérer la circularité
+    if (relativePos > total / 2) relativePos -= total;
+    if (relativePos < -total / 2) relativePos += total;
+    
+    // Positions pour 1, 2, ou 3+ artistes
+    if (total === 1) {
+      return {
+        transform: 'translate(-50%, -50%) translateZ(0px) rotateY(0deg)',
+        opacity: 1,
+        zIndex: 4,
+        width: 'clamp(250px, 30vw, 400px)',
+        height: 'clamp(250px, 30vw, 400px)'
+      };
+    }
+    
+    if (total === 2) {
+      if (relativePos === -1) {
+        return {
+          transform: 'translate(-50%, -50%) translateX(-250px) translateZ(-80px) rotateY(15deg)',
+          opacity: 0.7,
+          zIndex: 2,
+          width: '320px',
+          height: '320px'
+        };
+      } else {
+        return {
+          transform: 'translate(-50%, -50%) translateX(250px) translateZ(-80px) rotateY(-15deg)',
+          opacity: 0.7,
+          zIndex: 2,
+          width: '320px',
+          height: '320px'
+        };
+      }
+    }
+    
+    // Pour 3+ artistes
+    switch (relativePos) {
+      case -2:
+        return {
+          transform: 'translate(-50%, -50%) translateX(-200px) translateZ(-150px) rotateY(20deg)',
+          opacity: 1,
+          zIndex: 1,
+          width: '250px',
+          height: '250px'
+        };
+      case -1:
+        return {
+          transform: 'translate(-50%, -50%) translateX(-250px) translateZ(-80px) rotateY(15deg)',
+          opacity: 1,
+          zIndex: 2,
+          width: '320px',
+          height: '320px'
+        };
+      case 0:
+        return {
+          transform: 'translate(-50%, -50%) translateZ(0px) rotateY(0deg)',
+          opacity: 1,
+          zIndex: 4,
+          width: 'clamp(250px, 30vw, 400px)',
+          height: 'clamp(250px, 30vw, 400px)'
+        };
+      case 1:
+        return {
+          transform: 'translate(-50%, -50%) translateX(250px) translateZ(-80px) rotateY(-15deg)',
+          opacity: 1,
+          zIndex: 2,
+          width: '320px',
+          height: '320px'
+        };
+      case 2:
+        return {
+          transform: 'translate(-50%, -50%) translateX(200px) translateZ(-150px) rotateY(-20deg)',
+          opacity: 1,
+          zIndex: 1,
+          width: '250px',
+          height: '250px'
+        };
+      default:
+        return {
+          transform: 'translate(-50%, -50%) translateX(400px) translateZ(-200px) rotateY(-30deg)',
+          opacity: 0,
+          zIndex: 0,
+          width: '200px',
+          height: '200px'
+        };
+    }
   }
-  function next() {
+
+  async function prev() {
+    if (isAnimating) return;
+    isAnimating = true;
+    current = (current - 1 + displayArtists.length) % displayArtists.length;
+    await new Promise(resolve => setTimeout(resolve, 600));
+    isAnimating = false;
+  }
+
+  async function next() {
+    if (isAnimating) return;
+    isAnimating = true;
     current = (current + 1) % displayArtists.length;
+    await new Promise(resolve => setTimeout(resolve, 600));
+    isAnimating = false;
   }
 
   function handleCardClick(artistIndex: number) {
@@ -55,7 +161,9 @@
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
+    perspective: 1200px;
   }
+
   .arrow {
     background: #fff3;
     border: none;
@@ -73,10 +181,17 @@
     transition: opacity 0.2s;
     z-index: 10;
   }
+
   .arrow:hover {
     opacity: 1;
     background: #fff6;
   }
+
+  .arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
   .cards {
     display: flex;
     align-items: center;
@@ -84,14 +199,36 @@
     position: relative;
     width: 70vw;
     height: 60vh;
+    transform-style: preserve-3d;
   }
+
+  .clickable-card {
+    background: #ddd;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px #0006;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transform-style: preserve-3d;
+  }
+
   .clickable-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 16px;
     box-shadow: 0 4px 24px #0005;
+    transition: transform 0.3s ease;
   }
+
   .clickable-card h2 {
     margin: 0;
     font-size: 1.5rem;
@@ -108,67 +245,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 90%;
+    transition: all 0.3s ease;
   }
 
-  .clickable-card {
-    background: #ddd;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px #0006;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.5s, opacity 0.5s, filter 0.5s;
-    z-index: 2;
-    width: 400px;
-    height: 400px;
-    opacity: 1;
-    cursor: pointer;
-    border: none;
-    padding: 0;
-  }
   .clickable-card:hover {
     box-shadow: 0 12px 40px #0008;
-    transform: translate(-50%, -50%) scale(1.02);
   }
+
+  .clickable-card:hover img {
+    transform: scale(1.05);
+  }
+
   .clickable-card:focus {
     outline: 2px solid #667eea;
     outline-offset: 2px;
   }
-  .clickable-card.left {
-    transform: translate(-50%, -50%) translateX(-220px);
-    z-index: 2;
-    width: 300px;
-    height: 300px;
-  }
-  .clickable-card.center {
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    width: clamp(250px, 30vw, 400px);
-    height: clamp(250px, 30vw, 400px);
-  }
-  .clickable-card.right {
-    transform: translate(-50%, -50%) translateX(220px);
-    z-index: 2;
-    width: 300px;
-    height: 300px;
-  }
-  .clickable-card.leftleft {
-    transform: translate(-50%, -50%) translateX(-180px);
-    z-index: 1;
-    width: 250px;
-    height: 250px;
-  }
-  .clickable-card.rightright {
-    transform: translate(-50%, -50%) translateX(180px);
-    z-index: 1;
-    width: 250px;
-    height: 250px;
-  }
+
   .view-more-button {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -184,12 +276,21 @@
     display: block;
     margin: 2rem auto 0 auto;
   }
+
   .view-more-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
+
   .view-more-button:active {
     transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .carousel-container {
+      perspective: 1000px;
+    }
   }
 </style>
 
@@ -198,54 +299,29 @@
 {/if}
 
 <div class="carousel-container">
-  <button class="arrow" onclick={prev}>&larr;</button>
+  <button class="arrow" onclick={prev} disabled={isAnimating}>&larr;</button>
   <div class="cards">
-    {#if displayArtists.length === 1}
-      <!-- Si un seul artiste, afficher seulement la carte centrale -->
-      <button class="clickable-card center" onclick={() => handleCardClick(0)} onkeydown={(event) => handleKeyDown(event, 0)} aria-label="Artiste actuel">
-        <img src={displayArtists[0].image} alt={displayArtists[0].name} />
-        <h2>{displayArtists[0].name}</h2>
+    {#each displayArtists as artist, index}
+      {@const position = getCardPosition(index)}
+      <button 
+        class="clickable-card" 
+        style="
+          transform: {position.transform}; 
+          opacity: {position.opacity}; 
+          z-index: {position.zIndex}; 
+          width: {position.width}; 
+          height: {position.height};
+        "
+        onclick={() => handleCardClick(index)} 
+        onkeydown={(event) => handleKeyDown(event, index)} 
+        aria-label="Artiste {index + 1}"
+      >
+        <img src={artist.image} alt={artist.name} />
+        <h2>{artist.name}</h2>
       </button>
-    {:else if displayArtists.length === 2}
-      <!-- Si deux artistes, afficher seulement les cartes left et right -->
-      <button class="clickable-card left" onclick={() => handleCardClick(0)} onkeydown={(event) => handleKeyDown(event, 0)} aria-label="Artiste précédent">
-        <img src={displayArtists[0].image} alt="artist" />
-        <h2>{displayArtists[0].name}</h2>
-      </button>
-      <button class="clickable-card right" onclick={() => handleCardClick(1)} onkeydown={(event) => handleKeyDown(event, 1)} aria-label="Artiste suivant">
-        <img src={displayArtists[1].image} alt="artist" />
-        <h2>{displayArtists[1].name}</h2>
-      </button>
-    {:else if displayArtists.length >= 3}
-      <!-- Si 3 artistes ou plus, afficher le carousel complet -->
-      <!-- Left++ side image (hidden behind, blurred) -->
-      <button class="clickable-card leftleft" onclick={() => handleCardClick((current - 2 + displayArtists.length) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current - 2 + displayArtists.length) % displayArtists.length)} aria-label="Artiste précédent">
-        <img src={displayArtists[(current - 2 + displayArtists.length) % displayArtists.length].image} alt="artist" />
-        <h2>{displayArtists[(current - 2 + displayArtists.length) % displayArtists.length].name}</h2>
-      </button>
-      <!-- Left side image (hidden behind, blurred) -->
-      <button class="clickable-card left" onclick={() => handleCardClick((current - 1 + displayArtists.length) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current - 1 + displayArtists.length) % displayArtists.length)} aria-label="Artiste précédent">
-        <img src={displayArtists[(current - 1 + displayArtists.length) % displayArtists.length].image} alt="artist" />
-        <h2>{displayArtists[(current - 1 + displayArtists.length) % displayArtists.length].name}</h2>
-      </button>
-      <!-- Center image (large, always present) -->
-      <button class="clickable-card center" onclick={() => handleCardClick(current)} onkeydown={(event) => handleKeyDown(event, current)} aria-label="Artiste actuel">
-        <img src={displayArtists[current].image} alt={displayArtists[current].name} />
-        <h2>{displayArtists[current].name}</h2>
-      </button>
-      <!-- Right side image (hidden behind, blurred) -->
-      <button class="clickable-card right" onclick={() => handleCardClick((current + 1) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current + 1) % displayArtists.length)} aria-label="Artiste suivant">
-        <img src={displayArtists[(current + 1) % displayArtists.length].image} alt="artist" />
-        <h2>{displayArtists[(current + 1) % displayArtists.length].name}</h2>
-      </button>
-      <!-- Right++ side image (hidden behind, blurred) -->
-      <button class="clickable-card rightright" onclick={() => handleCardClick((current + 2) % displayArtists.length)} onkeydown={(event) => handleKeyDown(event, (current + 2) % displayArtists.length)} aria-label="Artiste suivant">
-        <img src={displayArtists[(current + 2) % displayArtists.length].image} alt="artist" />
-        <h2>{displayArtists[(current + 2) % displayArtists.length].name}</h2>
-      </button>
-    {/if}
+    {/each}
   </div>
-  <button class="arrow" onclick={next}>&rarr;</button>
+  <button class="arrow" onclick={next} disabled={isAnimating}>&rarr;</button>
 </div>
 
 {#if displayArtists.length}
