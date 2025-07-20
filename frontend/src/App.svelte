@@ -11,6 +11,7 @@
   let filteredArtists = $state<Artist[]>([]);
   let searchResults = $state<Artist[]>([]);
   let selectedArtist = $state<Artist | null>(null);
+  let searchQuery = $state('');
 
   onMount(async () => {
     const res = await fetch('http://localhost:8080/artists');
@@ -18,31 +19,22 @@
     // Supporte à la fois l'API locale (data.artists) et distante (data)
     artists = Array.isArray(data) ? data : data.artists;
     filteredArtists = artists;
-
-    // Écouter les événements de clic sur les artistes
-    document.addEventListener('artistClick', (event: any) => {
-      selectedArtist = event.detail;
-    });
-
-    // Écouter les événements de recherche
-    document.addEventListener('search', (event: any) => {
-      handleSearch(event.detail);
-    });
   });
 
-  function handleSearch(query: string) {
-    if (!query.trim()) {
+  $effect(() => {
+    if (searchQuery !== null) {
+      handleSearch();
+    }
+  });
+
+  function handleSearch() {
+    if (!searchQuery.trim()) {
       filteredArtists = artists;
       searchResults = [];
-      // Réinitialiser le carrousel à la position 0
-      const event = new CustomEvent('centerOnArtist', {
-        detail: { index: 0 }
-      });
-      document.dispatchEvent(event);
       return;
     }
 
-    const searchTerm = query.toLowerCase();
+    const searchTerm = searchQuery.toLowerCase();
     
     // Créer un tableau avec les artistes et leur score de pertinence
     const scoredResults = artists.map(artist => {
@@ -80,47 +72,36 @@
       );
 
     // Si on a moins de 3 résultats, ajouter des artistes similaires
-    if (results.length < 3 && results.length > 0) {
-      const exactMatches = results;
-      const remainingArtists = artists.filter(artist => 
-        !exactMatches.some(exact => exact.id === artist.id)
-      );
+    // if (results.length < 3 && results.length > 0) {
+    //   const exactMatches = results;
+    //   const remainingArtists = artists.filter(artist => 
+    //     !exactMatches.some(exact => exact.id === artist.id)
+    //   );
       
-      // Trouver des artistes qui ont au moins 2 lettres en commun avec la recherche
-      const similarResults = remainingArtists.map(artist => {
-        const artistName = artist.name.toLowerCase();
-        let commonLetters = 0;
+    //   // Trouver des artistes qui ont au moins 2 lettres en commun avec la recherche
+    //   const similarResults = remainingArtists.map(artist => {
+    //     const artistName = artist.name.toLowerCase();
+    //     let commonLetters = 0;
         
-        // Compter les lettres communes
-        for (let i = 0; i < searchTerm.length; i++) {
-          if (artistName.includes(searchTerm[i])) {
-            commonLetters++;
-          }
-        }
+    //     // Compter les lettres communes
+    //     for (let i = 0; i < searchTerm.length; i++) {
+    //       if (artistName.includes(searchTerm[i])) {
+    //         commonLetters++;
+    //       }
+    //     }
         
-        return { artist, commonLetters };
-      })
-      .filter(item => item.commonLetters >= 2) // Au moins 2 lettres en commun
-      .sort((a, b) => b.commonLetters - a.commonLetters) // Plus de lettres communes = meilleur score
-      .map(item => item.artist)
-      .slice(0, 5 - results.length); // Compléter jusqu'à 5 artistes max
+    //     return { artist, commonLetters };
+    //   })
+    //   .filter(item => item.commonLetters >= 2) // Au moins 2 lettres en commun
+    //   .sort((a, b) => b.commonLetters - a.commonLetters) // Plus de lettres communes = meilleur score
+    //   .map(item => item.artist)
+    //   .slice(0, 5 - results.length); // Compléter jusqu'à 5 artistes max
       
-      results = [...exactMatches, ...similarResults];
-    }
+    //   results = [...exactMatches, ...similarResults];
+    // }
     
     searchResults = results;
-    
-    if (results.length > 0) {
-      // Centrer le carrousel sur le premier artiste trouvé
-      const event = new CustomEvent('centerOnArtist', {
-        detail: { index: 0 }
-      });
-      document.dispatchEvent(event);
-    }
-  }
 
-  function handleDisplayArtist(artist: Artist) {
-    selectedArtist = artist;
   }
 </script>
 
@@ -139,8 +120,8 @@
 
 <main>
   <Logo />
-  <SearchBar />
-  <Carousel bind:selectedArtist={selectedArtist} artists={filteredArtists} searchResults={searchResults} />
+  <SearchBar bind:query={searchQuery} />
+  <Carousel bind:selectedArtist={selectedArtist} artists={filteredArtists} searchResults={searchResults} searchTerm={searchQuery.trim()} />
   {#if selectedArtist}
     <ArtistDetail bind:artist={selectedArtist} onClose={() => selectedArtist = null} />
   {/if}

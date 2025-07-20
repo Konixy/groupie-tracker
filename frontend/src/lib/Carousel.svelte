@@ -1,16 +1,17 @@
 <script lang="ts">
 	import type { Artist } from "../types";
 
-  let { artists = [], searchResults = [], selectedArtist = $bindable() }: {
+  let { artists = [], searchResults = [], searchTerm, selectedArtist = $bindable() }: {
     artists: Artist[];
     searchResults: Artist[];
+    searchTerm: string;
     selectedArtist: Artist | null;
   } = $props();
   let current = $state(0);
   let isAnimating = $state(false);
 
   // Utiliser les résultats de recherche s'ils existent, sinon tous les artistes
-  let displayArtists = $derived(searchResults.length > 0 ? searchResults : artists);
+  let displayArtists = $derived(searchTerm.length > 0 ? searchResults : artists);
 
   // Calculer la position de chaque carte en fonction de sa position relative au centre
   function getCardPosition(index: number) {

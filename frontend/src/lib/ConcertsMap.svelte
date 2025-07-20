@@ -42,7 +42,7 @@
 <style>
   .map {
     width: 90vw;
-    height: 900px;
+    height: 90vh;
     margin: 1rem;
     border-radius: 1.5rem;
     overflow: hidden;
