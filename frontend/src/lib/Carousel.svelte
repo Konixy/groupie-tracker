@@ -128,9 +128,6 @@
   async function next() {
     if (isAnimating) return;
     isAnimating = true;
-    if (selectedArtist) {
-      selectedArtist = null;
-    }
     current = (current + 1) % displayArtists.length;
     await new Promise(resolve => setTimeout(resolve, 300));
     isAnimating = false;
@@ -205,7 +202,6 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    /* transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
     transition: all 0.6s ease;
     cursor: pointer;
     border: none;
@@ -242,17 +238,8 @@
     transition: all 0.3s ease;
   }
 
-  .clickable-card:hover {
-    box-shadow: 0 12px 40px #0008;
-  }
-
   .clickable-card:hover img {
     transform: scale(1.05);
-  }
-
-  .clickable-card:focus {
-    outline: 2px solid #667eea;
-    outline-offset: 2px;
   }
 
   .view-more-button {
@@ -300,10 +287,10 @@
       <button 
         class="clickable-card" 
         style="
-          transform: {position.transform}; 
-          opacity: {position.opacity}; 
-          z-index: {position.zIndex}; 
-          width: {position.width}; 
+          transform: {position.transform};
+          opacity: {position.opacity};
+          z-index: {position.zIndex};
+          width: {position.width};
           height: {position.height};
         "
         onclick={() => handleCardClick(index, position.relativePos)} 
