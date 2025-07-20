@@ -44,7 +44,7 @@
     width: 90vw;
     height: 900px;
     margin: 1rem;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     overflow: hidden;
     margin-top: 2rem;
   }
@@ -60,5 +60,18 @@
   :global(.z01-icon) {
     border-radius: 100%;
   }
+
+  :global(.leaflet-control-zoom) {
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.3rem !important;
+  }
+
+  :global(.leaflet-control-zoom-in), :global(.leaflet-control-zoom-out) {
+    border-radius: 100% !important;
+    box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.1) !important;
+  }
+
 </style>  
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />

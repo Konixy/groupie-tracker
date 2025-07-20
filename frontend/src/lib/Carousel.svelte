@@ -1,20 +1,13 @@
 <script lang="ts">
-  let { artists = [], searchResults = [] } = $props();
+	import type { Artist } from "../types";
+
+  let { artists = [], searchResults = [], selectedArtist = $bindable() }: {
+    artists: Artist[];
+    searchResults: Artist[];
+    selectedArtist: Artist | null;
+  } = $props();
   let current = $state(0);
   let isAnimating = $state(false);
-
-  // Écouter les événements de centrage sur un artiste
-  $effect(() => {
-    const handleCenterOnArtist = (event: any) => {
-      current = event.detail.index;
-    };
-    
-    document.addEventListener('centerOnArtist', handleCenterOnArtist);
-    
-    return () => {
-      document.removeEventListener('centerOnArtist', handleCenterOnArtist);
-    };
-  });
 
   // Utiliser les résultats de recherche s'ils existent, sinon tous les artistes
   let displayArtists = $derived(searchResults.length > 0 ? searchResults : artists);
@@ -22,7 +15,7 @@
   // Calculer la position de chaque carte en fonction de sa position relative au centre
   function getCardPosition(index: number) {
     const total = displayArtists.length;
-    if (total === 0) return { transform: '', opacity: 0, zIndex: 0, width: 0, height: 0 };
+    if (total === 0) return { transform: '', opacity: 0, zIndex: 0, width: 0, height: 0, relativePos: 0 };
     
     // Calculer la position relative au centre
     let relativePos = index - current;
@@ -38,7 +31,8 @@
         opacity: 1,
         zIndex: 4,
         width: 'clamp(250px, 30vw, 400px)',
-        height: 'clamp(250px, 30vw, 400px)'
+        height: 'clamp(250px, 30vw, 400px)',
+        relativePos
       };
     }
     
@@ -48,16 +42,18 @@
           transform: 'translate(-50%, -50%) translateX(-250px) translateZ(-80px) rotateY(15deg)',
           opacity: 0.7,
           zIndex: 2,
-          width: '320px',
-          height: '320px'
+          width: 'clamp(200px, 25vw, 320px)',
+          height: 'clamp(200px, 25vw, 320px)',
+          relativePos
         };
       } else {
         return {
           transform: 'translate(-50%, -50%) translateX(250px) translateZ(-80px) rotateY(-15deg)',
           opacity: 0.7,
           zIndex: 2,
-          width: '320px',
-          height: '320px'
+          width: 'clamp(200px, 25vw, 320px)',
+          height: 'clamp(200px, 25vw, 320px)',
+          relativePos
         };
       }
     }
@@ -67,18 +63,20 @@
       case -2:
         return {
           transform: 'translate(-50%, -50%) translateX(-200px) translateZ(-150px) rotateY(20deg)',
-          opacity: 1,
+          opacity: 0,
           zIndex: 1,
-          width: '250px',
-          height: '250px'
+          width: 'clamp(150px, 20vw, 250px)',
+          height: 'clamp(150px, 20vw, 250px)',
+          relativePos
         };
       case -1:
         return {
           transform: 'translate(-50%, -50%) translateX(-250px) translateZ(-80px) rotateY(15deg)',
           opacity: 1,
           zIndex: 2,
-          width: '320px',
-          height: '320px'
+          width: 'clamp(200px, 25vw, 320px)',
+          height: 'clamp(200px, 25vw, 320px)',
+          relativePos
         };
       case 0:
         return {
@@ -86,31 +84,35 @@
           opacity: 1,
           zIndex: 4,
           width: 'clamp(250px, 30vw, 400px)',
-          height: 'clamp(250px, 30vw, 400px)'
+          height: 'clamp(250px, 30vw, 400px)',
+          relativePos
         };
       case 1:
         return {
           transform: 'translate(-50%, -50%) translateX(250px) translateZ(-80px) rotateY(-15deg)',
           opacity: 1,
           zIndex: 2,
-          width: '320px',
-          height: '320px'
+          width: 'clamp(200px, 25vw, 320px)',
+          height: 'clamp(200px, 25vw, 320px)',
+          relativePos
         };
       case 2:
         return {
           transform: 'translate(-50%, -50%) translateX(200px) translateZ(-150px) rotateY(-20deg)',
-          opacity: 1,
+          opacity: 0,
           zIndex: 1,
-          width: '250px',
-          height: '250px'
+          width: 'clamp(150px, 20vw, 250px)',
+          height: 'clamp(150px, 20vw, 250px)',
+          relativePos
         };
       default:
         return {
           transform: 'translate(-50%, -50%) translateX(400px) translateZ(-200px) rotateY(-30deg)',
           opacity: 0,
           zIndex: 0,
-          width: '200px',
-          height: '200px'
+          width: 'clamp(120px, 15vw, 200px)',
+          height: 'clamp(120px, 15vw, 200px)',
+          relativePos
         };
     }
   }
@@ -119,38 +121,28 @@
     if (isAnimating) return;
     isAnimating = true;
     current = (current - 1 + displayArtists.length) % displayArtists.length;
-    await new Promise(resolve => setTimeout(resolve, 600));
+    await new Promise(resolve => setTimeout(resolve, 300));
     isAnimating = false;
   }
 
   async function next() {
     if (isAnimating) return;
     isAnimating = true;
+    if (selectedArtist) {
+      selectedArtist = null;
+    }
     current = (current + 1) % displayArtists.length;
-    await new Promise(resolve => setTimeout(resolve, 600));
+    await new Promise(resolve => setTimeout(resolve, 300));
     isAnimating = false;
   }
 
-  function handleCardClick(artistIndex: number) {
-    // Émettre un événement pour ouvrir les détails de l'artiste
-    const event = new CustomEvent('artistClick', {
-      detail: displayArtists[artistIndex]
-    });
-    document.dispatchEvent(event);
-  }
-
-  function handleViewMore() {
-    // Émettre un événement pour ouvrir les détails de l'artiste central
-    const event = new CustomEvent('artistClick', {
-      detail: displayArtists[current]
-    });
-    document.dispatchEvent(event);
-  }
-
-  function handleKeyDown(event: KeyboardEvent, artistIndex: number) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      handleCardClick(artistIndex);
+  function handleCardClick(artistIndex: number, relativePos: number) {
+    if (relativePos === 1) {
+      next()
+    } else if (relativePos === -1) {
+      prev()
+    } else {
+      selectedArtist = displayArtists[artistIndex];
     }
   }
 </script>
@@ -179,7 +171,7 @@
     justify-content: center;
     opacity: 0.7;
     transition: opacity 0.2s;
-    z-index: 10;
+    z-index: 2000;
   }
 
   .arrow:hover {
@@ -213,11 +205,13 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
+    transition: all 0.6s ease;
     cursor: pointer;
     border: none;
     padding: 0;
     transform-style: preserve-3d;
+    outline: none;
   }
 
   .clickable-card img {
@@ -312,11 +306,10 @@
           width: {position.width}; 
           height: {position.height};
         "
-        onclick={() => handleCardClick(index)} 
-        onkeydown={(event) => handleKeyDown(event, index)} 
+        onclick={() => handleCardClick(index, position.relativePos)} 
         aria-label="Artiste {index + 1}"
       >
-        <img src={artist.image} alt={artist.name} />
+        <img src={artist.image} alt={artist.name} class="artist-img-{index}" />
         <h2>{artist.name}</h2>
       </button>
     {/each}
@@ -325,7 +318,7 @@
 </div>
 
 {#if displayArtists.length}
-  <button class="view-more-button" onclick={handleViewMore}>
+  <button class="view-more-button" onclick={() => selectedArtist = displayArtists[current]}>
     Voir plus
   </button>
 {/if}

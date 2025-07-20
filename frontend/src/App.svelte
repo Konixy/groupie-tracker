@@ -5,18 +5,7 @@
   import SearchBar from './lib/SearchBar.svelte';
   import ArtistDetail from './lib/ArtistDetail.svelte';
   import ConcertsMap from './lib/ConcertsMap.svelte';
-
-  type Artist = {
-    id: number;
-    name: string;
-    image: string;
-    members: string[];
-    creationDate: number;
-    firstAlbum: string;
-    locations: string;
-    concertDates: string;
-    relations: string;
-  };
+  import type { Artist } from './types';
 
   let artists: Artist[] = [];
   let filteredArtists = $state<Artist[]>([]);
@@ -130,8 +119,8 @@
     }
   }
 
-  function handleBack() {
-    selectedArtist = null;
+  function handleDisplayArtist(artist: Artist) {
+    selectedArtist = artist;
   }
 </script>
 
@@ -147,13 +136,13 @@
   }
 </style>
 
-{#if selectedArtist}
-  <ArtistDetail artist={selectedArtist} onBack={handleBack} />
-{:else}
-  <main>
-    <Logo />
-    <SearchBar />
-    <Carousel artists={filteredArtists} searchResults={searchResults} />
-    <ConcertsMap />
-  </main>
-{/if}
+
+<main>
+  <Logo />
+  <SearchBar />
+  <Carousel bind:selectedArtist={selectedArtist} artists={filteredArtists} searchResults={searchResults} />
+  {#if selectedArtist}
+    <ArtistDetail bind:artist={selectedArtist} onClose={() => selectedArtist = null} />
+  {/if}
+  <ConcertsMap />
+</main>
