@@ -51,67 +51,73 @@
 </script>
 
 <div class="background-overlay" aria-hidden="true" transition:fade={{ duration: 400, easing: expoOut }} onclick={onClose}></div>
-<div class="artist-card" transition:scale={{ duration: 400, easing: expoOut, start: 0.5 }}>
-  <button class="close-button" onclick={onClose} aria-label="Fermer">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-  </button>
-  <div class="artist-header">
-    <img src={artist.image} alt={artist.name} class="artist-image" />
-    <div class="artist-info">
-      <h1>{artist.name}</h1>
-      <p><strong>Date de création :</strong> {artist.creationDate}</p>
-      <p><strong>Premier album :</strong> {formatDate(artist.firstAlbum)}</p>
-    </div>
-
-  </div>
-
-  <div class="members-section">
-    <h2>Membres du groupe</h2>
-    <div class="members-list">
-      {#each artist.members as member}
-        <span class="member-tag">{member}</span>
-      {/each}
-    </div>
-  </div>
-
-  <div class="stats-grid">
-    <div class="stat-card">
-      <h3>Date de création</h3>
-      <p>{artist.creationDate}</p>
-    </div>
-    <div class="stat-card">
-      <h3>Premier album</h3>
-      <p>{formatDate(artist.firstAlbum)}</p>
-    </div>
-    <div class="stat-card">
-      <h3>Nombre de membres</h3>
-      <p>{artist.members.length}</p>
-    </div>
-  </div>
-
-  <div class="concerts-section">
-  <h2>Concerts</h2>
-    {#if loadingConcerts}
-        <div class="loading">Chargement des concerts...</div>
-    {:else if Object.keys(concerts).length > 0}
-      <div class="concerts-list">
-        {#each Object.entries(concerts) as [date, locations]}
-          <div class="concert-item">
-            <div class="concert-date">{formatDate(date)}</div>
-            <div class="concert-locations">
-              {#each locations.slice(0, 2) as location}
-                <div class="location-item">📍 {formatCountryName(location)}</div>
-              {/each}
-              {#if locations.length > 2}
-                <div class="location-item">... et {locations.length - 2} autres lieux</div>
-              {/if}
-            </div>
-          </div>
-        {/each}
+<div class="artist-container">
+  <div class="artist-card" transition:scale={{ duration: 400, easing: expoOut, start: 0.5 }}>
+    <button class="close-button" onclick={onClose} aria-label="Fermer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="artist-header">
+      <img src={artist.image} alt={artist.name} class="artist-image" />
+      <div class="artist-info">
+        <h1>{artist.name}</h1>
+        <p><strong>Date de création :</strong> {artist.creationDate}</p>
+        <p><strong>Premier album :</strong> {formatDate(artist.firstAlbum)}</p>
       </div>
-    {:else}
-      <div class="loading">Aucun concert trouvé</div>
-    {/if}
+
+    </div>
+
+    <div class="artist-content">
+      <div class="sticky-gradient"></div>
+
+      <div class="members-section">
+        <h2>Membres du groupe</h2>
+        <div class="members-list">
+          {#each artist.members as member}
+            <span class="member-tag">{member}</span>
+          {/each}
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Date de création</h3>
+          <p>{artist.creationDate}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Premier album</h3>
+          <p>{formatDate(artist.firstAlbum)}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Nombre de membres</h3>
+          <p>{artist.members.length}</p>
+        </div>
+      </div>
+
+      <div class="concerts-section">
+        <h2>Concerts</h2>
+        {#if loadingConcerts}
+          <div class="loading">Chargement des concerts...</div>
+        {:else if Object.keys(concerts).length > 0}
+          <div class="concerts-list">
+            {#each Object.entries(concerts) as [date, locations]}
+              <div class="concert-item">
+                <div class="concert-date">{formatDate(date)}</div>
+                <div class="concert-locations">
+                  {#each locations.slice(0, 2) as location}
+                    <div class="location-item">📍 {formatCountryName(location)}</div>
+                  {/each}
+                  {#if locations.length > 2}
+                    <div class="location-item">... et {locations.length - 2} autres lieux</div>
+                  {/if}
+                </div>
+              </div>
+            {/each}
+          </div>
+        {:else}
+          <div class="loading">Aucun concert trouvé</div>
+        {/if}
+      </div>
+    </div>
   </div>
 </div>
 
@@ -126,6 +132,28 @@
       z-index: 999;
     }
 
+    .artist-container {
+      position: fixed;
+      width: 60vw;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .artist-card {
+      position: relative;
+      z-index: 1000;
+      background: white;
+      border-radius: 20px;
+      padding: 1rem;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+    }
     .close-button {
       position: absolute;
       width: 2rem;
@@ -147,28 +175,11 @@
       background: #e0e0e0;
     }
   
-    .artist-card {
-      position: fixed;
-      z-index: 1000;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      border-radius: 20px;
-      padding: 3rem;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      margin-top: 2rem;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-  
     .artist-header {
       display: flex;
       align-items: center;
       gap: 2rem;
-      margin-bottom: 2rem;
+      padding: 2rem;
     }
   
     .artist-image {
@@ -190,19 +201,35 @@
       font-size: 1.1rem;
       color: #666;
     }
-  
-    .members-section {
-      margin-top: 2rem;
+    .artist-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 0 2rem
+    }
+
+    .sticky-gradient {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+      /* backdrop-filter: blur(10px); */
+      /* filter: blur(10px); */
+      min-height: 4rem;
+      margin: 0 -3rem;
+      padding: 0 3rem;
+      width: calc(100% + 6rem - 20px);
     }
   
     .members-section h2 {
+      margin-top: -1rem;
       color: #333;
-      margin-bottom: 1rem;
     }
   
     .members-list {
       display: flex;
       flex-wrap: wrap;
+      margin-bottom: 1rem;
       gap: 0.5rem;
     }
   
@@ -218,7 +245,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
-      margin-top: 2rem;
     }
   
     .stat-card {
@@ -240,14 +266,15 @@
       font-size: 1.2rem;
       font-weight: bold;
     }
-  
+
     .concerts-section {
-      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
     }
-  
+
     .concerts-section h2 {
       color: #333;
-      margin-bottom: 1rem;
     }
   
     .concerts-list {
