@@ -22,10 +22,19 @@
           img.crossOrigin = "anonymous";
           await img.decode();
           const v = await new Vibrant(img).getPalette();
-          const dark = v.DarkVibrant?.rgb || [0, 0, 0];
-          const light = v.LightVibrant?.rgb || [255, 255, 255];
-          document.body.style.backgroundColor = `rgb(${dark[0]}, ${dark[1]}, ${dark[2]})`;
-          document.body.style.color = `rgb(${light[0]}, ${light[1]}, ${light[2]})`;
+          const vibrant = v.Vibrant?.rgb || [255, 255, 255];
+          const lightVibrant = v.LightVibrant?.rgb || [255, 255, 255];
+          const darkVibrant = v.DarkVibrant?.rgb || [0, 0, 0];
+          const muted = v.Muted?.rgb || [255, 255, 255];
+          const lightMuted = v.LightMuted?.rgb || [255, 255, 255];
+          const darkMuted = v.DarkMuted?.rgb || [0, 0, 0];
+
+          document.body.style.setProperty('--vibrant', `rgb(${vibrant[0]}, ${vibrant[1]}, ${vibrant[2]})`);
+          document.body.style.setProperty('--light-vibrant', `rgb(${lightVibrant[0]}, ${lightVibrant[1]}, ${lightVibrant[2]})`);
+          document.body.style.setProperty('--dark-vibrant', `rgb(${darkVibrant[0]}, ${darkVibrant[1]}, ${darkVibrant[2]})`);
+          document.body.style.setProperty('--muted', `rgb(${muted[0]}, ${muted[1]}, ${muted[2]})`);
+          document.body.style.setProperty('--light-muted', `rgb(${lightMuted[0]}, ${lightMuted[1]}, ${lightMuted[2]})`);
+          document.body.style.setProperty('--dark-muted', `rgb(${darkMuted[0]}, ${darkMuted[1]}, ${darkMuted[2]})`);
         }
       });
     }
@@ -265,8 +274,8 @@
   }
 
   .view-more-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(to bottom, var(--light-muted) 0%, var(--muted) 100%);
+    color: var(--dark-muted);
     border: none;
     padding: 1rem 2rem;
     border-radius: 25px;
@@ -277,7 +286,6 @@
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: block;
-    margin: 2rem auto 0 auto;
   }
 
   .view-more-button:hover {

@@ -19,15 +19,21 @@
     font-size: 1rem;
     font-family: "Arial Rounded MT Bold", Arial, sans-serif;
     outline: none;
-    background: currentColor;
-    color: currentColor;
+    background: var(--light-muted);
+    color: var(--dark-muted);
     padding-left: 2.8rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  input::placeholder {
+    color: currentColor;
   }
 
   .lucide-search-icon {
     margin-right: -2.2rem;
+    color: var(--dark-muted);
     z-index: 100;
-    color: rgb(101, 101, 101);
+    transition: color 0.3s ease;
   }
 </style>
 
