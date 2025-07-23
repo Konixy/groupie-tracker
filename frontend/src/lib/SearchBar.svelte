@@ -19,8 +19,8 @@
     font-size: 1rem;
     font-family: "Arial Rounded MT Bold", Arial, sans-serif;
     outline: none;
-    background: #ffffff;
-    color: #000000;
+    background: currentColor;
+    color: currentColor;
     padding-left: 2.8rem;
   }
 

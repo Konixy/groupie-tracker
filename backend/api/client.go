@@ -57,13 +57,21 @@ func FetchArtists() ([]Artist, error) {
 	}
 
 	// Crée une slice vide pour contenir nos artistes après la conversion JSON
-	var artists []Artist
+	var parsed []Artist
 	// json.Unmarshal convertit les bytes JSON en structs Go
 	// Utilise les tags json:"..." pour mapper les champs JSON aux champs de struct
-	err = json.Unmarshal(body, &artists)
+	err = json.Unmarshal(body, &parsed)
 	if err != nil {
 		log.Printf("Error unmarshaling JSON: %v", err)
 		return nil, err
+	}
+
+	var artists []Artist
+
+	for _, artist := range parsed {
+		imgPath := strings.Split(artist.Image, "api/")[1]
+		artist.Image = "http://localhost:8080/" + imgPath
+		artists = append(artists, artist)
 	}
 
 	return artists, nil
@@ -77,7 +85,7 @@ type Concert struct {
 
 // ArtistConcerts représente les concerts d'un artiste
 type ArtistConcerts struct {
-	ID      int                `json:"id"`
+	ID       int                 `json:"id"`
 	Concerts map[string][]string `json:"concerts"`
 }
 
@@ -104,13 +112,13 @@ func FetchArtistConcerts(artistID int) (*ArtistConcerts, error) {
 		ID    int      `json:"id"`
 		Dates []string `json:"dates"`
 	}
-	
+
 	datesBody, err := io.ReadAll(datesResponse.Body)
 	if err != nil {
 		log.Printf("Error reading dates response: %v", err)
 		return nil, err
 	}
-	
+
 	err = json.Unmarshal(datesBody, &datesData)
 	if err != nil {
 		log.Printf("Error unmarshaling dates JSON: %v", err)
@@ -122,13 +130,13 @@ func FetchArtistConcerts(artistID int) (*ArtistConcerts, error) {
 		ID        int      `json:"id"`
 		Locations []string `json:"locations"`
 	}
-	
+
 	locationsBody, err := io.ReadAll(locationsResponse.Body)
 	if err != nil {
 		log.Printf("Error reading locations response: %v", err)
 		return nil, err
 	}
-	
+
 	err = json.Unmarshal(locationsBody, &locationsData)
 	if err != nil {
 		log.Printf("Error unmarshaling locations JSON: %v", err)
@@ -137,23 +145,23 @@ func FetchArtistConcerts(artistID int) (*ArtistConcerts, error) {
 
 	// Combine les dates et lieux
 	concerts := make(map[string][]string)
-	
+
 	// Assure que nous avons le même nombre de dates et de lieux
 	minLen := len(datesData.Dates)
 	if len(locationsData.Locations) < minLen {
 		minLen = len(locationsData.Locations)
 	}
-	
+
 	for i := 0; i < minLen; i++ {
 		date := datesData.Dates[i]
 		location := locationsData.Locations[i]
-		
+
 		// Nettoyer la date (enlever l'astérisque si présente)
 		cleanDate := strings.TrimPrefix(date, "*")
-		
+
 		// Formater la location pour la rendre plus lisible
 		formattedLocation := formatLocation(location)
-		
+
 		concerts[cleanDate] = append(concerts[cleanDate], formattedLocation)
 	}
 
@@ -172,7 +180,7 @@ func formatLocation(location string) string {
 		country := strings.ToUpper(parts[1])
 		return strings.Title(city) + ", " + country
 	}
-	
+
 	// Si pas de format attendu, juste nettoyer les underscores
 	return strings.Title(strings.ReplaceAll(location, "_", " "))
 }

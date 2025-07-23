@@ -10,8 +10,9 @@ import (
 
 func main() {
 	// Route API REST
-	http.HandleFunc("/artists", handlers.IndexHandler)
+	http.HandleFunc("/artists", handlers.ArtistsHandler)
 	http.HandleFunc("/artists/", handlers.ArtistConcertsHandler)
+	http.HandleFunc("/images/", handlers.ImagesHandler)
 
 	// Message d'accueil sur /
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

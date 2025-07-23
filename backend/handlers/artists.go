@@ -9,8 +9,8 @@ import (
 	"groupie-tracker/api"
 )
 
-// Handler for the / route
-func IndexHandler(w http.ResponseWriter, r *http.Request) {
+// Handler for the /artists route
+func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	artists, err := api.FetchArtists()
 	if err != nil {
 		http.Error(w, "Erreur lors de la récupération des artistes", http.StatusInternalServerError)
@@ -30,20 +30,20 @@ func ArtistConcertsHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "ID d'artiste manquant", http.StatusBadRequest)
 		return
 	}
-	
+
 	artistID, err := strconv.Atoi(pathParts[2])
 	if err != nil {
 		http.Error(w, "ID d'artiste invalide", http.StatusBadRequest)
 		return
 	}
-	
+
 	// Récupérer les concerts de l'artiste
 	concerts, err := api.FetchArtistConcerts(artistID)
 	if err != nil {
 		http.Error(w, "Erreur lors de la récupération des concerts", http.StatusInternalServerError)
 		return
 	}
-	
+
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	w.WriteHeader(http.StatusOK)

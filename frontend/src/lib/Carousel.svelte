@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { untrack } from "svelte";
 	import type { Artist } from "../types";
+  import { Vibrant } from "node-vibrant/browser";
 
   let { artists = [], searchResults = [], searchTerm, selectedArtist = $bindable() }: {
     artists: Artist[];
@@ -9,6 +11,25 @@
   } = $props();
   let current = $state(0);
   let isAnimating = $state(false);
+
+  $effect(() => {
+    current;
+    if (artists.length > 0) {
+      untrack(async () => {
+        const img = document.querySelector(`.img-center`) as HTMLImageElement | null;
+
+        if (img) {
+          img.crossOrigin = "anonymous";
+          await img.decode();
+          const v = await new Vibrant(img).getPalette();
+          const dark = v.DarkVibrant?.rgb || [0, 0, 0];
+          const light = v.LightVibrant?.rgb || [255, 255, 255];
+          document.body.style.backgroundColor = `rgb(${dark[0]}, ${dark[1]}, ${dark[2]})`;
+          document.body.style.color = `rgb(${light[0]}, ${light[1]}, ${light[2]})`;
+        }
+      });
+    }
+  });
 
   // Utiliser les résultats de recherche s'ils existent, sinon tous les artistes
   let displayArtists = $derived(searchTerm.length > 0 ? searchResults : artists);
@@ -297,7 +318,7 @@
         onclick={() => handleCardClick(index, position.relativePos)} 
         aria-label="Artiste {index + 1}"
       >
-        <img src={artist.image} alt={artist.name} class="artist-img-{index}" />
+        <img src={artist.image} alt={artist.name} class="artist-img-{index} {position.relativePos === 0 ? 'img-center' : position.relativePos === 1 ? 'img-right' : 'img-left'}" />
         <h2>{artist.name}</h2>
       </button>
     {/each}
