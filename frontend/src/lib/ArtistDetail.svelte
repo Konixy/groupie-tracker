@@ -16,6 +16,17 @@
     }
   });
 
+  $effect(() => {
+    const fn = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    }
+
+    document.addEventListener('keydown', fn);
+    return () => document.removeEventListener('keydown', fn);
+  });
+
   async function fetchConcerts() {
     try {
       loadingConcerts = true;
@@ -52,7 +63,7 @@
 
 <div class="background-overlay" aria-hidden="true" transition:fade={{ duration: 400, easing: expoOut }} onclick={onClose}></div>
 <div class="artist-container">
-  <div class="artist-card" transition:scale={{ duration: 400, easing: expoOut, start: 0.5 }}>
+  <div class="artist-card" transition:scale={{ duration: 400, easing: expoOut, start: 0.5 }} role="dialog" tabindex="0">
     <button class="close-button" onclick={onClose} aria-label="Fermer">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
     </button>
@@ -140,6 +151,13 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
+    }
+
+    @media (max-width: 1000px) {
+      .artist-container {
+        width: 90vw;
+        height: 90vh;
+      }
     }
 
     .artist-card {

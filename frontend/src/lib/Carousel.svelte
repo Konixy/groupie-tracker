@@ -3,19 +3,17 @@
 	import type { Artist } from "../types";
   import { Vibrant } from "node-vibrant/browser";
 
-  let { artists = [], searchResults = [], searchTerm, selectedArtist = $bindable() }: {
+  let { artists = [], selectedArtist = $bindable() }: {
     artists: Artist[];
-    searchResults: Artist[];
-    searchTerm: string;
     selectedArtist: Artist | null;
   } = $props();
-  let current = $state(0);
+  let current = $state(Math.floor(Math.random() * 52));
   let isAnimating = $state(false);
 
   $effect(() => {
     current;
     if (artists.length > 0) {
-      untrack(async () => {
+      (async () => {
         const img = document.querySelector(`.img-center`) as HTMLImageElement | null;
 
         if (img) {
@@ -24,10 +22,10 @@
           const v = await new Vibrant(img).getPalette();
           const vibrant = v.Vibrant?.rgb || [255, 255, 255];
           const lightVibrant = v.LightVibrant?.rgb || [255, 255, 255];
-          const darkVibrant = v.DarkVibrant?.rgb || [0, 0, 0];
+          const darkVibrant = v.DarkVibrant?.rgb || [100, 100, 100];
           const muted = v.Muted?.rgb || [255, 255, 255];
           const lightMuted = v.LightMuted?.rgb || [255, 255, 255];
-          const darkMuted = v.DarkMuted?.rgb || [0, 0, 0];
+          const darkMuted = v.DarkMuted?.rgb || [100, 100, 100];
 
           document.body.style.setProperty('--vibrant', `rgb(${vibrant[0]}, ${vibrant[1]}, ${vibrant[2]})`);
           document.body.style.setProperty('--light-vibrant', `rgb(${lightVibrant[0]}, ${lightVibrant[1]}, ${lightVibrant[2]})`);
@@ -35,17 +33,18 @@
           document.body.style.setProperty('--muted', `rgb(${muted[0]}, ${muted[1]}, ${muted[2]})`);
           document.body.style.setProperty('--light-muted', `rgb(${lightMuted[0]}, ${lightMuted[1]}, ${lightMuted[2]})`);
           document.body.style.setProperty('--dark-muted', `rgb(${darkMuted[0]}, ${darkMuted[1]}, ${darkMuted[2]})`);
+
+          document.body.style.backgroundColor = `var(--dark-muted)`;
+          document.body.style.color = `var(--light-vibrant)`;
+          document.body.style.transition = `background-color 0.3s ease, color 0.3s ease`;
         }
-      });
+      })();
     }
   });
 
-  // Utiliser les résultats de recherche s'ils existent, sinon tous les artistes
-  let displayArtists = $derived(searchTerm.length > 0 ? searchResults : artists);
-
   // Calculer la position de chaque carte en fonction de sa position relative au centre
   function getCardPosition(index: number) {
-    const total = displayArtists.length;
+    const total = artists.length;
     if (total === 0) return { transform: '', opacity: 0, zIndex: 0, width: 0, height: 0, relativePos: 0 };
     
     // Calculer la position relative au centre
@@ -151,7 +150,7 @@
   async function prev() {
     if (isAnimating) return;
     isAnimating = true;
-    current = (current - 1 + displayArtists.length) % displayArtists.length;
+    current = (current - 1 + artists.length) % artists.length;
     await new Promise(resolve => setTimeout(resolve, 300));
     isAnimating = false;
   }
@@ -159,7 +158,7 @@
   async function next() {
     if (isAnimating) return;
     isAnimating = true;
-    current = (current + 1) % displayArtists.length;
+    current = (current + 1) % artists.length;
     await new Promise(resolve => setTimeout(resolve, 300));
     isAnimating = false;
   }
@@ -170,7 +169,7 @@
     } else if (relativePos === -1) {
       prev()
     } else {
-      selectedArtist = displayArtists[artistIndex];
+      selectedArtist = artists[artistIndex];
     }
   }
 </script>
@@ -305,14 +304,14 @@
   }
 </style>
 
-{#if !displayArtists.length}
+{#if !artists.length}
   <div style="color: #fff; text-align: center; margin: 2rem;">Aucun artiste à afficher.</div>
 {/if}
 
 <div class="carousel-container">
   <button class="arrow" onclick={prev} disabled={isAnimating}>&larr;</button>
   <div class="cards">
-    {#each displayArtists as artist, index}
+    {#each artists as artist, index}
       {@const position = getCardPosition(index)}
       <button 
         class="clickable-card" 
@@ -334,8 +333,8 @@
   <button class="arrow" onclick={next} disabled={isAnimating}>&rarr;</button>
 </div>
 
-{#if displayArtists.length}
-  <button class="view-more-button" onclick={() => selectedArtist = displayArtists[current]}>
+{#if artists.length}
+  <button class="view-more-button" onclick={() => selectedArtist = artists[current]}>
     Voir plus
   </button>
 {/if}
