@@ -17,21 +17,111 @@
 		// Supporte à la fois l'API locale (data.artists) et distante (data)
 		artists = Array.isArray(data) ? data : data.artists;
 	});
+
+	function scrollToContent() {
+		const contentSection = document.querySelector('.content-section');
+		if (contentSection) {
+			contentSection.scrollIntoView({ behavior: 'smooth' });
+		}
+	}
 </script>
 
 <main>
-	<Logo />
-	<SearchBar {artists} bind:selectedArtist />
-	<Carousel bind:selectedArtist {artists} />
-	{#if selectedArtist}
-		<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
-	{/if}
-	<ConcertsMap />
-	<Footer />
+	<!-- D'abord le titre qu'on va animer après -->
+	<section class="hero-section">
+		<div class="hero-content">
+			<Logo />
+			<button class="scroll-button" onclick={scrollToContent} aria-label="Défiler vers le contenu">
+				<svg
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<path d="M7 13l5 5 5-5" />
+					<path d="M7 6l5 5 5-5" />
+				</svg>
+			</button>
+		</div>
+	</section>
+
+	<!-- Ensuite le contenu de recherche -->
+	<section class="content-section">
+		<SearchBar {artists} bind:selectedArtist />
+		<Carousel bind:selectedArtist {artists} />
+		{#if selectedArtist}
+			<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
+		{/if}
+	</section>
+	<section class="content-section">
+		<ConcertsMap />
+		<Footer />
+	</section>
 </main>
 
 <style>
 	main {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hero-section {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+	}
+
+	.hero-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.scroll-button {
+		background: none;
+		border: 2px solid currentColor;
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		color: inherit;
+	}
+
+	.scroll-button:hover {
+		transform: translateY(5px);
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.scroll-button svg {
+		animation: bounce 2s infinite;
+	}
+
+	@keyframes bounce {
+		0%,
+		20%,
+		50%,
+		80%,
+		100% {
+			transform: translateY(0);
+		}
+		40% {
+			transform: translateY(-10px);
+		}
+		60% {
+			transform: translateY(-5px);
+		}
+	}
+
+	.content-section {
 		min-height: 100vh;
 		box-sizing: border-box;
 		padding: 2rem 0 4rem 0;
