@@ -57,6 +57,18 @@
 		}
 	});
 
+	$effect(() => {
+		const fn = (e: KeyboardEvent) => {
+			if (e.key === 'ArrowLeft') {
+				prev();
+			} else if (e.key === 'ArrowRight') {
+				next();
+			}
+		};
+		window.addEventListener('keydown', fn);
+		return () => window.removeEventListener('keydown', fn);
+	});
+
 	// Calculer la position de chaque carte en fonction de sa position relative au centre
 	function getCardPosition(index: number) {
 		const total = artists.length;
@@ -167,6 +179,7 @@
 		if (isAnimating) return;
 		isAnimating = true;
 		current = (current - 1 + artists.length) % artists.length;
+		if (selectedArtist) selectedArtist = artists[current];
 		await new Promise((resolve) => setTimeout(resolve, 300));
 		isAnimating = false;
 	}
@@ -175,6 +188,7 @@
 		if (isAnimating) return;
 		isAnimating = true;
 		current = (current + 1) % artists.length;
+		if (selectedArtist) selectedArtist = artists[current];
 		await new Promise((resolve) => setTimeout(resolve, 300));
 		isAnimating = false;
 	}
