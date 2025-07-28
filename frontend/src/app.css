@@ -9,8 +9,14 @@ body {
 }
 
 a {
-	color: #4defff;
+	color: var(--vibrant);
 	text-decoration: none;
+	transition: color 0.1s ease;
+}
+
+a:hover {
+	color: color-mix(in srgb, var(--vibrant) 50%, #fff);
+	text-decoration: underline;
 }
 
 * {
