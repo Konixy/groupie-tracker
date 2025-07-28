@@ -10,6 +10,7 @@
 
 	let artists = $state<Artist[]>([]);
 	let selectedArtist = $state<Artist | null>(null);
+	let firstRender = $state(true);
 
 	onMount(async () => {
 		const res = await fetch('http://localhost:8080/artists');
@@ -30,27 +31,33 @@
 	<!-- D'abord le titre qu'on va animer après -->
 	<section class="hero-section">
 		<div class="hero-content">
-			<Logo />
-			<button class="scroll-button" onclick={scrollToContent} aria-label="Défiler vers le contenu">
-				<svg
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
+			<Logo {firstRender} />
+			{#if !firstRender}
+				<button
+					class="scroll-button"
+					onclick={scrollToContent}
+					aria-label="Défiler vers le contenu"
 				>
-					<path d="M7 13l5 5 5-5" />
-					<path d="M7 6l5 5 5-5" />
-				</svg>
-			</button>
+					<svg
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M7 13l5 5 5-5" />
+						<path d="M7 6l5 5 5-5" />
+					</svg>
+				</button>
+			{/if}
 		</div>
 	</section>
 
 	<!-- Ensuite le contenu de recherche -->
 	<section class="content-section">
 		<SearchBar {artists} bind:selectedArtist />
-		<Carousel bind:selectedArtist {artists} />
+		<Carousel bind:selectedArtist {artists} bind:firstRender />
 		{#if selectedArtist}
 			<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
 		{/if}

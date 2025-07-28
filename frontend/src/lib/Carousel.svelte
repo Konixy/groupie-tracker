@@ -4,10 +4,12 @@
 
 	let {
 		artists = [],
-		selectedArtist = $bindable()
+		selectedArtist = $bindable(),
+		firstRender = $bindable()
 	}: {
 		artists: Artist[];
 		selectedArtist: Artist | null;
+		firstRender: boolean;
 	} = $props();
 	let current = $state(Math.floor(Math.random() * 52));
 	let isAnimating = $state(false);
@@ -52,6 +54,7 @@
 					);
 
 					document.body.style.transition = `background-color 0.3s ease, color 0.3s ease`;
+					firstRender = false;
 				}
 			})();
 		}
