@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { untrack } from 'svelte';
 	import type { Artist } from '../types';
 	import { Vibrant } from 'node-vibrant/browser';
 
@@ -52,8 +51,6 @@
 						`rgb(${darkMuted[0]}, ${darkMuted[1]}, ${darkMuted[2]})`
 					);
 
-					document.body.style.backgroundColor = `var(--dark-muted)`;
-					document.body.style.color = `var(--light-vibrant)`;
 					document.body.style.transition = `background-color 0.3s ease, color 0.3s ease`;
 				}
 			})();
@@ -193,47 +190,49 @@
 	}
 </script>
 
-{#if !artists.length}
-	<div style="color: #fff; text-align: center; margin: 2rem;">Aucun artiste à afficher.</div>
-{/if}
-
-<div class="carousel-container">
-	<button class="arrow" onclick={prev} disabled={isAnimating}>&larr;</button>
-	<div class="cards">
-		{#each artists as artist, index}
-			{@const position = getCardPosition(index)}
-			<button
-				class="clickable-card"
-				style="
+{#if artists.length}
+	<div class="carousel-container">
+		<button class="arrow" onclick={prev} disabled={isAnimating}>&larr;</button>
+		<div class="cards">
+			{#each artists as artist, index}
+				{@const position = getCardPosition(index)}
+				<button
+					class="clickable-card"
+					style="
           transform: {position.transform};
           opacity: {position.opacity};
           z-index: {position.zIndex};
           width: {position.width};
           height: {position.height};
         "
-				onclick={() => handleCardClick(index, position.relativePos)}
-				aria-label="Artiste {index + 1}"
-			>
-				<img
-					src={artist.image}
-					alt={artist.name}
-					class="artist-img-{index} {position.relativePos === 0
-						? 'img-center'
-						: position.relativePos === 1
-							? 'img-right'
-							: 'img-left'}"
-				/>
-				<h2>{artist.name}</h2>
-			</button>
-		{/each}
+					onclick={() => handleCardClick(index, position.relativePos)}
+					aria-label="Artiste {index + 1}"
+				>
+					<img
+						src={artist.image}
+						alt={artist.name}
+						class="artist-img-{index} {position.relativePos === 0
+							? 'img-center'
+							: position.relativePos === 1
+								? 'img-right'
+								: 'img-left'}"
+					/>
+					<h2>{artist.name}</h2>
+				</button>
+			{/each}
+		</div>
+		<button class="arrow" onclick={next} disabled={isAnimating}>&rarr;</button>
 	</div>
-	<button class="arrow" onclick={next} disabled={isAnimating}>&rarr;</button>
-</div>
 
-{#if artists.length}
 	<button class="view-more-button" onclick={() => (selectedArtist = artists[current])}>
 		Voir plus
 	</button>
+{:else}
+	<div class="error-message">
+		Une erreur est survenue lors de la récupération des artistes.
+		<br />
+		<button class="retry-button" onclick={() => window.location.reload()}>Réessayer</button>
+	</div>
 {/if}
 
 <style>
@@ -241,7 +240,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 2rem 0;
+		/* margin: 2rem 0; */
 		perspective: 1200px;
 	}
 
@@ -363,5 +362,36 @@
 		.carousel-container {
 			perspective: 1000px;
 		}
+	}
+
+	.error-message {
+		text-align: center;
+		color: var(--light-vibrant);
+		text-align: center;
+		margin: 2rem;
+		margin-top: 10rem;
+		margin-bottom: 10rem;
+		z-index: 1000;
+	}
+
+	.retry-button {
+		background: var(--light-vibrant);
+		color: var(--dark-muted);
+		border: none;
+		padding: 1rem 2rem;
+		border-radius: 20px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		font-family: inherit;
+		font-size: 1rem;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+		display: block;
+		margin: 0 auto;
+		margin-top: 2rem;
+	}
+
+	.retry-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 	}
 </style>

@@ -152,6 +152,7 @@
 		background: var(--light-vibrant);
 		color: var(--dark-muted);
 		padding-left: 2.8rem;
+		margin-right: -1rem;
 		transition:
 			background-color 0.3s ease,
 			color 0.3s ease;
@@ -172,7 +173,6 @@
 		display: flex;
 		position: absolute;
 		top: 3rem;
-		transform: translateX(-5px);
 		padding: 0.5rem;
 		border-radius: 20px;
 		background: var(--light-vibrant);

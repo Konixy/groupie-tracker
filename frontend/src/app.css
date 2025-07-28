@@ -1,11 +1,16 @@
 /* Tout ce que je veux appliquer à l'ensemble du site */
 
+:root {
+	--light-vibrant: #f0f0f0;
+	--dark-muted: #333333;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
-	color: #f0f0f0;
-	background-color: #333333;
+	color: var(--light-vibrant);
+	background-color: var(--dark-muted);
 }
 
 a {
