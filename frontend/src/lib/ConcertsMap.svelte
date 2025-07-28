@@ -1,20 +1,30 @@
 <script lang="ts">
-	import L from 'leaflet';
+	import { Marker, Map, TileLayer, Icon, Control, Popup } from 'leaflet';
 	import { onMount } from 'svelte';
 
 	const currentArtist = 'victoria-australia';
 
 	let mapRef = $state<HTMLElement | string>('map');
-	let map: L.Map = $derived(L.map(mapRef).setView([49.43814906784801, 1.1023802854095484], 13));
+	let map: Map = $derived(new Map(mapRef).setView([49.43814906784801, 1.1023802854095484], 13));
 
 	// TODO: add state management for the artists api and share the currently selected artist in it.
 
+	function createMarker(name: string) {
+		const el = document.createElement('div');
+		el.innerHTML = `
+			<div class="z01-popup-content">
+				<h3>${name}</h3>
+			</div>
+		`;
+		return el;
+	}
+
 	onMount(() => {
 		// On peut mettre les logos des artistes directement sur la map comme icone de marker
-		L.marker([49.43814906784801, 1.1023802854095484])
+		new Marker([49.43814906784801, 1.1023802854095484])
 			.addTo(map)
 			.setIcon(
-				L.icon({
+				new Icon({
 					iconUrl: '/z01.png',
 					iconSize: [38, 38],
 					iconAnchor: [19, 19],
@@ -22,14 +32,32 @@
 					className: 'z01-icon'
 				})
 			)
-			.bindPopup('📍 Zone01');
+			.bindPopup(new Popup({ className: 'z01-popup', content: createMarker('Zone 01') }));
 
-		L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-			attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
-	        &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`,
-			subdomains: 'abcd',
-			maxZoom: 20
+		const darkLayer = new TileLayer(
+			'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+			{
+				subdomains: 'abcd',
+				maxZoom: 20,
+				minZoom: 0
+			}
+		);
+
+		const lightLayer = new TileLayer(
+			'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+			{
+				subdomains: 'abcd',
+				maxZoom: 20,
+				minZoom: 0
+			}
+		);
+
+		new Control.Layers({
+			light: lightLayer,
+			dark: darkLayer
 		}).addTo(map);
+
+		map.addLayer(darkLayer);
 	});
 </script>
 
@@ -38,7 +66,7 @@
 </div>
 
 <div bind:this={mapRef} class="map"></div>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@2.0.0-alpha/dist/leaflet.css" />
 
 <style>
 	.map {
@@ -48,6 +76,7 @@
 		border-radius: 1.5rem;
 		overflow: hidden;
 		margin-top: 2rem;
+		background-color: var(--dark-muted);
 	}
 
 	.title {
@@ -63,15 +92,63 @@
 	}
 
 	:global(.leaflet-control-zoom) {
-		border: none !important;
-		display: flex !important;
-		flex-direction: column !important;
-		gap: 0.3rem !important;
+		display: none;
 	}
 
-	:global(.leaflet-control-zoom-in),
-	:global(.leaflet-control-zoom-out) {
-		border-radius: 100% !important;
-		box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.1) !important;
+	:global(.leaflet-control-layers) {
+		border-radius: 14px !important;
+		background-color: var(--dark-muted) !important;
+		color: var(--light-muted) !important;
+		box-shadow: none !important;
+		border: none !important;
+		transition: all 0.1s ease !important;
+	}
+
+	:global(.leaflet-control-layers-list) {
+		border: none !important;
+		padding: 0.2rem !important;
+	}
+
+	:global(.leaflet-control-layers-base) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.2rem;
+	}
+
+	:global(.leaflet-control-layers-base span) {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	:global(.leaflet-control-layers-selector) {
+		-webkit-appearance: none;
+		appearance: none;
+		background-color: var(--dark-muted);
+		margin: 0;
+		font: inherit;
+		color: currentColor;
+		width: 1.15em;
+		height: 1.15em;
+		border: 0.15em solid var(--light-muted);
+		border-radius: 50%;
+		transform: translateY(-0.075em);
+		display: grid;
+		place-content: center;
+	}
+
+	:global(.leaflet-control-layers-selector::before) {
+		content: '';
+		width: 0.65em;
+		height: 0.65em;
+		border-radius: 50%;
+		transform: scale(0);
+		transition: 120ms transform ease-in-out;
+		box-shadow: inset 1em 1em var(--light-muted);
+	}
+
+	:global(.leaflet-control-layers-selector:checked::before) {
+		transform: scale(2);
 	}
 </style>
