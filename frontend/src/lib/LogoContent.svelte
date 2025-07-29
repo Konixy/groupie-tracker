@@ -32,6 +32,7 @@
 		fill: transparent;
 		stroke: var(--light-vibrant);
 		stroke-width: 2;
+		transform: scale(1.5);
 		transition: all 1s ease-in-out;
 	}
 </style>

@@ -7,6 +7,7 @@
 	import ConcertsMap from './lib/ConcertsMap.svelte';
 	import type { Artist } from './types';
 	import Footer from './lib/Footer.svelte';
+	import { fade } from 'svelte/transition';
 
 	let artists = $state<Artist[]>([]);
 	let selectedArtist = $state<Artist | null>(null);
@@ -17,6 +18,8 @@
 		const data = await res.json();
 		// Supporte à la fois l'API locale (data.artists) et distante (data)
 		artists = Array.isArray(data) ? data : data.artists;
+
+		window.scrollTo(0, 0);
 	});
 
 	function scrollToContent() {
@@ -44,6 +47,7 @@
 					class="scroll-button"
 					onclick={scrollToContent}
 					aria-label="Défiler vers le contenu"
+					in:fade={{ duration: 1000, delay: 1000 }}
 				>
 					<svg
 						width="24"
@@ -51,10 +55,11 @@
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
-						stroke-width="2"
+						stroke-width="3"
+						stroke-linecap="round"
+						stroke-linejoin="round"
 					>
-						<path d="M7 13l5 5 5-5" />
-						<path d="M7 6l5 5 5-5" />
+						<path d="m7 6 5 5 5-5" /><path d="m7 13 5 5 5-5" />
 					</svg>
 				</button>
 			{/if}
@@ -75,7 +80,9 @@
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
-				stroke-width="2"
+				stroke-width="3"
+				stroke-linecap="round"
+				stroke-linejoin="round"
 			>
 				<path d="M7 13l5 5 5-5" />
 				<path d="M7 6l5 5 5-5" />
@@ -116,12 +123,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 2rem;
+		gap: 4rem;
 	}
 
 	.scroll-button {
 		background: none;
-		border: 2px solid currentColor;
+		border: 3px solid currentColor;
 		border-radius: 50%;
 		width: 50px;
 		height: 50px;
@@ -131,14 +138,16 @@
 		cursor: pointer;
 		transition: all 0.3s ease;
 		color: inherit;
+		opacity: 0.6;
 	}
 
 	.scroll-button:hover {
 		transform: translateY(5px);
 		background: rgba(255, 255, 255, 0.1);
+		opacity: 1;
 	}
 
-	.scroll-button svg {
+	.scroll-button:not(:hover) svg {
 		animation: bounce 2s infinite;
 	}
 

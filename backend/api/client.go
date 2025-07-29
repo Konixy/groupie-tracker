@@ -171,9 +171,31 @@ func FetchArtistConcerts(artistID int) (*ArtistConcerts, error) {
 	}, nil
 }
 
-// formatLocation formate une location pour la rendre plus lisible
+func FetchAllConcerts() ([]Concert, error) {
+	response, err := http.Get(BaseURL + "/concerts")
+	if err != nil {
+		log.Printf("Error fetching concerts: %v", err)
+		return nil, err
+	}
+	defer response.Body.Close()
+
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Printf("Error reading response body: %v", err)
+		return nil, err
+	}
+
+	var concerts []Concert
+	err = json.Unmarshal(body, &concerts)
+	if err != nil {
+		log.Printf("Error unmarshaling concerts JSON: %v", err)
+		return nil, err
+	}
+
+	return concerts, nil
+}
+
 func formatLocation(location string) string {
-	// Remplacer les underscores par des espaces et capitaliser
 	parts := strings.Split(location, "-")
 	if len(parts) >= 2 {
 		city := strings.ReplaceAll(parts[0], "_", " ")
@@ -181,6 +203,5 @@ func formatLocation(location string) string {
 		return strings.Title(city) + ", " + country
 	}
 
-	// Si pas de format attendu, juste nettoyer les underscores
 	return strings.Title(strings.ReplaceAll(location, "_", " "))
 }

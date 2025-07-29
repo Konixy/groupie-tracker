@@ -53,7 +53,7 @@
 						`rgb(${darkMuted[0]}, ${darkMuted[1]}, ${darkMuted[2]})`
 					);
 
-					document.body.style.transition = `background-color 0.3s ease, color 0.3s ease`;
+					document.body.style.transition = `background-color 1s ease, color 1s ease`;
 					firstRender = false;
 				}
 			})();

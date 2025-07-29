@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import LogoContent from './LogoContent.svelte';
 
 	let { firstRender }: { firstRender: boolean } = $props();
 </script>
 
 {#if firstRender}
-	<div class="loading">Chargement...</div>
+	<div class="loading" out:fade={{ duration: 200 }}>Chargement...</div>
 {/if}
 <!-- <div class="logo">Groupie Tracker</div> -->
 
@@ -21,8 +22,12 @@
 	} */
 
 	.loading {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		font-family: 'Pacifico', cursive;
-		font-size: 5rem;
+		font-size: 3rem;
 		margin-bottom: 0;
 		line-height: 1;
 		text-align: center;
