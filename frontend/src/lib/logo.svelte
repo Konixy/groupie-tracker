@@ -1,23 +1,24 @@
 <script lang="ts">
-	let { firstRender }: { firstRender: boolean } = $props();
+	import LogoContent from './LogoContent.svelte';
 
-	$inspect(firstRender);
+	let { firstRender }: { firstRender: boolean } = $props();
 </script>
 
 {#if firstRender}
 	<div class="loading">Chargement...</div>
-{:else}
-	<div class="logo">Groupie Tracker</div>
 {/if}
+<!-- <div class="logo">Groupie Tracker</div> -->
+
+<LogoContent show={!firstRender} />
 
 <style>
-	.logo {
+	/* .logo {
 		font-family: 'Pacifico', cursive;
 		font-size: 5rem;
 		margin-bottom: 0;
 		line-height: 1;
 		text-align: center;
-	}
+	} */
 
 	.loading {
 		font-family: 'Pacifico', cursive;
