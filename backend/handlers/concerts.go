@@ -7,9 +7,9 @@ import (
 	"groupie-tracker/api"
 )
 
-// Handler for the /concerts route
-func ConcertsHandler(w http.ResponseWriter, r *http.Request) {
-	concerts, err := api.FetchAllConcerts()
+// Handler for the /locations route
+func LocationsHandler(w http.ResponseWriter, r *http.Request) {
+	concerts, err := api.FetchAllLocations()
 	if err != nil {
 		http.Error(w, "Erreur lors de la récupération des concerts", http.StatusInternalServerError)
 		return

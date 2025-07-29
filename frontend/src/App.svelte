@@ -8,10 +8,12 @@
 	import type { Artist } from './types';
 	import Footer from './lib/Footer.svelte';
 	import { fade } from 'svelte/transition';
+	import ConcertsView from './lib/ConcertsView.svelte';
 
 	let artists = $state<Artist[]>([]);
 	let selectedArtist = $state<Artist | null>(null);
 	let firstRender = $state(true);
+	let currentPage = $state(window.location.pathname);
 
 	onMount(async () => {
 		const res = await fetch('http://localhost:8080/artists');
@@ -35,74 +37,96 @@
 			mapSection.scrollIntoView({ behavior: 'smooth' });
 		}
 	}
+
+	function navigate(path: string) {
+		window.history.pushState(null, '', path);
+		currentPage = path;
+		window.scrollTo(0, 0);
+	}
 </script>
 
 <main>
-	<!-- D'abord le titre qu'on va animer après -->
-	<section class="hero-section">
-		<div class="hero-content">
-			<Logo {firstRender} />
-			{#if !firstRender}
-				<button
-					class="scroll-button"
-					onclick={scrollToContent}
-					aria-label="Défiler vers le contenu"
-					in:fade={{ duration: 1000, delay: 1000 }}
-				>
-					<svg
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="3"
-						stroke-linecap="round"
-						stroke-linejoin="round"
+	{#if currentPage === '/' || currentPage === ''}
+		<!-- D'abord le titre qu'on va animer après -->
+		<section class="hero-section">
+			<div class="hero-content">
+				<Logo {firstRender} />
+				{#if !firstRender}
+					<button
+						class="scroll-button"
+						onclick={scrollToContent}
+						aria-label="Défiler vers le contenu"
+						in:fade={{ duration: 1000, delay: 1000 }}
 					>
-						<path d="m7 6 5 5 5-5" /><path d="m7 13 5 5 5-5" />
-					</svg>
-				</button>
-			{/if}
-		</div>
-	</section>
+						<svg
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="3"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="m7 6 5 5 5-5" /><path d="m7 13 5 5 5-5" />
+						</svg>
+					</button>
+				{/if}
+			</div>
+		</section>
 
-	<!-- Ensuite le contenu de recherche -->
-	<section class="content-section">
-		<SearchBar {artists} bind:selectedArtist />
-		<Carousel bind:selectedArtist {artists} bind:firstRender />
-		{#if selectedArtist}
-			<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
-		{/if}
-		<button class="scroll-button" onclick={scrollToMap} aria-label="Défiler vers la carte">
-			<svg
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="3"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			>
-				<path d="M7 13l5 5 5-5" />
-				<path d="M7 6l5 5 5-5" />
-			</svg>
-		</button>
-	</section>
-	<section class="content-section map-section">
-		<div class="title">
+		<!-- Ensuite le contenu de recherche -->
+		<section class="content-section">
+			<SearchBar {artists} bind:selectedArtist />
+			<Carousel bind:selectedArtist {artists} bind:firstRender />
+			{#if selectedArtist}
+				<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
+			{/if}
+			<button onclick={() => navigate('/concerts')}> Concerts </button>
+			<button class="scroll-button" onclick={scrollToMap} aria-label="Défiler vers la carte">
+				<svg
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="3"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M7 13l5 5 5-5" />
+					<path d="M7 6l5 5 5-5" />
+				</svg>
+			</button>
+		</section>
+		<section class="content-section map-section">
+			<div class="title">
+				<h1>Concerts</h1>
+			</div>
+			<div class="map-container">
+				<div class="map-left">
+					<ConcertsMap />
+				</div>
+				<div class="map-right">
+					<!-- Espace pour contenu futur -->
+				</div>
+			</div>
+		</section>
+	{:else if currentPage === '/concerts'}
+		<section class="content-section">
 			<h1>Concerts</h1>
-		</div>
-		<div class="map-container">
-			<div class="map-left">
-				<ConcertsMap />
-			</div>
-			<div class="map-right">
-				<!-- Espace pour contenu futur -->
-			</div>
-		</div>
-		<Footer />
-	</section>
+			<ConcertsView artist={selectedArtist} onBack={() => navigate('/')} />
+		</section>
+	{:else if currentPage === '/stats'}
+		<section class="content-section">
+			<h1>Stats</h1>
+		</section>
+	{:else}
+		<section class="content-section">
+			<h1>404</h1>
+		</section>
+	{/if}
+	<Footer />
 </main>
 
 <style>

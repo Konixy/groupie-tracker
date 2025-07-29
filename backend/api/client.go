@@ -31,6 +31,11 @@ type Artist struct {
 	Relations    string   `json:"relations"`
 }
 
+type Relation struct {
+	ID             int                 `json:"id"`
+	DatesLocations map[string][]string `json:"datesLocations"`
+}
+
 // FetchArtists récupère tous les artistes depuis l'API Groupie Tracker
 // Retourne une slice de structs Artist et une erreur si il y en a une (sinon "nil")
 func FetchArtists() ([]Artist, error) {
@@ -171,10 +176,14 @@ func FetchArtistConcerts(artistID int) (*ArtistConcerts, error) {
 	}, nil
 }
 
-func FetchAllConcerts() ([]Concert, error) {
-	response, err := http.Get(BaseURL + "/concerts")
+type Relations struct {
+	Index []Relation `json:"index"`
+}
+
+func FetchAllLocations() ([]Relation, error) {
+	response, err := http.Get(BaseURL + "/relation")
 	if err != nil {
-		log.Printf("Error fetching concerts: %v", err)
+		log.Printf("Error fetching locations: %v", err)
 		return nil, err
 	}
 	defer response.Body.Close()
@@ -185,14 +194,14 @@ func FetchAllConcerts() ([]Concert, error) {
 		return nil, err
 	}
 
-	var concerts []Concert
-	err = json.Unmarshal(body, &concerts)
+	var relations Relations
+	err = json.Unmarshal(body, &relations)
 	if err != nil {
-		log.Printf("Error unmarshaling concerts JSON: %v", err)
+		log.Printf("Error unmarshaling locations JSON: %v", err)
 		return nil, err
 	}
 
-	return concerts, nil
+	return relations.Index, nil
 }
 
 func formatLocation(location string) string {

@@ -19,20 +19,20 @@
 		return el;
 	}
 
-	onMount(() => {
+	onMount(async () => {
 		// On peut mettre les logos des artistes directement sur la map comme icone de marker
-		new Marker([49.43814906784801, 1.1023802854095484])
-			.addTo(map)
-			.setIcon(
-				new Icon({
-					iconUrl: '/z01.png',
-					iconSize: [38, 38],
-					iconAnchor: [19, 19],
-					popupAnchor: [0, -19],
-					className: 'z01-icon'
-				})
-			)
-			.bindPopup(new Popup({ className: 'z01-popup', content: createMarker('Zone 01') }));
+		// new Marker([49.43814906784801, 1.1023802854095484])
+		// 	.addTo(map)
+		// 	.setIcon(
+		// 		new Icon({
+		// 			iconUrl: '/z01.png',
+		// 			iconSize: [38, 38],
+		// 			iconAnchor: [19, 19],
+		// 			popupAnchor: [0, -19],
+		// 			className: 'z01-icon'
+		// 		})
+		// 	)
+		// 	.bindPopup(new Popup({ className: 'z01-popup', content: createMarker('Zone 01') }));
 
 		const darkLayer = new TileLayer(
 			'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
@@ -58,7 +58,17 @@
 		}).addTo(map);
 
 		map.addLayer(darkLayer);
+
+		const locations = await fetchLocations();
+
+		console.log(locations);
 	});
+
+	async function fetchLocations() {
+		const response = await fetch('http://localhost:8080/locations');
+		const data = await response.json();
+		return data;
+	}
 </script>
 
 <div bind:this={mapRef} class="map"></div>
