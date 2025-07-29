@@ -11,9 +11,18 @@
 		selectedArtist: Artist | null;
 		firstRender: boolean;
 	} = $props();
-	// let current = $state(Math.floor(Math.random() * 52));
-	let current = $state(0);
+	let current = $state(Math.floor(Math.random() * 52));
+	// let current = $state(0);
 	let isAnimating = $state(false);
+
+	$effect(() => {
+		if (selectedArtist) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+			console.log('removing overflow');
+		}
+	});
 
 	$effect(() => {
 		current;

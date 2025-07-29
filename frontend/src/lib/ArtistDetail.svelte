@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade, scale } from 'svelte/transition';
 	import type { Artist } from '../types';
-	import { expoInOut, expoOut } from 'svelte/easing';
+	import { expoOut } from 'svelte/easing';
 
 	let {
 		artist = $bindable(),
