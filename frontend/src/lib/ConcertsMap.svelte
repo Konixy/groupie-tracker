@@ -70,19 +70,17 @@
 
 <style>
 	.map {
-		width: 90vw;
-		height: 90vh;
-		margin: 1rem;
+		width: 100%;
+		height: 100%;
 		border-radius: 1.5rem;
 		overflow: hidden;
-		margin-top: 2rem;
 		background-color: var(--dark-muted);
 	}
 
 	.title {
-		width: 90vw;
+		width: 100%;
 		text-align: center;
-		margin-top: 2rem;
+		margin-bottom: 1rem;
 		border-radius: 1rem;
 		font-size: 1.5rem;
 	}

@@ -25,6 +25,13 @@
 			contentSection.scrollIntoView({ behavior: 'smooth' });
 		}
 	}
+
+	function scrollToMap() {
+		const mapSection = document.querySelector('.map-section');
+		if (mapSection) {
+			mapSection.scrollIntoView({ behavior: 'smooth' });
+		}
+	}
 </script>
 
 <main>
@@ -61,9 +68,29 @@
 		{#if selectedArtist}
 			<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
 		{/if}
+		<button class="scroll-button" onclick={scrollToMap} aria-label="Défiler vers la carte">
+			<svg
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+			>
+				<path d="M7 13l5 5 5-5" />
+				<path d="M7 6l5 5 5-5" />
+			</svg>
+		</button>
 	</section>
-	<section class="content-section">
-		<ConcertsMap />
+	<section class="content-section map-section">
+		<div class="map-container">
+			<div class="map-left">
+				<ConcertsMap />
+			</div>
+			<div class="map-right">
+				<!-- Espace pour contenu futur -->
+			</div>
+		</div>
 		<Footer />
 	</section>
 </main>
@@ -135,5 +162,30 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.map-container {
+		display: flex;
+		width: 100%;
+		height: 100vh;
+		gap: 2rem;
+		padding: 0 2rem;
+	}
+
+	.map-left {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.map-right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem;
+		background-color: var(--dark-muted);
+		border-radius: 1.5rem;
 	}
 </style>

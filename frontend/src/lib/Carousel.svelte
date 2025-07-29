@@ -242,7 +242,7 @@
 	</div>
 
 	<button class="view-more-button" onclick={() => (selectedArtist = artists[current])}>
-		Voir plus
+		Découvrir
 	</button>
 {:else}
 	<div class="error-message">
@@ -359,7 +359,8 @@
 		font-size: 1.1rem;
 		font-weight: bold;
 		cursor: pointer;
-		margin-top: 2rem;
+		margin-top: 0.5rem;
+		margin-bottom: 2rem;
 		transition: all 0.3s ease;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		display: block;
