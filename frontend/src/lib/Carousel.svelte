@@ -351,7 +351,7 @@
 	}
 
 	.view-more-button {
-		background: var(--light-muted);
+		background: var(--light-vibrant);
 		color: var(--dark-muted);
 		border: none;
 		padding: 1rem 2rem;

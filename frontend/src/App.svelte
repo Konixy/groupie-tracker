@@ -83,6 +83,9 @@
 		</button>
 	</section>
 	<section class="content-section map-section">
+		<div class="title">
+			<h1>Concerts</h1>
+		</div>
 		<div class="map-container">
 			<div class="map-left">
 				<ConcertsMap />
@@ -164,12 +167,26 @@
 		align-items: center;
 	}
 
+	.title {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 1rem;
+		border-radius: 1rem;
+		font-size: 1.5rem;
+	}
+
 	.map-container {
 		display: flex;
 		width: 100%;
 		height: 100vh;
 		gap: 2rem;
 		padding: 0 2rem;
+	}
+
+	@media (max-width: 1000px) {
+		.map-container {
+			flex-direction: column;
+		}
 	}
 
 	.map-left {

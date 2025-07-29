@@ -61,10 +61,6 @@
 	});
 </script>
 
-<div class="title">
-	<h1>Concerts</h1>
-</div>
-
 <div bind:this={mapRef} class="map"></div>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@2.0.0-alpha/dist/leaflet.css" />
 
@@ -77,16 +73,13 @@
 		background-color: var(--dark-muted);
 	}
 
-	.title {
-		width: 100%;
-		text-align: center;
-		margin-bottom: 1rem;
-		border-radius: 1rem;
-		font-size: 1.5rem;
-	}
-
 	:global(.z01-icon) {
 		border-radius: 100%;
+	}
+
+	:global(.leaflet-top),
+	:global(.leaflet-bottom) {
+		z-index: 800 !important;
 	}
 
 	:global(.leaflet-control-zoom) {
@@ -148,5 +141,9 @@
 
 	:global(.leaflet-control-layers-selector:checked::before) {
 		transform: scale(2);
+	}
+
+	:global(.leaflet-control-attribution) {
+		display: none;
 	}
 </style>

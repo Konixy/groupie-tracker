@@ -168,6 +168,8 @@
 
 	.artist-container {
 		position: fixed;
+		top: 50%;
+		transform: translateY(-50%);
 		width: 60vw;
 		height: 90vh;
 		display: flex;
