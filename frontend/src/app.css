@@ -2,7 +2,7 @@
 
 :root {
 	--light-vibrant: #f0f0f0;
-	--dark-muted: #333333;
+	--dark-vibrant: #333333;
 }
 
 body {
@@ -10,17 +10,17 @@ body {
 	padding: 0;
 	font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
 	color: var(--light-vibrant);
-	background-color: var(--dark-muted);
+	background-color: var(--dark-vibrant);
 }
 
 a {
-	color: var(--vibrant);
+	color: var(--muted);
 	text-decoration: none;
 	transition: color 0.1s ease;
 }
 
 a:hover {
-	color: color-mix(in srgb, var(--vibrant) 50%, #fff);
+	color: var(--light-muted);
 	text-decoration: underline;
 }
 

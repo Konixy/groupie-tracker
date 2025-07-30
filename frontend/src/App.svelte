@@ -24,10 +24,10 @@
 		window.scrollTo(0, 0);
 	});
 
-	function scrollToContent() {
-		const contentSection = document.querySelector('.content-section');
-		if (contentSection) {
-			contentSection.scrollIntoView({ behavior: 'smooth' });
+	function scrollToCarousel() {
+		const carouselSection = document.querySelector('.carousel-section');
+		if (carouselSection) {
+			carouselSection.scrollIntoView({ behavior: 'smooth' });
 		}
 	}
 
@@ -54,7 +54,7 @@
 				{#if !firstRender}
 					<button
 						class="scroll-button"
-						onclick={scrollToContent}
+						onclick={scrollToCarousel}
 						aria-label="Défiler vers le contenu"
 						in:fade={{ duration: 1000, delay: 1000 }}
 					>
@@ -76,13 +76,13 @@
 		</section>
 
 		<!-- Ensuite le contenu de recherche -->
-		<section class="content-section">
+		<section class="content-section carousel-section">
 			<SearchBar {artists} bind:selectedArtist />
 			<Carousel bind:selectedArtist {artists} bind:firstRender />
 			{#if selectedArtist}
 				<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
 			{/if}
-			<button onclick={() => navigate('/concerts')}> Concerts </button>
+			<!-- <button onclick={() => navigate('/concerts')}> Concerts </button> -->
 			<button class="scroll-button" onclick={scrollToMap} aria-label="Défiler vers la carte">
 				<svg
 					width="24"
@@ -160,7 +160,9 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-		transition: all 0.3s ease;
+		transition:
+			all 0.3s ease,
+			color 1s ease;
 		color: inherit;
 		opacity: 0.6;
 	}

@@ -20,7 +20,6 @@
 			document.body.style.overflow = 'hidden';
 		} else {
 			document.body.style.overflow = '';
-			console.log('removing overflow');
 		}
 	});
 
@@ -235,29 +234,25 @@
 					onclick={() => handleCardClick(index, position.relativePos)}
 					aria-label="Artiste {index + 1}"
 				>
-					<img
-						src={artist.image}
-						alt={artist.name}
-						class="artist-img-{index} {position.relativePos === 0
-							? 'img-center'
-							: position.relativePos === 1
-								? 'img-right'
-								: 'img-left'}"
-					/>
-					<h2>{artist.name}</h2>
+					<!-- Optimization -->
+					<!-- Slow 4g: before: 51.20s, after: 9.74s -->
+
+					{#if index > current - 3 && index < current + 3}
+						<img
+							src={artist.customImage}
+							alt={artist.name}
+							class="artist-img-{index} {position.relativePos === 0
+								? 'img-center'
+								: position.relativePos === 1
+									? 'img-right'
+									: 'img-left'}"
+						/>
+						<h2>{artist.name}</h2>
+					{/if}
 				</button>
 			{/each}
 		</div>
 		<button class="arrow" onclick={next} disabled={isAnimating}>&rarr;</button>
-	</div>
-
-	<div class="color-palette">
-		<span style="background-color: var(--vibrant);">V</span>
-		<span style="background-color: var(--light-vibrant);">LV</span>
-		<span style="background-color: var(--dark-vibrant);">DV</span>
-		<span style="background-color: var(--muted);">M</span>
-		<span style="background-color: var(--light-muted);">LM</span>
-		<span style="background-color: var(--dark-muted);">DM</span>
 	</div>
 
 	<button class="view-more-button" onclick={() => (selectedArtist = artists[current])}>
@@ -371,7 +366,7 @@
 
 	.view-more-button {
 		background: var(--light-vibrant);
-		color: var(--dark-muted);
+		color: var(--dark-vibrant);
 		border: none;
 		padding: 1rem 2rem;
 		border-radius: 20px;
@@ -413,7 +408,7 @@
 
 	.retry-button {
 		background: var(--light-vibrant);
-		color: var(--dark-muted);
+		color: var(--dark-vibrant);
 		border: none;
 		padding: 1rem 2rem;
 		border-radius: 20px;
@@ -430,19 +425,5 @@
 	.retry-button:hover {
 		transform: translateY(-2px);
 		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-	}
-
-	.color-palette {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.color-palette span {
-		width: 100px;
-		height: 100px;
-		border-radius: 50%;
-		margin: 0 10px;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 	}
 </style>

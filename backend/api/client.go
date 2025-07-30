@@ -31,6 +31,11 @@ type Artist struct {
 	Relations    string   `json:"relations"`
 }
 
+type ArtistWithCustomImage struct {
+	Artist
+	CustomImage string `json:"customImage"`
+}
+
 type Relation struct {
 	ID             int                 `json:"id"`
 	DatesLocations map[string][]string `json:"datesLocations"`
@@ -38,7 +43,7 @@ type Relation struct {
 
 // FetchArtists récupère tous les artistes depuis l'API Groupie Tracker
 // Retourne une slice de structs Artist et une erreur si il y en a une (sinon "nil")
-func FetchArtists() ([]Artist, error) {
+func FetchArtists() ([]ArtistWithCustomImage, error) {
 	// Fait une requête HTTP GET vers l'adresse de base de l'api + /artists
 	response, err := http.Get(BaseURL + "/artists")
 	if err != nil {
@@ -71,12 +76,14 @@ func FetchArtists() ([]Artist, error) {
 		return nil, err
 	}
 
-	var artists []Artist
+	var artists []ArtistWithCustomImage
 
 	for _, artist := range parsed {
-		// Utiliser les images locales avec le format id{ID}.jpg
-		artist.Image = fmt.Sprintf("http://localhost:8080/images/id%d.jpg", artist.ID)
-		artists = append(artists, artist)
+		newArtist := ArtistWithCustomImage{
+			Artist:      artist,
+			CustomImage: fmt.Sprintf("http://localhost:8080/images/id%d.jpg", artist.ID),
+		}
+		artists = append(artists, newArtist)
 	}
 
 	return artists, nil

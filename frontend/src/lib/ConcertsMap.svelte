@@ -60,8 +60,6 @@
 		map.addLayer(darkLayer);
 
 		const locations = await fetchLocations();
-
-		console.log(locations);
 	});
 
 	async function fetchLocations() {
@@ -99,7 +97,7 @@
 	:global(.leaflet-control-layers) {
 		border-radius: 14px !important;
 		background-color: var(--dark-muted) !important;
-		color: var(--light-muted) !important;
+		color: var(--light-vibrant) !important;
 		box-shadow: none !important;
 		border: none !important;
 		transition: all 0.1s ease !important;
@@ -132,7 +130,7 @@
 		color: currentColor;
 		width: 1.15em;
 		height: 1.15em;
-		border: 0.15em solid var(--light-muted);
+		border: 0.15em solid var(--light-vibrant);
 		border-radius: 50%;
 		transform: translateY(-0.075em);
 		display: grid;
@@ -146,7 +144,7 @@
 		border-radius: 50%;
 		transform: scale(0);
 		transition: 120ms transform ease-in-out;
-		box-shadow: inset 1em 1em var(--light-muted);
+		box-shadow: inset 1em 1em var(--light-vibrant);
 	}
 
 	:global(.leaflet-control-layers-selector:checked::before) {

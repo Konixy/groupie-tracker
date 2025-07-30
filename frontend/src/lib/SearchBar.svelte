@@ -150,7 +150,7 @@
 		font-family: inherit;
 		outline: none;
 		background: var(--light-vibrant);
-		color: var(--dark-muted);
+		color: var(--dark-vibrant);
 		padding-left: 2.8rem;
 		margin-right: -1rem;
 		transition:
@@ -164,7 +164,7 @@
 
 	.lucide-search-icon {
 		margin-right: -2.2rem;
-		color: var(--dark-muted);
+		color: var(--dark-vibrant);
 		z-index: 100;
 		transition: color 0.3s ease;
 	}
@@ -198,7 +198,7 @@
 		outline: none;
 		font-family: inherit;
 		font-size: 1rem;
-		color: var(--dark-muted);
+		color: var(--dark-vibrant);
 	}
 
 	.search-result:hover {
