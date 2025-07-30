@@ -74,8 +74,8 @@ func FetchArtists() ([]Artist, error) {
 	var artists []Artist
 
 	for _, artist := range parsed {
-		imgPath := strings.Split(artist.Image, "api/")[1]
-		artist.Image = "http://localhost:8080/" + imgPath
+		// Utiliser les images locales avec le format id{ID}.jpg
+		artist.Image = fmt.Sprintf("http://localhost:8080/images/id%d.jpg", artist.ID)
 		artists = append(artists, artist)
 	}
 
