@@ -11,8 +11,8 @@
 		selectedArtist: Artist | null;
 		firstRender: boolean;
 	} = $props();
-	let current = $state(Math.floor(Math.random() * 52));
-	// let current = $state(0);
+	// let current = $state(Math.floor(Math.random() * 52));
+	let current = $state(0);
 	let isAnimating = $state(false);
 
 	$effect(() => {
@@ -214,6 +214,13 @@
 			selectedArtist = artists[artistIndex];
 		}
 	}
+
+	function isInRange(index: number) {
+		const range = 3;
+		const distance = Math.abs(index - current);
+		const wrapDistance = artists.length - distance;
+		return Math.min(distance, wrapDistance) < range;
+	}
 </script>
 
 {#if artists.length}
@@ -237,7 +244,7 @@
 					<!-- Optimization -->
 					<!-- Slow 4g: before: 51.20s, after: 9.74s -->
 
-					{#if index > current - 3 && index < current + 3}
+					{#if isInRange(index)}
 						<img
 							src={artist.customImage}
 							alt={artist.name}
