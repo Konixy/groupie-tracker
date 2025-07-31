@@ -9,6 +9,7 @@
 	import Footer from './lib/Footer.svelte';
 	import { fade } from 'svelte/transition';
 	import ConcertsView from './lib/ConcertsView.svelte';
+	import StatsView from './lib/StatsView.svelte';
 
 	let artists = $state<Artist[]>([]);
 	let selectedArtist = $state<Artist | null>(null);
@@ -82,7 +83,10 @@
 			{#if selectedArtist}
 				<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
 			{/if}
-			<!-- <button onclick={() => navigate('/concerts')}> Concerts </button> -->
+			<div class="navigation-buttons">
+				<button class="nav-button" onclick={() => navigate('/concerts')}> Concerts </button>
+				<button class="nav-button" onclick={() => navigate('/stats')}> Statistiques </button>
+			</div>
 			<button class="scroll-button" onclick={scrollToMap} aria-label="Défiler vers la carte">
 				<svg
 					width="24"
@@ -119,7 +123,7 @@
 		</section>
 	{:else if currentPage === '/stats'}
 		<section class="content-section">
-			<h1>Stats</h1>
+			<StatsView onBack={() => navigate('/')} />
 		</section>
 	{:else}
 		<section class="content-section">
