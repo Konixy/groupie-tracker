@@ -6,6 +6,10 @@
 :root {
 	--light-vibrant: #f0f0f0;
 	--dark-vibrant: #333333;
+	--light-muted: #cccccc;
+	--dark-muted: #666666;
+	--muted: #999999;
+	--vibrant: #ff6b6b;
 	--font-brutalista: 'Brutalista', sans-serif;
 }
 
