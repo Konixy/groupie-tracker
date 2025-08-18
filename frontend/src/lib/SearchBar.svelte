@@ -4,10 +4,10 @@
 
 	let {
 		artists = [],
-		selectedArtist = $bindable()
+		current = $bindable()
 	}: {
 		artists: Artist[];
-		selectedArtist: Artist | null;
+		current: number;
 	} = $props();
 
 	let query = $state('');
@@ -64,7 +64,7 @@
 	}
 
 	function handleSelect(artist: Artist) {
-		selectedArtist = artist;
+		current = artist.id - 1;
 		query = '';
 	}
 

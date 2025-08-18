@@ -5,14 +5,16 @@
 	let {
 		artists = [],
 		selectedArtist = $bindable(),
-		firstRender = $bindable()
+		firstRender = $bindable(),
+		current = $bindable()
 	}: {
 		artists: Artist[];
 		selectedArtist: Artist | null;
 		firstRender: boolean;
+		current: number;
 	} = $props();
-
-	let current = $state(0);
+	// let current = $state(Math.floor(Math.random() * 52));
+	// let current = $state(0);
 	let isAnimating = $state(false);
 
 	$effect(() => {

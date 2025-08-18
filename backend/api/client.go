@@ -187,28 +187,51 @@ type Relations struct {
 	Index []Relation `json:"index"`
 }
 
-func FetchAllLocations() ([]Relation, error) {
-	response, err := http.Get(BaseURL + "/relation")
+func FetchLocations(artistID int) (Relation, error) {
+	response, err := http.Get(BaseURL + "/relation/" + fmt.Sprintf("%d", artistID))
 	if err != nil {
 		log.Printf("Error fetching locations: %v", err)
-		return nil, err
+		return Relation{}, err
 	}
 	defer response.Body.Close()
 
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		log.Printf("Error reading response body: %v", err)
-		return nil, err
+		return Relation{}, err
 	}
 
-	var relations Relations
-	err = json.Unmarshal(body, &relations)
+	var relation Relation
+	err = json.Unmarshal(body, &relation)
 	if err != nil {
 		log.Printf("Error unmarshaling locations JSON: %v", err)
-		return nil, err
+		return Relation{}, err
 	}
 
-	return relations.Index, nil
+	return relation, nil
+}
+
+func GetCoordinates(location string) (float64, float64) {
+	// https://nominatim.openstreetmap.org/search?city=los_angeles&country=usa&format=json&accept-language=fr
+	str := strings.Split(location, "-")
+	city := str[0]
+	country := str[1]
+	response, err := http.Get(fmt.Sprintf("https://nominatim.openstreetmap.org/search?city=%s&country=%s&format=json&accept-language=fr", city, country))
+	if err != nil {
+		log.Printf("Error fetching coordinates: %v", err)
+		return 0, 0
+	}
+	defer response.Body.Close()
+
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Printf("Error reading response body: %v", err)
+		return 0, 0
+	}
+
+	fmt.Println(string(body))
+
+	return 0, 0
 }
 
 func formatLocation(location string) string {

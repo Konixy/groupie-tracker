@@ -14,6 +14,7 @@
 	let artists = $state<Artist[]>([]);
 	let selectedArtist = $state<Artist | null>(null);
 	let firstRender = $state(true);
+	let currentIndex = $state(Math.floor(Math.random() * 52));
 	let currentPage = $state(window.location.pathname);
 	let previousPage = $state<string>('/');
 
@@ -96,8 +97,8 @@
 
 		<!-- Ensuite le contenu de recherche -->
 		<section class="content-section carousel-section">
-			<SearchBar {artists} bind:selectedArtist />
-			<Carousel bind:selectedArtist {artists} bind:firstRender />
+			<SearchBar {artists} bind:current={currentIndex} />
+			<Carousel bind:selectedArtist {artists} bind:firstRender bind:current={currentIndex} />
 			{#if selectedArtist}
 				<ArtistDetail bind:artist={selectedArtist} onClose={closeArtistDetail} />
 			{/if}
@@ -127,7 +128,7 @@
 			</div>
 			<div class="map-container">
 				<div class="map-left">
-					<ConcertsMap />
+					<ConcertsMap artist={artists?.[currentIndex]} />
 				</div>
 				<div class="map-right">
 					<!-- Espace pour contenu futur -->

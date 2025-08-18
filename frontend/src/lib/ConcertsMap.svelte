@@ -1,6 +1,9 @@
 <script lang="ts">
-	import { Marker, Map, TileLayer, Icon, Control, Popup } from 'leaflet';
+	import type { Artist } from '../types';
+	import { Map, TileLayer, Control } from 'leaflet';
 	import { onMount } from 'svelte';
+
+	let { artist }: { artist: Artist } = $props();
 
 	let mapRef = $state<HTMLElement | string>('map');
 	let map: Map = $derived(new Map(mapRef).setView([49.43814906784801, 1.1023802854095484], 13));
@@ -40,11 +43,25 @@
 		}).addTo(map);
 
 		map.addLayer(darkLayer);
-
-		await fetchLocations();
 	});
 
+	// $effect(() => {
+	// 	if (artist) {
+	// 		fetchLocations();
+	// 	}
+	// });
+
 	async function fetchLocations() {
+		const response = await fetch(`http://localhost:8080/locations/${artist.id}`);
+		const data = await response.json();
+		processLocations(data.datesLocations);
+	}
+
+	async function processLocations(datesLocations: Record<string, string[]>) {
+		for (const location in datesLocations) {
+			const dates = datesLocations[location];
+			console.log(location, dates);
+		}
 		try {
 			const response = await fetch('http://localhost:8080/locations');
 			const data = await response.json();
