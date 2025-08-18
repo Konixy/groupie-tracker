@@ -62,7 +62,7 @@
 						`rgb(${darkMuted[0]}, ${darkMuted[1]}, ${darkMuted[2]})`
 					);
 
-					document.body.style.transition = `background-color 1s ease, color 1s ease`;
+					document.body.style.transition = `background-color 1s ease, color 1s ease, -webkit-text-stroke 1s ease, text-stroke 1s ease`;
 					firstRender = false;
 				}
 			})();
@@ -85,7 +85,15 @@
 	function getCardPosition(index: number) {
 		const total = artists.length;
 		if (total === 0)
-			return { transform: '', opacity: 0, zIndex: 0, width: 0, height: 0, relativePos: 0 };
+			return {
+				transform: '',
+				opacity: 0,
+				zIndex: 0,
+				width: 0,
+				height: 0,
+				relativePos: 0,
+				fontSize: '1.2rem'
+			};
 
 		// Calculer la position relative au centre
 		let relativePos = index - current;
@@ -102,7 +110,8 @@
 				zIndex: 4,
 				width: 'clamp(250px, 30vw, 400px)',
 				height: 'clamp(250px, 30vw, 400px)',
-				relativePos
+				relativePos,
+				fontSize: 'clamp(1.2rem, 4vw, 2.8rem)'
 			};
 		}
 
@@ -114,7 +123,8 @@
 					zIndex: 2,
 					width: 'clamp(200px, 25vw, 320px)',
 					height: 'clamp(200px, 25vw, 320px)',
-					relativePos
+					relativePos,
+					fontSize: 'clamp(1rem, 3vw, 2.2rem)'
 				};
 			} else {
 				return {
@@ -123,7 +133,8 @@
 					zIndex: 2,
 					width: 'clamp(200px, 25vw, 320px)',
 					height: 'clamp(200px, 25vw, 320px)',
-					relativePos
+					relativePos,
+					fontSize: 'clamp(1rem, 3vw, 2.2rem)'
 				};
 			}
 		}
@@ -137,7 +148,8 @@
 					zIndex: 1,
 					width: 'clamp(150px, 20vw, 250px)',
 					height: 'clamp(150px, 20vw, 250px)',
-					relativePos
+					relativePos,
+					fontSize: 'clamp(0.8rem, 2.5vw, 1.8rem)'
 				};
 			case -1:
 				return {
@@ -146,7 +158,8 @@
 					zIndex: 2,
 					width: 'clamp(200px, 25vw, 320px)',
 					height: 'clamp(200px, 25vw, 320px)',
-					relativePos
+					relativePos,
+					fontSize: 'clamp(1rem, 3vw, 2.2rem)'
 				};
 			case 0:
 				return {
@@ -155,7 +168,8 @@
 					zIndex: 4,
 					width: 'clamp(250px, 30vw, 400px)',
 					height: 'clamp(250px, 30vw, 400px)',
-					relativePos
+					relativePos,
+					fontSize: 'clamp(1.2rem, 4vw, 2.8rem)'
 				};
 			case 1:
 				return {
@@ -164,7 +178,8 @@
 					zIndex: 2,
 					width: 'clamp(200px, 25vw, 320px)',
 					height: 'clamp(200px, 25vw, 320px)',
-					relativePos
+					relativePos,
+					fontSize: 'clamp(1rem, 3vw, 2.2rem)'
 				};
 			case 2:
 				return {
@@ -173,7 +188,8 @@
 					zIndex: 1,
 					width: 'clamp(150px, 20vw, 250px)',
 					height: 'clamp(150px, 20vw, 250px)',
-					relativePos
+					relativePos,
+					fontSize: 'clamp(0.8rem, 2.5vw, 1.8rem)'
 				};
 			default:
 				return {
@@ -182,7 +198,8 @@
 					zIndex: 0,
 					width: 'clamp(120px, 15vw, 200px)',
 					height: 'clamp(120px, 15vw, 200px)',
-					relativePos
+					relativePos,
+					fontSize: 'clamp(0.6rem, 2vw, 1.5rem)'
 				};
 		}
 	}
@@ -254,7 +271,7 @@
 									? 'img-right'
 									: 'img-left'}"
 						/>
-						<h2>{artist.name}</h2>
+						<h2 style="font-size: {position.fontSize}">{artist.name}</h2>
 					{/if}
 				</button>
 			{/each}
@@ -278,7 +295,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		/* margin: 2rem 0; */
 		perspective: 1200px;
 	}
 
@@ -350,21 +366,23 @@
 
 	.clickable-card h2 {
 		margin: 0;
-		font-size: 1.5rem;
-		color: #222;
-		background: rgba(255, 255, 255, 0.7);
-		border-radius: 8px;
-		padding: 0.3em 1em;
+		font-family: var(--font-brutalista);
+		font-weight: 900;
+		color: white;
+		letter-spacing: -0.05em;
 		position: absolute;
 		bottom: 18px;
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 3;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+		white-space: normal;
+		overflow: visible;
 		max-width: 90%;
+		width: 90%;
 		transition: all 0.3s ease;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+		text-align: center;
+		line-height: 1.1;
 	}
 
 	.clickable-card:hover img {

@@ -15,6 +15,7 @@
 	let selectedArtist = $state<Artist | null>(null);
 	let firstRender = $state(true);
 	let currentPage = $state(window.location.pathname);
+	let previousPage = $state<string>('/');
 
 	onMount(async () => {
 		const res = await fetch('http://localhost:8080/artists');
@@ -43,6 +44,23 @@
 		window.history.pushState(null, '', path);
 		currentPage = path;
 		window.scrollTo(0, 0);
+	}
+
+	function handleArtistClick(artistId: number) {
+		// Sauvegarder la page actuelle
+		previousPage = currentPage;
+
+		// Trouver l'artiste par son ID
+		const artist = artists.find((a) => a.id === artistId);
+		if (artist) {
+			selectedArtist = artist;
+			navigate('/'); // Retourner à la page principale
+		}
+	}
+
+	function closeArtistDetail() {
+		selectedArtist = null;
+		navigate(previousPage); // Retourner à la page précédente
 	}
 </script>
 
@@ -81,7 +99,7 @@
 			<SearchBar {artists} bind:selectedArtist />
 			<Carousel bind:selectedArtist {artists} bind:firstRender />
 			{#if selectedArtist}
-				<ArtistDetail bind:artist={selectedArtist} onClose={() => (selectedArtist = null)} />
+				<ArtistDetail bind:artist={selectedArtist} onClose={closeArtistDetail} />
 			{/if}
 			<div class="navigation-buttons">
 				<button class="nav-button" onclick={() => navigate('/concerts')}> Concerts </button>
@@ -123,7 +141,7 @@
 		</section>
 	{:else if currentPage === '/stats'}
 		<section class="content-section">
-			<StatsView onBack={() => navigate('/')} />
+			<StatsView onBack={() => navigate('/')} onArtistClick={handleArtistClick} />
 		</section>
 	{:else}
 		<section class="content-section">

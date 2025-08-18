@@ -1,16 +1,25 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	let { onBack }: { onBack: () => void } = $props();
+	let { onBack, onArtistClick }: { onBack: () => void; onArtistClick: (artistId: number) => void } =
+		$props();
 
 	// Types
+	type LocationInfo = {
+		city: string;
+		country: string;
+		continent: string;
+		date: string;
+	};
+
 	type ArtistStats = {
 		id: number;
 		name: string;
 		image: string;
 		concertCount: number;
 		years: number[];
-		locations: string[];
+		locations: LocationInfo[];
+		continents: Record<string, number>;
 	};
 
 	// État des données
@@ -23,22 +32,38 @@
 	let selectedYear = $state<number | null>(null);
 	let yearRange = $state({ start: 1990, end: 2030 });
 	let useRange = $state(false);
+	let selectedContinent = $state<string | null>(null);
+	let selectedCountry = $state<string | null>(null);
 
 	// Métriques calculées basées sur les filtres
 	let filteredArtists = $derived(() => {
-		if (!useRange && selectedYear === null) {
-			return artistsStats;
+		let filtered = artistsStats;
+
+		// Filtre par année
+		if (useRange) {
+			filtered = filtered.filter(
+				(artist) =>
+					artist.years?.some((year) => year >= yearRange.start && year <= yearRange.end) || false
+			);
+		} else if (selectedYear !== null) {
+			filtered = filtered.filter((artist) => artist.years?.includes(selectedYear!) || false);
 		}
 
-		return artistsStats.filter((artist) => {
-			if (useRange) {
-				return (
-					artist.years?.some((year) => year >= yearRange.start && year <= yearRange.end) || false
-				);
-			} else {
-				return artist.years?.includes(selectedYear!) || false;
-			}
-		});
+		// Filtre par continent
+		if (selectedContinent !== null) {
+			filtered = filtered.filter(
+				(artist) => artist.continents && artist.continents[selectedContinent!] > 0
+			);
+		}
+
+		// Filtre par pays
+		if (selectedCountry !== null) {
+			filtered = filtered.filter((artist) =>
+				artist.locations.some((location) => location.country === selectedCountry)
+			);
+		}
+
+		return filtered;
 	});
 
 	let totalConcerts = $derived(
@@ -92,6 +117,8 @@
 	function clearFilters() {
 		selectedYear = null;
 		useRange = false;
+		selectedContinent = null;
+		selectedCountry = null;
 		yearRange = { start: Math.min(...availableYears), end: Math.max(...availableYears) };
 	}
 
@@ -104,6 +131,37 @@
 		selectedYear = null;
 		useRange = true;
 	}
+
+	function applyContinentFilter(continent: string | null) {
+		selectedContinent = continent;
+		selectedCountry = null; // Réinitialiser le pays quand on change de continent
+	}
+
+	function applyCountryFilter(country: string | null) {
+		selectedCountry = country;
+	}
+
+	function handleArtistClick(artistId: number) {
+		onArtistClick(artistId);
+	}
+
+	// Obtenir les pays disponibles selon le continent sélectionné
+	let availableCountries = $derived(() => {
+		if (!selectedContinent) return [];
+
+		const countries = new Set<string>();
+		artistsStats.forEach((artist) => {
+			if (artist.continents && artist.continents[selectedContinent!] > 0) {
+				artist.locations.forEach((location) => {
+					if (location.continent === selectedContinent) {
+						countries.add(location.country);
+					}
+				});
+			}
+		});
+
+		return Array.from(countries).sort();
+	});
 </script>
 
 <div class="stats-container">
@@ -160,16 +218,62 @@
 						</div>
 					</div>
 
+					<div class="filter-group">
+						<label>🌍 Continent</label>
+						<select
+							value={selectedContinent}
+							onchange={(e) => applyContinentFilter((e.target as HTMLSelectElement).value || null)}
+						>
+							<option value={null}>Tous les continents</option>
+							<option value="Europe">Europe</option>
+							<option value="Amérique du Nord">Amérique du Nord</option>
+							<option value="Amérique du Sud">Amérique du Sud</option>
+							<option value="Asie">Asie</option>
+							<option value="Afrique">Afrique</option>
+							<option value="Océanie">Océanie</option>
+						</select>
+					</div>
+
+					{#if selectedContinent && availableCountries().length > 0}
+						<div class="filter-group">
+							<label>🏳️ Pays</label>
+							<select
+								value={selectedCountry}
+								onchange={(e) => applyCountryFilter((e.target as HTMLSelectElement).value || null)}
+							>
+								<option value={null}>Tous les pays</option>
+								{#each availableCountries() as country}
+									<option value={country}>{country}</option>
+								{/each}
+							</select>
+						</div>
+					{/if}
+
 					<button class="clear-filters" onclick={clearFilters}> 🗑️ Effacer les filtres </button>
 				</div>
 
-				{#if selectedYear !== null || useRange}
+				{#if selectedYear !== null || useRange || selectedContinent !== null || selectedCountry !== null}
 					<div class="active-filters">
-						<span class="filter-badge">
-							{selectedYear !== null
-								? `Année: ${selectedYear}`
-								: `Tranche: ${yearRange.start}-${yearRange.end}`}
-						</span>
+						{#if selectedYear !== null}
+							<span class="filter-badge">
+								Année: {selectedYear}
+							</span>
+						{/if}
+						{#if useRange}
+							<span class="filter-badge">
+								Tranche: {yearRange.start}-{yearRange.end}
+							</span>
+						{/if}
+						{#if selectedContinent !== null}
+							<span class="filter-badge">
+								Continent: {selectedContinent}
+							</span>
+						{/if}
+						{#if selectedCountry !== null}
+							<span class="filter-badge">
+								Pays: {selectedCountry}
+							</span>
+						{/if}
 						<span class="results-count">
 							{filteredArtists.length} artiste{filteredArtists.length > 1 ? 's' : ''} trouvé{filteredArtists.length >
 							1
@@ -181,27 +285,20 @@
 			</div>
 
 			<!-- Métriques principales -->
-			<div class="metrics-grid">
-				<div class="metric-card">
-					<div class="metric-icon">🎵</div>
-					<div class="metric-value">{filteredArtists.length}</div>
-					<div class="metric-label">Artistes</div>
-				</div>
-				<div class="metric-card">
-					<div class="metric-icon">🎪</div>
-					<div class="metric-value">{totalConcerts}</div>
-					<div class="metric-label">Concerts Total</div>
-				</div>
-				<div class="metric-card">
-					<div class="metric-icon">📈</div>
-					<div class="metric-value">{averageConcerts.toFixed(1)}</div>
-					<div class="metric-label">Moyenne/Artiste</div>
-				</div>
-				<div class="metric-card">
-					<div class="metric-icon">🏆</div>
-					<div class="metric-value">{topArtist?.name || 'N/A'}</div>
-					<div class="metric-label">Top Artiste</div>
-				</div>
+			<div class="metric-card">
+				<div class="metric-icon">🎸</div>
+				<div class="metric-value">{totalConcerts}</div>
+				<div class="metric-label">Concerts Total</div>
+			</div>
+			<div class="metric-card">
+				<div class="metric-icon">📈</div>
+				<div class="metric-value">{averageConcerts.toFixed(1)}</div>
+				<div class="metric-label">Moyenne/Artiste</div>
+			</div>
+			<div class="metric-card">
+				<div class="metric-icon">🏆</div>
+				<div class="metric-value">{topArtist?.name || 'N/A'}</div>
+				<div class="metric-label">Top Artiste</div>
 			</div>
 
 			<!-- Graphique des catégories -->
@@ -246,7 +343,11 @@
 				<h2>🏆 Top 10 des Artistes</h2>
 				<div class="top-grid">
 					{#each filteredArtists().slice(0, 10) as artist, index}
-						<div class="top-card" style="--rank: {index + 1}">
+						<div
+							class="top-card clickable"
+							style="--rank: {index + 1}"
+							onclick={() => handleArtistClick(artist.id)}
+						>
 							<div class="rank-number">#{index + 1}</div>
 							<div class="artist-image">
 								<img src={artist.image} alt={artist.name} />
@@ -256,12 +357,6 @@
 								<div class="concert-count">
 									<span class="count">{artist.concertCount}</span>
 									<span class="label">concerts</span>
-								</div>
-								<div class="years-info">
-									Années: {artist.years?.join(', ') || 'N/A'}
-								</div>
-								<div class="locations-info">
-									Lieux: {artist.locations?.join(', ') || 'N/A'}
 								</div>
 							</div>
 							<div class="percentage">
@@ -277,7 +372,11 @@
 				<h2>🎵 Tous les Artistes</h2>
 				<div class="stats-grid">
 					{#each filteredArtists() as artist, index}
-						<div class="artist-card" style="--rank: {index + 1}">
+						<div
+							class="artist-card clickable"
+							style="--rank: {index + 1}"
+							onclick={() => handleArtistClick(artist.id)}
+						>
 							<div class="artist-image">
 								<img src={artist.image} alt={artist.name} />
 							</div>
@@ -287,11 +386,10 @@
 									<span class="count">{artist.concertCount}</span>
 									<span class="label">concerts</span>
 								</div>
-								<div class="years-info">
-									Années: {artist.years?.join(', ') || 'N/A'}
-								</div>
-								<div class="locations-info">
-									Lieux: {artist.locations?.join(', ') || 'N/A'}
+								<div class="continents-info">
+									{Object.entries(artist.continents || {})
+										.map(([continent, count]) => `${continent}: ${count}`)
+										.join(', ') || 'Aucun continent'}
 								</div>
 								<div class="percentage-small">
 									{((artist.concertCount / totalConcerts) * 100).toFixed(1)}% du total
@@ -645,6 +743,29 @@
 		color: var(--light-muted);
 		opacity: 0.6;
 		margin-top: 0.2rem;
+	}
+
+	.continents-info {
+		font-size: 0.8rem;
+		color: var(--light-muted);
+		opacity: 0.7;
+		margin-top: 0.3rem;
+		font-weight: 500;
+	}
+
+	.clickable {
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.clickable:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+		border-color: var(--vibrant);
+	}
+
+	.clickable:active {
+		transform: translateY(-2px);
 	}
 
 	/* Tous les artistes */

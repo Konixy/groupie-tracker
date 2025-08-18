@@ -1,8 +1,12 @@
+/* Import de la police Brutalista */
+@import url('https://fonts.googleapis.com/css2?family=Brutalista:wght@400;700;900&display=swap');
+
 /* Tout ce que je veux appliquer à l'ensemble du site */
 
 :root {
 	--light-vibrant: #f0f0f0;
 	--dark-vibrant: #333333;
+	--font-brutalista: 'Brutalista', sans-serif;
 }
 
 body {
