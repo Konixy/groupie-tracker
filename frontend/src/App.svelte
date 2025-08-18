@@ -497,7 +497,6 @@
 		background: var(--dark-vibrant);
 		padding: 2rem;
 		height: 100vh;
-		overflow-y: auto;
 	}
 
 	.stats-container {
