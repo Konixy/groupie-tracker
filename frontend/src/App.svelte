@@ -118,7 +118,20 @@
 	function scrollToSection(sectionId: string) {
 		const section = document.getElementById(sectionId);
 		if (section) {
-			section.scrollIntoView({ behavior: 'smooth' });
+			// Calculer la position exacte pour que la section soit entièrement visible
+			const sectionTop = section.offsetTop;
+			const windowHeight = window.innerHeight;
+			const sectionHeight = section.offsetHeight;
+
+			// Si la section est plus haute que la fenêtre, on scroll au début
+			// Sinon, on centre la section dans la fenêtre
+			const scrollPosition =
+				sectionHeight > windowHeight ? sectionTop : sectionTop - (windowHeight - sectionHeight) / 2;
+
+			window.scrollTo({
+				top: Math.max(0, scrollPosition),
+				behavior: 'smooth'
+			});
 		}
 	}
 
@@ -185,36 +198,21 @@
 
 	<!-- Section 2: Carousel, recherche et boutons -->
 	<section id="carousel-section" class="content-section carousel-section">
-		<SearchBar {artists} bind:current={currentIndex} />
-		<Carousel bind:selectedArtist {artists} bind:firstRender bind:current={currentIndex} />
-		{#if selectedArtist}
-			<ArtistDetail bind:artist={selectedArtist} onClose={closeArtistDetail} />
-		{/if}
-		<div class="navigation-buttons">
-			<button class="nav-button" onclick={() => scrollToSection('map-section')}> Concerts </button>
-			<button class="nav-button" onclick={() => scrollToSection('stats-section')}>
+		<div class="carousel-content">
+			<SearchBar {artists} bind:current={currentIndex} />
+			<Carousel bind:selectedArtist {artists} bind:firstRender bind:current={currentIndex} />
+			{#if selectedArtist}
+				<ArtistDetail bind:artist={selectedArtist} onClose={closeArtistDetail} />
+			{/if}
+		</div>
+		<div class="side-navigation">
+			<button class="side-nav-button left" onclick={() => scrollToSection('map-section')}>
+				Concerts
+			</button>
+			<button class="side-nav-button right" onclick={() => scrollToSection('stats-section')}>
 				Statistiques
 			</button>
 		</div>
-		<button
-			class="scroll-button"
-			onclick={() => scrollToSection('map-section')}
-			aria-label="Défiler vers la carte"
-		>
-			<svg
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="3"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			>
-				<path d="M7 13l5 5 5-5" />
-				<path d="M7 6l5 5 5-5" />
-			</svg>
-		</button>
 	</section>
 
 	<!-- Section 3: Map -->
@@ -230,25 +228,6 @@
 				<!-- Espace pour contenu futur -->
 			</div>
 		</div>
-		<button
-			class="scroll-button"
-			onclick={() => scrollToSection('stats-section')}
-			aria-label="Défiler vers les statistiques"
-		>
-			<svg
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="3"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			>
-				<path d="M7 13l5 5 5-5" />
-				<path d="M7 6l5 5 5-5" />
-			</svg>
-		</button>
 	</section>
 
 	<!-- Section 4: Statistiques -->
@@ -465,11 +444,13 @@
 
 	.content-section {
 		min-height: 100vh;
+		height: 100vh;
 		box-sizing: border-box;
-		padding: 2rem 0 4rem 0;
+		padding: 2rem 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		overflow-y: auto;
 	}
 
 	.title {
@@ -483,7 +464,7 @@
 	.map-container {
 		display: flex;
 		width: 100%;
-		height: 100vh;
+		height: calc(100vh - 150px);
 		gap: 2rem;
 		padding: 0 2rem;
 	}
@@ -515,12 +496,15 @@
 	.stats-section {
 		background: var(--dark-vibrant);
 		padding: 2rem;
+		height: 100vh;
+		overflow-y: auto;
 	}
 
 	.stats-container {
 		width: 100%;
 		max-width: 1200px;
 		margin: 0 auto;
+		height: 100%;
 	}
 
 	.stats-header {
@@ -847,5 +831,67 @@
 
 	.nav-button:hover {
 		background: var(--muted);
+	}
+
+	.carousel-section {
+		position: relative;
+		justify-content: flex-start;
+		padding-top: 1rem;
+		height: 100vh;
+		overflow-y: auto;
+	}
+
+	.carousel-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		width: 100%;
+		max-width: 800px;
+		margin: 0 auto;
+		margin-top: -1rem;
+	}
+
+	.side-navigation {
+		position: absolute;
+		bottom: 3rem;
+		left: 0;
+		right: 0;
+		display: flex;
+		justify-content: space-between;
+		padding: 0 3rem;
+		pointer-events: none;
+	}
+
+	.side-nav-button {
+		background: var(--dark-muted);
+		color: var(--light-vibrant);
+		border: none;
+		padding: 0.8rem 1.5rem;
+		border-radius: 8px;
+		cursor: pointer;
+		font-size: 1rem;
+		transition: all 0.3s ease;
+		pointer-events: auto;
+		opacity: 0.8;
+	}
+
+	.side-nav-button:hover {
+		background: var(--muted);
+		opacity: 1;
+		transform: translateY(-2px);
+	}
+
+	.side-nav-button.left {
+		margin-right: auto;
+	}
+
+	.side-nav-button.right {
+		margin-left: auto;
+	}
+
+	.map-section {
+		height: 100vh;
+		overflow-y: auto;
 	}
 </style>
