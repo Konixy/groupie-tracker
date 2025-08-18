@@ -36,7 +36,7 @@ npm run dev
 
 L'application démarre sur `http://localhost:3000`
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```
 groupie-tracker/
@@ -56,7 +56,7 @@ groupie-tracker/
     └── generate_stats_data.py
 ```
 
-## 🎯 Fonctionnalités
+## Fonctionnalités
 
 - **Carousel interactif** des artistes avec navigation 3D
 - **Recherche** et filtrage d'artistes
