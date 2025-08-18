@@ -27,7 +27,8 @@
 	}
 
 	@keyframes loading {
-		0%, 100% {
+		0%,
+		100% {
 			opacity: 0.5;
 		}
 		50% {

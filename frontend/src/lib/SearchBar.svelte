@@ -92,7 +92,7 @@
 		<path d="m21 21-4.34-4.34" />
 		<circle cx="11" cy="11" r="8" />
 	</svg>
-	
+
 	<input
 		type="text"
 		placeholder="Chercher un artiste ou un groupe…"
@@ -104,8 +104,8 @@
 	{#if results.length > 0}
 		<div class="search-results" transition:scale={{ duration: 100, start: 0.5 }}>
 			{#each results.slice(0, 10) as result}
-				<button 
-					class="search-result" 
+				<button
+					class="search-result"
 					onclick={() => handleSelect(result)}
 					aria-label="Sélectionner {result.name}"
 				>
@@ -137,7 +137,9 @@
 		color: var(--dark-vibrant);
 		padding-left: 2.8rem;
 		margin-right: -1rem;
-		transition: background-color 0.3s ease, color 0.3s ease;
+		transition:
+			background-color 0.3s ease,
+			color 0.3s ease;
 	}
 
 	input::placeholder {
@@ -174,7 +176,9 @@
 		padding: 0.75rem;
 		border-radius: 15px;
 		cursor: pointer;
-		transition: background-color 0.3s ease, color 0.3s ease;
+		transition:
+			background-color 0.3s ease,
+			color 0.3s ease;
 		border: none;
 		background: none;
 		outline: none;
