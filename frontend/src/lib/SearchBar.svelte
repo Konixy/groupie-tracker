@@ -46,7 +46,7 @@
 		});
 
 		// Filtrer les artistes qui correspondent et les trier par score
-		let finalResults = scoredResults
+		const finalResults = scoredResults
 			.filter((item) => item.score > 0)
 			.sort((a, b) => {
 				// Tri par score décroissant
@@ -60,41 +60,18 @@
 			// Éliminer les doublons en gardant seulement la première occurrence
 			.filter((artist, index, self) => index === self.findIndex((a) => a.id === artist.id));
 
-		// Si on a moins de 3 résultats, ajouter des artistes similaires
-		// if (results.length < 3 && results.length > 0) {
-		//   const exactMatches = results;
-		//   const remainingArtists = artists.filter(artist =>
-		//     !exactMatches.some(exact => exact.id === artist.id)
-		//   );
-
-		//   // Trouver des artistes qui ont au moins 2 lettres en commun avec la recherche
-		//   const similarResults = remainingArtists.map(artist => {
-		//     const artistName = artist.name.toLowerCase();
-		//     let commonLetters = 0;
-
-		//     // Compter les lettres communes
-		//     for (let i = 0; i < searchTerm.length; i++) {
-		//       if (artistName.includes(searchTerm[i])) {
-		//         commonLetters++;
-		//       }
-		//     }
-
-		//     return { artist, commonLetters };
-		//   })
-		//   .filter(item => item.commonLetters >= 2) // Au moins 2 lettres en commun
-		//   .sort((a, b) => b.commonLetters - a.commonLetters) // Plus de lettres communes = meilleur score
-		//   .map(item => item.artist)
-		//   .slice(0, 5 - results.length); // Compléter jusqu'à 5 artistes max
-
-		//   results = [...exactMatches, ...similarResults];
-		// }
-
 		results = finalResults;
 	}
 
 	function handleSelect(artist: Artist) {
 		selectedArtist = artist;
 		query = '';
+	}
+
+	function handleKeyDown(event: KeyboardEvent) {
+		if (event.key === 'Enter' && results.length > 0) {
+			handleSelect(results[0]);
+		}
 	}
 </script>
 
@@ -109,25 +86,31 @@
 		stroke-width="3"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class="lucide lucide-search-icon lucide-search"
-		><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg
+		class="search-icon"
+		aria-hidden="true"
 	>
+		<path d="m21 21-4.34-4.34" />
+		<circle cx="11" cy="11" r="8" />
+	</svg>
+	
 	<input
 		type="text"
 		placeholder="Chercher un artiste ou un groupe…"
 		bind:value={query}
-		onkeydown={(e) => {
-			if (e.key === 'Enter' && results.length > 0) {
-				handleSelect(results[0]);
-				query = '';
-			}
-		}}
+		onkeydown={handleKeyDown}
+		aria-label="Rechercher un artiste"
 	/>
 
 	{#if results.length > 0}
 		<div class="search-results" transition:scale={{ duration: 100, start: 0.5 }}>
 			{#each results.slice(0, 10) as result}
-				<button class="search-result" onclick={() => handleSelect(result)}>{result.name}</button>
+				<button 
+					class="search-result" 
+					onclick={() => handleSelect(result)}
+					aria-label="Sélectionner {result.name}"
+				>
+					{result.name}
+				</button>
 			{/each}
 		</div>
 	{/if}
@@ -141,6 +124,7 @@
 		align-items: center;
 		margin-top: 4rem;
 	}
+
 	input {
 		border-radius: 20px;
 		border: none;
@@ -153,16 +137,15 @@
 		color: var(--dark-vibrant);
 		padding-left: 2.8rem;
 		margin-right: -1rem;
-		transition:
-			background-color 0.3s ease,
-			color 0.3s ease;
+		transition: background-color 0.3s ease, color 0.3s ease;
 	}
 
 	input::placeholder {
 		color: currentColor;
+		opacity: 0.7;
 	}
 
-	.lucide-search-icon {
+	.search-icon {
 		margin-right: -2.2rem;
 		color: var(--dark-vibrant);
 		z-index: 100;
@@ -182,6 +165,7 @@
 		align-items: center;
 		margin-top: 1rem;
 		transition: all 0.3s ease;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 	}
 
 	.search-result {
@@ -190,9 +174,7 @@
 		padding: 0.75rem;
 		border-radius: 15px;
 		cursor: pointer;
-		transition:
-			background-color 0.3s ease,
-			color 0.3s ease;
+		transition: background-color 0.3s ease, color 0.3s ease;
 		border: none;
 		background: none;
 		outline: none;
@@ -202,6 +184,11 @@
 	}
 
 	.search-result:hover {
+		background: var(--dark-muted);
+		color: var(--light-vibrant);
+	}
+
+	.search-result:focus {
 		background: var(--dark-muted);
 		color: var(--light-vibrant);
 	}

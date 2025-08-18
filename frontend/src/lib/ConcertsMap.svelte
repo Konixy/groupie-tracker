@@ -2,17 +2,13 @@
 	import { Marker, Map, TileLayer, Icon, Control, Popup } from 'leaflet';
 	import { onMount } from 'svelte';
 
-	const currentArtist = 'victoria-australia';
-
 	let mapRef = $state<HTMLElement | string>('map');
 	let map: Map = $derived(new Map(mapRef).setView([49.43814906784801, 1.1023802854095484], 13));
-
-	// TODO: add state management for the artists api and share the currently selected artist in it.
 
 	function createMarker(name: string) {
 		const el = document.createElement('div');
 		el.innerHTML = `
-			<div class="z01-popup-content">
+			<div class="popup-content">
 				<h3>${name}</h3>
 			</div>
 		`;
@@ -20,20 +16,6 @@
 	}
 
 	onMount(async () => {
-		// On peut mettre les logos des artistes directement sur la map comme icone de marker
-		// new Marker([49.43814906784801, 1.1023802854095484])
-		// 	.addTo(map)
-		// 	.setIcon(
-		// 		new Icon({
-		// 			iconUrl: '/z01.png',
-		// 			iconSize: [38, 38],
-		// 			iconAnchor: [19, 19],
-		// 			popupAnchor: [0, -19],
-		// 			className: 'z01-icon'
-		// 		})
-		// 	)
-		// 	.bindPopup(new Popup({ className: 'z01-popup', content: createMarker('Zone 01') }));
-
 		const darkLayer = new TileLayer(
 			'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
 			{
@@ -59,17 +41,22 @@
 
 		map.addLayer(darkLayer);
 
-		const locations = await fetchLocations();
+		await fetchLocations();
 	});
 
 	async function fetchLocations() {
-		const response = await fetch('http://localhost:8080/locations');
-		const data = await response.json();
-		return data;
+		try {
+			const response = await fetch('http://localhost:8080/locations');
+			const data = await response.json();
+			return data;
+		} catch (error) {
+			console.error('Erreur lors de la récupération des lieux:', error);
+			return null;
+		}
 	}
 </script>
 
-<div bind:this={mapRef} class="map"></div>
+<div bind:this={mapRef} class="map" aria-label="Carte des concerts"></div>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@2.0.0-alpha/dist/leaflet.css" />
 
 <style>
@@ -81,8 +68,9 @@
 		background-color: var(--dark-muted);
 	}
 
-	:global(.z01-icon) {
-		border-radius: 100%;
+	:global(.popup-content) {
+		text-align: center;
+		padding: 0.5rem;
 	}
 
 	:global(.leaflet-top),

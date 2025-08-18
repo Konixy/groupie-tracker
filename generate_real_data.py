@@ -1,15 +1,25 @@
 #!/usr/bin/env python3
+"""
+Script pour générer des données d'artistes depuis l'API Groupie Tracker.
+Génère du code Go avec les données réelles des artistes, concerts et lieux.
+"""
+
 import requests
 import json
 from collections import defaultdict
 
+
 def fetch_data():
+    """Récupère et traite les données depuis l'API Groupie Tracker."""
+    
     # Récupérer les artistes
+    print("Récupération des artistes...")
     artists_url = "https://groupietrackers.herokuapp.com/api/artists"
     artists_response = requests.get(artists_url)
     artists_data = artists_response.json()
     
     # Récupérer les dates
+    print("Récupération des dates de concerts...")
     dates_url = "https://groupietrackers.herokuapp.com/api/dates"
     dates_response = requests.get(dates_url)
     dates_data = dates_response.json()
@@ -35,6 +45,7 @@ def fetch_data():
                     pass
     
     # Récupérer les relations pour les lieux
+    print("Récupération des lieux de concerts...")
     locations_map = {}
     for artist in artists_data:
         artist_id = artist['id']
@@ -50,11 +61,12 @@ def fetch_data():
                     locations.add(location)
             
             locations_map[artist_id] = list(locations)
-        except:
+        except Exception as e:
+            print(f"Erreur pour l'artiste {artist_id}: {e}")
             locations_map[artist_id] = []
     
     # Générer le code Go
-    print("// Code généré automatiquement avec les vraies données de l'API")
+    print("\n// Code généré automatiquement avec les vraies données de l'API")
     print("func serveStaticData(w http.ResponseWriter) {")
     print("    json.NewEncoder(w).Encode(map[string]interface{}{")
     print("        \"artists\": []map[string]interface{}{")
@@ -86,6 +98,7 @@ def fetch_data():
     print(f"        \"availableYears\": {sorted(list(all_years))},")
     print("    })")
     print("}")
+
 
 if __name__ == "__main__":
     fetch_data() 

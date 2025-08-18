@@ -8,19 +8,10 @@
 {#if firstRender}
 	<div class="loading" out:fade={{ duration: 200 }}>Chargement...</div>
 {/if}
-<!-- <div class="logo">Groupie Tracker</div> -->
 
 <LogoContent show={!firstRender} />
 
 <style>
-	/* .logo {
-		font-family: 'Pacifico', cursive;
-		font-size: 5rem;
-		margin-bottom: 0;
-		line-height: 1;
-		text-align: center;
-	} */
-
 	.loading {
 		position: absolute;
 		top: 50%;
@@ -36,14 +27,11 @@
 	}
 
 	@keyframes loading {
-		0% {
+		0%, 100% {
 			opacity: 0.5;
 		}
 		50% {
 			opacity: 1;
-		}
-		100% {
-			opacity: 0.5;
 		}
 	}
 </style>

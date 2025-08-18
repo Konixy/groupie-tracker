@@ -11,7 +11,7 @@
 		selectedArtist: Artist | null;
 		firstRender: boolean;
 	} = $props();
-	// let current = $state(Math.floor(Math.random() * 52));
+
 	let current = $state(0);
 	let isAnimating = $state(false);
 
