@@ -2,6 +2,20 @@
 
 Application web moderne pour explorer et suivre des artistes de musique et leurs concerts.
 
+## 🚧 À FAIRE - Priorités de développement
+
+### **Fonctionnalités principales à implémenter :**
+
+- [ ] **Finir la map** - Compléter l'affichage et l'interactivité de la carte des concerts
+- [ ] **Ajouter des filtres à la map** - Permettre de filtrer les concerts par date, lieu, artiste
+- [ ] **Faire des statistiques plus propres et simples** - Simplifier l'interface des stats et améliorer la lisibilité
+- [ ] **Faire une barre de recherche + complète** - Améliorer la recherche avec autocomplétion et suggestions
+- [ ] **Finir le fond du site** - Ajouter des détails graphiques et améliorer l'esthétique générale
+
+---
+
+## Architecture
+
 ## Architecture
 
 - **Frontend** : Svelte 5 avec TypeScript
