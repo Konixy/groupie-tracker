@@ -11,6 +11,7 @@ Application web moderne pour explorer et suivre des artistes de musique et leurs
 - [ ] **Faire des statistiques plus propres et simples** - Simplifier l'interface des stats et améliorer la lisibilité
 - [ ] **Faire une barre de recherche + complète** - Améliorer la recherche avec autocomplétion et suggestions
 - [ ] **Finir le fond du site** - Ajouter des détails graphiques et améliorer l'esthétique générale
+- [ ] **Responsive** - Adapter le site pour mobile (toutes taille d'écran au finale)
 
 ---
 

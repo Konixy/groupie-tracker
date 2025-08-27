@@ -60,3 +60,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/ 
+
+# Cache
+coordinates_cache.json

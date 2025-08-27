@@ -13,12 +13,13 @@ func main() {
 	http.HandleFunc("/artists", handlers.ArtistsHandler)
 	http.HandleFunc("/artists/", handlers.ArtistConcertsHandler)
 	http.HandleFunc("/images/", handlers.ImagesHandler)
-	http.HandleFunc("/locations", handlers.LocationsHandler)
+	http.HandleFunc("/locations/", handlers.LocationsHandler)
 	http.HandleFunc("/stats", handlers.StatsHandler)
 
 	// Message d'accueil sur /
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 		json.NewEncoder(w).Encode(map[string]string{"message": "Bienvenue sur l'API Groupie Tracker en Go"})
 	})
 
