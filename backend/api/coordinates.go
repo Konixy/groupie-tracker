@@ -20,7 +20,7 @@ type GeocodeResponse [1]struct {
 	Lon         string    `json:"lon"`
 	Name        string    `json:"name"`
 	DisplayName string    `json:"display_name"`
-	Class       string    `json:"class"`
+	Category    string    `json:"category"`
 	Type        string    `json:"addresstype"`
 	Importance  float64   `json:"importance"`
 }
@@ -44,7 +44,7 @@ func GetCoordinates(location string) (GeocodeResponse, error) {
 	country := str[1]
 
 	// Appel à l'API Nominatim
-	response, err := http.Get(fmt.Sprintf("https://nominatim.openstreetmap.org/search?q=%s,%s&format=json&accept-language=fr", city, country))
+	response, err := http.Get(fmt.Sprintf("https://nominatim.openstreetmap.org/search?q=%s,%s&format=jsonv2&accept-language=fr", city, country))
 	if err != nil {
 		log.Printf("Erreur lors de la récupération des coordonnées: %v", err)
 		return GeocodeResponse{}, err

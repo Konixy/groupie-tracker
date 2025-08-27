@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Artist, Location } from '@/types';
-	import { Map, TileLayer, Control, LatLngBounds } from 'leaflet';
+	import { Map, TileLayer, Control, LatLngBounds, Popup } from 'leaflet';
 	import { onMount, untrack } from 'svelte';
 
 	const addressTypes = {
@@ -8,7 +8,8 @@
 		state: 'état',
 		county: 'comté',
 		city: 'ville',
-		venue: 'lieu'
+		town: 'village',
+		municipality: 'municipalité'
 	};
 
 	let { artist }: { artist: Artist } = $props();
@@ -28,6 +29,14 @@
 			</div>
 		`;
 		return el;
+	}
+
+	function clearAllMarkers() {
+		map.eachLayer((layer) => {
+			if (layer instanceof Popup) {
+				layer.remove();
+			}
+		});
 	}
 
 	onMount(async () => {
@@ -78,7 +87,17 @@
 			...location,
 			slug
 		}));
+
+		clearAllMarkers();
+
+		for (const location of currentArtistLocations) {
+			new Popup([Number(location.lat), Number(location.lon)], {
+				content: createMarker(`${location.name} (${location.dates.length} concerts)`)
+			}).addTo(map);
+		}
+
 		handleSelectLocation(currentArtistLocations[0]);
+
 		loading = false;
 	}
 
@@ -94,10 +113,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@2.0.0-alpha/dist/leaflet.css" />
 
 <div class="map-container">
-	<div class="map-left">
-		<div bind:this={mapRef} class="map" aria-label="Carte des concerts"></div>
-	</div>
-	<div class="map-right">
+	<div bind:this={mapRef} class="map" aria-label="Carte des concerts"></div>
+	<div class="side-panel">
 		{#if loading}
 			<div class="loading">
 				<h4>Chargement des concerts...</h4>
@@ -136,16 +153,10 @@
 		width: 100%;
 		gap: 2rem;
 		padding: 0 2rem;
-		min-height: 100%;
+		height: calc(100vh - 4rem);
 	}
 
-	.map-left {
-		flex: 4;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.map-right {
+	.side-panel {
 		flex: 2;
 		display: flex;
 		flex-direction: column;
@@ -155,6 +166,16 @@
 		border-radius: 1.5rem;
 	}
 
+	@media (max-width: 1000px) {
+		.map-container {
+			flex-direction: column;
+		}
+
+		.side-panel,
+		.map {
+			flex: 1;
+		}
+	}
 	.concerts-list {
 		display: flex;
 		flex-direction: column;
@@ -201,23 +222,10 @@
 		color: color-mix(in srgb, var(--light-vibrant), transparent 70%);
 	}
 
-	@media (max-width: 1000px) {
-		.map-container {
-			flex-direction: column;
-		}
-
-		.map-left {
-			flex: 1;
-		}
-
-		.map-right {
-			flex: 1;
-		}
-	}
-
 	.map {
+		flex: 4;
+		height: calc(100vh - 4rem);
 		width: 100%;
-		height: 100%;
 		border-radius: 1.5rem;
 		overflow: hidden;
 		background-color: var(--dark-muted);
