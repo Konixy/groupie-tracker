@@ -9,39 +9,60 @@ import (
 	"groupie-tracker/api"
 )
 
-// Handler for the /locations route
+type Location struct {
+	Name        string    `json:"name"`
+	Lat         string    `json:"lat"`
+	Lon         string    `json:"lon"`
+	BoundingBox [4]string `json:"boundingbox"`
+	Type        string    `json:"type"`
+	Dates       []string  `json:"dates"`
+}
+
+// Handler for the /locations/ route
 func LocationsHandler(w http.ResponseWriter, r *http.Request) {
-	// Extraire l'ID de l'artiste de l'URL
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+
 	pathParts := strings.Split(r.URL.Path, "/")
 	if len(pathParts) < 3 {
 		http.Error(w, "ID d'artiste manquant", http.StatusBadRequest)
 		return
 	}
 
-	artistID := pathParts[2]
-	if artistID == "" {
-		http.Error(w, "ID d'artiste manquant", http.StatusBadRequest)
-		return
-	}
-
-	// Convertir l'ID en int
-	artistIDInt, err := strconv.Atoi(artistID)
+	artistID, err := strconv.Atoi(pathParts[2])
 	if err != nil {
 		http.Error(w, "ID d'artiste invalide", http.StatusBadRequest)
 		return
 	}
 
-	// Récupérer les concerts de l'artiste
-	concerts, err := api.FetchArtistConcerts(artistIDInt)
+	relation, err := api.FetchLocations(artistID)
 	if err != nil {
 		http.Error(w, "Erreur lors de la récupération des concerts", http.StatusInternalServerError)
 		return
 	}
 
+	response := make(map[string]Location)
+
+	// range on the datesLocations keys
+	for location, dates := range relation.DatesLocations {
+		coordinates, err := api.GetCoordinates(location)
+		if err != nil {
+			http.Error(w, "Erreur lors de la récupération des coordonnées", http.StatusInternalServerError)
+			return
+		}
+		response[location] = Location{
+			Name:        coordinates[0].Name,
+			Lat:         coordinates[0].Lat,
+			Lon:         coordinates[0].Lon,
+			BoundingBox: coordinates[0].BoundingBox,
+			Type:        coordinates[0].Type,
+			Dates:       dates,
+		}
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(concerts)
+	json.NewEncoder(w).Encode(response)
 }
 
 // Handler pour récupérer tous les lieux disponibles
@@ -73,7 +94,7 @@ func AllLocationsHandler(w http.ResponseWriter, r *http.Request) {
 					if _, exists := allLocations[cleanLocation]; !exists {
 						allLocations[cleanLocation] = []string{}
 					}
-					
+
 					// Éviter les doublons d'artistes pour le même lieu
 					artistExists := false
 					for _, existingArtist := range allLocations[cleanLocation] {
@@ -82,7 +103,7 @@ func AllLocationsHandler(w http.ResponseWriter, r *http.Request) {
 							break
 						}
 					}
-					
+
 					if !artistExists {
 						allLocations[cleanLocation] = append(allLocations[cleanLocation], artist.Name)
 					}
