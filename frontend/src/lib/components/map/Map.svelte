@@ -30,30 +30,13 @@
 	}
 
 	onMount(async () => {
-		const darkLayer = new TileLayer(
-			'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-			{
-				subdomains: 'abcd',
-				maxZoom: 20,
-				minZoom: 0
-			}
-		);
+		const layer = new TileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+			subdomains: 'abcd',
+			maxZoom: 20,
+			minZoom: 0
+		});
 
-		const lightLayer = new TileLayer(
-			'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-			{
-				subdomains: 'abcd',
-				maxZoom: 20,
-				minZoom: 0
-			}
-		);
-
-		new Control.Layers({
-			light: lightLayer,
-			dark: darkLayer
-		}).addTo(map);
-
-		map.addLayer(lightLayer);
+		map.addLayer(layer);
 	});
 
 	$effect(() => {
@@ -172,7 +155,10 @@
 			</div>
 		{:else}
 			<div class="concerts-list">
-				<h2>Liste des concerts</h2>
+				<div class="concerts-list-header">
+					<h2>Liste des concerts</h2>
+					<button onclick={() => handleMoveToGeneralView()}> General view </button>
+				</div>
 				<div class="concerts-list-content">
 					{#each currentArtistLocations as location (location.slug)}
 						<div>
@@ -226,6 +212,26 @@
 			flex: 1;
 		}
 	}
+
+	.concerts-list-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.concerts-list-header button {
+		background-color: var(--dark-vibrant);
+		color: var(--light-vibrant);
+		border: none;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
+		cursor: pointer;
+	}
+
+	.concerts-list-header button:hover {
+		background-color: var(--dark-muted);
+	}
+
 	.concerts-list {
 		display: flex;
 		flex-direction: column;
@@ -316,63 +322,6 @@
 		display: none;
 	}
 
-	:global(.leaflet-control-layers) {
-		border-radius: 14px !important;
-		background-color: var(--dark-muted) !important;
-		color: var(--light-vibrant) !important;
-		box-shadow: none !important;
-		border: none !important;
-		transition: all 0.1s ease !important;
-	}
-
-	:global(.leaflet-control-layers-list) {
-		border: none !important;
-		padding: 0.2rem !important;
-	}
-
-	:global(.leaflet-control-layers-base) {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.2rem;
-	}
-
-	:global(.leaflet-control-layers-base span) {
-		display: flex;
-		align-items: center;
-		gap: 0.4rem;
-	}
-
-	:global(.leaflet-control-layers-selector) {
-		-webkit-appearance: none;
-		appearance: none;
-		background-color: var(--dark-muted);
-		margin: 0;
-		font: inherit;
-		color: currentColor;
-		width: 1.15em;
-		height: 1.15em;
-		border: 0.15em solid var(--light-vibrant);
-		border-radius: 50%;
-		transform: translateY(-0.075em);
-		display: grid;
-		place-content: center;
-	}
-
-	:global(.leaflet-control-layers-selector::before) {
-		content: '';
-		width: 0.65em;
-		height: 0.65em;
-		border-radius: 50%;
-		transform: scale(0);
-		transition: 120ms transform ease-in-out;
-		box-shadow: inset 1em 1em var(--light-vibrant);
-	}
-
-	:global(.leaflet-control-layers-selector:checked::before) {
-		transform: scale(2);
-	}
-
 	:global(.leaflet-control-attribution) {
 		display: none;
 	}
@@ -382,6 +331,6 @@
 	}
 
 	:global(.map-marker-circle) {
-		fill: color-mix(in srgb, var(--dark-vibrant), white 80%);
+		fill: color-mix(in srgb, var(--dark-vibrant), white 90%);
 	}
 </style>
