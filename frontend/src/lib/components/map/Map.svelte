@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Artist, Location } from '@/types';
-	import { Map, TileLayer, Control, LatLngBounds, Popup } from 'leaflet';
+	import { Map, TileLayer, Control, Marker, DivIcon } from 'leaflet';
 	import { onMount, untrack } from 'svelte';
 
 	const addressTypes = {
@@ -21,19 +21,9 @@
 	let abortController = $state<AbortController | null>(null);
 	let currentArtistLocations = $state<(Location & { slug: string })[]>([]);
 
-	function createMarker(name: string) {
-		const el = document.createElement('div');
-		el.innerHTML = `
-			<div class="popup-content">
-				<h3>${name}</h3>
-			</div>
-		`;
-		return el;
-	}
-
 	function clearAllMarkers() {
 		map.eachLayer((layer) => {
-			if (layer instanceof Popup) {
+			if (layer instanceof Marker) {
 				layer.remove();
 			}
 		});
@@ -69,14 +59,16 @@
 	$effect(() => {
 		if (artist) {
 			untrack(() => {
-				abortController?.abort('Artist changed');
-				abortController = new AbortController();
 				fetchLocations();
 			});
 		}
 	});
 
 	async function fetchLocations() {
+		abortController?.abort('Artist changed');
+		abortController = new AbortController();
+		clearAllMarkers();
+
 		loading = true;
 		const response = await fetch(`http://localhost:8080/locations/${artist.id}`, {
 			signal: abortController?.signal
@@ -88,17 +80,75 @@
 			slug
 		}));
 
-		clearAllMarkers();
-
 		for (const location of currentArtistLocations) {
-			new Popup([Number(location.lat), Number(location.lon)], {
-				content: createMarker(`${location.name} (${location.dates.length} concerts)`)
+			new Marker([Number(location.lat), Number(location.lon)], {
+				title: `(${location.dates.length} concerts)`,
+				icon: new DivIcon({
+					className: '',
+					iconSize: [32, 32],
+					iconAnchor: [16, 32],
+					html: `<svg class="map-marker" width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+										fill="var(--dark-vibrant)">
+										<path fill="inherit"
+											d="M11.291 21.706 12 21l-.709.706zM12 21l.708.706a1 1 0 0 1-1.417 0l-.006-.007-.017-.017-.062-.063a47.708 47.708 0 0 1-1.04-1.106 49.562 49.562 0 0 1-2.456-2.908c-.892-1.15-1.804-2.45-2.497-3.734C4.535 12.612 4 11.248 4 10c0-4.539 3.592-8 8-8 4.408 0 8 3.461 8 8 0 1.248-.535 2.612-1.213 3.87-.693 1.286-1.604 2.585-2.497 3.735a49.583 49.583 0 0 1-3.496 4.014l-.062.063-.017.017-.006.006L12 21z" />
+										<circle class="map-marker-circle" cx="12" cy="10" r="3" />
+								</svg>`
+				})
 			}).addTo(map);
 		}
 
-		handleSelectLocation(currentArtistLocations[0]);
+		handleMoveToGeneralView();
 
 		loading = false;
+	}
+
+	function handleMoveToGeneralView() {
+		// Si aucune location, on ne fait rien
+		if (currentArtistLocations.length === 0) return;
+
+		// Si une seule location, on centre sur celle-ci
+		if (currentArtistLocations.length === 1) {
+			const location = currentArtistLocations[0];
+			handleSelectLocation(location);
+			return;
+		}
+
+		// Calcul des limites globales pour toutes les locations
+		let minLat = Number.POSITIVE_INFINITY;
+		let maxLat = Number.NEGATIVE_INFINITY;
+		let minLon = Number.POSITIVE_INFINITY;
+		let maxLon = Number.NEGATIVE_INFINITY;
+
+		// Parcours de toutes les locations pour trouver les limites
+		for (const location of currentArtistLocations) {
+			const lat = Number(location.lat);
+			const lon = Number(location.lon);
+
+			// Mise à jour des limites avec les coordonnées du centre
+			minLat = Math.min(minLat, lat);
+			maxLat = Math.max(maxLat, lat);
+			minLon = Math.min(minLon, lon);
+			maxLon = Math.max(maxLon, lon);
+
+			// Si la location a un boundingbox, on l'utilise pour des limites plus précises
+			if (location.boundingbox && location.boundingbox.length >= 4) {
+				const bbox = location.boundingbox;
+				minLat = Math.min(minLat, Number(bbox[0]));
+				maxLat = Math.max(maxLat, Number(bbox[1]));
+				minLon = Math.min(minLon, Number(bbox[2]));
+				maxLon = Math.max(maxLon, Number(bbox[3]));
+			}
+		}
+
+		// Ajout d'une marge pour que les marqueurs ne soient pas collés aux bords
+		const latMargin = (maxLat - minLat) * 0.1;
+		const lonMargin = (maxLon - minLon) * 0.1;
+
+		// Application de la vue globale avec les limites calculées
+		map.fitBounds([
+			[minLat - latMargin, minLon - lonMargin],
+			[maxLat + latMargin, maxLon + lonMargin]
+		]);
 	}
 
 	function handleSelectLocation(location: Location) {
@@ -325,5 +375,13 @@
 
 	:global(.leaflet-control-attribution) {
 		display: none;
+	}
+
+	:global(.map-marker) {
+		filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+	}
+
+	:global(.map-marker-circle) {
+		fill: color-mix(in srgb, var(--dark-vibrant), white 80%);
 	}
 </style>
