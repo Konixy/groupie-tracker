@@ -6,12 +6,18 @@
 		artists = [],
 		selectedArtist = $bindable(),
 		loading = $bindable(),
-		current = $bindable()
+		current = $bindable(),
+		highlightedMember = null,
+		highlightedDate = null,
+		highlightedAlbum = null
 	}: {
 		artists: Artist[];
 		selectedArtist: Artist | null;
 		loading: boolean;
 		current: number;
+		highlightedMember?: string | null;
+		highlightedDate?: string | null;
+		highlightedAlbum?: string | null;
 	} = $props();
 	// let current = $state(Math.floor(Math.random() * 52));
 	// let current = $state(0);

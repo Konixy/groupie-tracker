@@ -8,7 +8,7 @@ Application web moderne pour explorer et suivre des artistes de musique et leurs
 
 - [ ] **Finir la map** - Compléter l'affichage et l'interactivité de la carte des concerts
 - [ ] **Ajouter des filtres à la map** - Permettre de filtrer les concerts par date, lieu, artiste
-- [ ] **Faire une barre de recherche + complète** - Améliorer la recherche avec autocomplétion et suggestions
+- [x] **Barre de recherche universelle** - ✅ Implémentée avec recherche par artiste, membre, lieu et date
 - [ ] **Finir le fond du site** - Ajouter des détails graphiques et améliorer l'esthétique générale
 - [ ] **Responsive** - Adapter le site pour mobile (toutes taille d'écran au finale)
 
@@ -70,7 +70,7 @@ groupie-tracker/
 ## Fonctionnalités
 
 - **Carousel interactif** des artistes avec navigation 3D
-- **Recherche** et filtrage d'artistes
+- **Recherche universelle** par artiste, membre, lieu de concert, date de création et premier album
 - **Détails des artistes** avec informations complètes
 - **Carte des concerts** avec localisation
 - **Design responsive** et animations fluides
@@ -83,6 +83,10 @@ groupie-tracker/
 # Générer les données d'artistes
 python generate_real_data.py
 ```
+
+## 📚 Documentation
+
+- **`SEARCH_FEATURES.md`** - Documentation complète des fonctionnalités de recherche
 
 ## Technologies utilisées
 

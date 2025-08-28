@@ -14,6 +14,9 @@
 	let selectedArtist = $state<Artist | null>(null);
 	let loading = $state(true);
 	let currentIndex = $state(Math.floor(Math.random() * 52));
+	let highlightedMember = $state<string | null>(null);
+	let highlightedDate = $state<string | null>(null);
+	let highlightedAlbum = $state<string | null>(null);
 
 	onMount(async () => {
 		await loadArtists();
@@ -52,6 +55,33 @@
 
 	function closeArtistDetail() {
 		selectedArtist = null;
+		highlightedMember = null;
+		highlightedDate = null;
+		highlightedAlbum = null;
+	}
+
+	function handleMemberSearch(memberName: string, artist: Artist) {
+		highlightedMember = memberName;
+		// Arrêter le clignotement après 3 secondes
+		setTimeout(() => {
+			highlightedMember = null;
+		}, 3000);
+	}
+
+	function handleDateSearch(date: string, artist: Artist) {
+		highlightedDate = date;
+		// Arrêter le clignotement après 3 secondes
+		setTimeout(() => {
+			highlightedDate = null;
+		}, 3000);
+	}
+
+	function handleAlbumSearch(album: string, artist: Artist) {
+		highlightedAlbum = album;
+		// Arrêter le clignotement après 3 secondes
+		setTimeout(() => {
+			highlightedAlbum = null;
+		}, 3000);
 	}
 </script>
 
@@ -87,10 +117,31 @@
 	<!-- Section 2: Carousel, recherche et boutons -->
 	<section id="carousel-section" class="content-section carousel-section">
 		<div class="carousel-content">
-			<SearchBar {artists} bind:current={currentIndex} />
-			<Carousel bind:selectedArtist {artists} bind:loading bind:current={currentIndex} />
+			<SearchBar
+				{artists}
+				bind:current={currentIndex}
+				onArtistSelect={(artist) => (selectedArtist = artist)}
+				onMemberSearch={handleMemberSearch}
+				onDateSearch={handleDateSearch}
+				onAlbumSearch={handleAlbumSearch}
+			/>
+			<Carousel
+				bind:selectedArtist
+				{artists}
+				bind:loading
+				bind:current={currentIndex}
+				{highlightedMember}
+				{highlightedDate}
+				{highlightedAlbum}
+			/>
 			{#if selectedArtist}
-				<ArtistDetail bind:artist={selectedArtist} onClose={closeArtistDetail} />
+				<ArtistDetail
+					bind:artist={selectedArtist}
+					onClose={closeArtistDetail}
+					{highlightedMember}
+					{highlightedDate}
+					{highlightedAlbum}
+				/>
 			{/if}
 		</div>
 		<div class="side-navigation">

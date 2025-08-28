@@ -5,10 +5,16 @@
 
 	let {
 		artist = $bindable(),
-		onClose
+		onClose,
+		highlightedMember = null,
+		highlightedDate = null,
+		highlightedAlbum = null
 	}: {
 		artist: Artist;
 		onClose: () => void;
+		highlightedMember?: string | null;
+		highlightedDate?: string | null;
+		highlightedAlbum?: string | null;
 	} = $props();
 
 	let concerts = $state<Record<string, [string, string]>>({});
@@ -115,7 +121,9 @@
 				<h2>Membres du groupe</h2>
 				<div class="members-list">
 					{#each artist.members as member}
-						<span class="member-tag">{member}</span>
+						<span class="member-tag" class:highlighted={highlightedMember === member}>
+							{member}
+						</span>
 					{/each}
 				</div>
 			</div>
@@ -123,11 +131,15 @@
 			<div class="stats-grid">
 				<div class="stat-card">
 					<h3>Date de création</h3>
-					<p>{artist.creationDate}</p>
+					<p class:highlighted={highlightedDate === artist.creationDate.toString()}>
+						{artist.creationDate}
+					</p>
 				</div>
 				<div class="stat-card">
 					<h3>Premier album</h3>
-					<p>{formatDate(artist.firstAlbum)}</p>
+					<p class:highlighted={highlightedAlbum === artist.firstAlbum}>
+						{formatDate(artist.firstAlbum)}
+					</p>
 				</div>
 				<div class="stat-card">
 					<h3>Nombre de membres</h3>
@@ -295,6 +307,35 @@
 
 	.member-tag:hover {
 		background: var(--muted);
+	}
+
+	.member-tag.highlighted {
+		background: var(--vibrant);
+		color: var(--dark-muted);
+		animation: blink 0.8s ease-in-out infinite;
+		box-shadow: 0 0 20px var(--vibrant);
+	}
+
+	@keyframes blink {
+		0%,
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		50% {
+			opacity: 0.7;
+			transform: scale(1.05);
+		}
+	}
+
+	.stat-card p.highlighted {
+		background: var(--vibrant);
+		color: var(--light-vibrant);
+		animation: blink 0.8s ease-in-out infinite;
+		box-shadow: 0 0 20px var(--vibrant);
+		border-radius: 8px;
+		padding: 0.5rem;
+		margin: 0.5rem 0;
 	}
 
 	.stats-grid {
