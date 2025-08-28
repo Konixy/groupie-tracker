@@ -8,14 +8,11 @@ Application web moderne pour explorer et suivre des artistes de musique et leurs
 
 - [ ] **Finir la map** - Compléter l'affichage et l'interactivité de la carte des concerts
 - [ ] **Ajouter des filtres à la map** - Permettre de filtrer les concerts par date, lieu, artiste
-- [ ] **Faire des statistiques plus propres et simples** - Simplifier l'interface des stats et améliorer la lisibilité
 - [ ] **Faire une barre de recherche + complète** - Améliorer la recherche avec autocomplétion et suggestions
 - [ ] **Finir le fond du site** - Ajouter des détails graphiques et améliorer l'esthétique générale
 - [ ] **Responsive** - Adapter le site pour mobile (toutes taille d'écran au finale)
 
 ---
-
-## Architecture
 
 ## Architecture
 
@@ -56,19 +53,18 @@ L'application démarre sur `http://localhost:3000`
 ```
 groupie-tracker/
 ├── backend/           # API Go
-│   ├── api/          # Client API
-│   ├── handlers/     # Gestionnaires HTTP
+│   ├── api/          # Client API et cache
+│   ├── handlers/     # Gestionnaires HTTP (artists, images, locations)
 │   ├── assets/       # Images des artistes
 │   └── main.go       # Point d'entrée
 ├── frontend/         # Interface Svelte
 │   ├── src/
-│   │   ├── lib/      # Composants
+│   │   ├── lib/      # Composants (Carousel, ArtistDetail, Map, SearchBar)
 │   │   ├── App.svelte
 │   │   └── types.ts
 │   └── package.json
 └── scripts/          # Scripts Python
-    ├── generate_real_data.py
-    └── generate_stats_data.py
+    └── generate_real_data.py
 ```
 
 ## Fonctionnalités
@@ -77,19 +73,15 @@ groupie-tracker/
 - **Recherche** et filtrage d'artistes
 - **Détails des artistes** avec informations complètes
 - **Carte des concerts** avec localisation
-- **Statistiques** et visualisations
 - **Design responsive** et animations fluides
 
 ## Scripts utiles
 
-### Génération de données pour l'instant lol je travaille dessus mais au cas où
+### Génération de données
 
 ```bash
 # Générer les données d'artistes
 python generate_real_data.py
-
-# Générer les statistiques
-python generate_stats_data.py
 ```
 
 ## Technologies utilisées

@@ -14,7 +14,7 @@ func main() {
 	http.HandleFunc("/artists/", handlers.ArtistConcertsHandler)
 	http.HandleFunc("/images/", handlers.ImagesHandler)
 	http.HandleFunc("/locations/", handlers.LocationsHandler)
-	http.HandleFunc("/stats", handlers.StatsHandler)
+
 
 	// Message d'accueil sur /
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

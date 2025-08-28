@@ -5,7 +5,7 @@
 	import SearchBar from './lib/components/SearchBar.svelte';
 	import ArtistDetail from './lib/components/ArtistDetail.svelte';
 	import Map from './lib/components/map/Map.svelte';
-	import StatsView from './lib/components/StatsView.svelte';
+
 	import type { Artist } from './types';
 	import Footer from './lib/components/Footer.svelte';
 	import { fade } from 'svelte/transition';
@@ -45,11 +45,8 @@
 		}
 	}
 
-	// Gestion de la sélection d'artiste depuis le composant StatsView
+	// Gestion de la sélection d'artiste
 	onMount(() => {
-		document.addEventListener('artistSelected', (event: any) => {
-			selectedArtist = event.detail.artist;
-		});
 		scrollToSection('hero-section');
 	});
 
@@ -100,9 +97,6 @@
 			<button class="side-nav-button left" onclick={() => scrollToSection('map-section')}>
 				Concerts
 			</button>
-			<button class="side-nav-button right" onclick={() => scrollToSection('stats-section')}>
-				Statistiques
-			</button>
 		</div>
 	</section>
 
@@ -112,11 +106,6 @@
 			<h1>Concerts</h1>
 		</div>
 		<Map artist={artists?.[currentIndex]} />
-	</section>
-
-	<!-- Section 4: Statistiques -->
-	<section id="stats-section" class="content-section stats-section">
-		<StatsView {artists} />
 	</section>
 
 	<Footer />
@@ -257,9 +246,5 @@
 
 	.side-nav-button.left {
 		margin-right: auto;
-	}
-
-	.side-nav-button.right {
-		margin-left: auto;
 	}
 </style>
