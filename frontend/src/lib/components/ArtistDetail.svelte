@@ -199,10 +199,10 @@
 		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 		display: flex;
 		flex-direction: column;
-		background-image: url('/line1.svg');
+		background-image: url('/lines1.svg');
 		background-repeat: no-repeat;
-		background-position: center;
-		background-size: 100%;
+		background-position: 90% 85%;
+		background-size: 180%;
 		background-blend-mode: overlay;
 	}
 
