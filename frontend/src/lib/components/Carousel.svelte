@@ -413,7 +413,7 @@
 		color: var(--dark-vibrant);
 		border: none;
 		padding: 1rem 2rem;
-		border-radius: 20px;
+		border-radius: 40px;
 		font-size: 1.1rem;
 		font-weight: bold;
 		cursor: pointer;

@@ -325,10 +325,10 @@
 	}
 
 	input {
-		border-radius: 20px;
+		border-radius: 40px;
 		border: none;
 		padding: 1rem;
-		width: 400px;
+		width: 600px;
 		font-size: 1rem;
 		font-family: 'Jost', sans-serif;
 		font-weight: 400;
@@ -361,7 +361,7 @@
 		padding: 0.5rem;
 		border-radius: 20px;
 		background: var(--light-vibrant);
-		width: 400px;
+		width: 600px;
 		z-index: 100;
 		flex-direction: column;
 		align-items: center;
@@ -433,11 +433,11 @@
 	/* Responsive */
 	@media (max-width: 768px) {
 		input {
-			width: 300px;
+			width: 400px;
 		}
 
 		.search-results {
-			width: 300px;
+			width: 400px;
 		}
 	}
 </style>
