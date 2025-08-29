@@ -10,11 +10,17 @@
 	import Footer from './lib/components/Footer.svelte';
 	import { fade } from 'svelte/transition';
 
-	// Import de la police Bungee Outline
-	const link = document.createElement('link');
-	link.rel = 'stylesheet';
-	link.href = 'https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap';
-	document.head.appendChild(link);
+	// Import des polices
+	const link1 = document.createElement('link');
+	link1.rel = 'stylesheet';
+	link1.href = 'https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap';
+	document.head.appendChild(link1);
+
+	const link2 = document.createElement('link');
+	link2.rel = 'stylesheet';
+	link2.href =
+		'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap';
+	document.head.appendChild(link2);
 
 	let artists = $state<Artist[]>([]);
 	let selectedArtist = $state<Artist | null>(null);
@@ -146,7 +152,7 @@
 		</div>
 		<div class="side-navigation">
 			<button class="side-nav-button left" onclick={() => scrollToSection('map-section')}>
-				Concerts
+				image tqt
 			</button>
 		</div>
 	</section>
@@ -154,7 +160,7 @@
 	<!-- Section 3: Map -->
 	<section id="map-section" class="content-section">
 		<div class="title">
-			<h1>Concerts</h1>
+			<h1>Concerts de {artists?.[currentIndex]?.name || '...'}</h1>
 		</div>
 		<Map artist={artists?.[currentIndex]} />
 	</section>
@@ -247,7 +253,8 @@
 	}
 
 	.title h1 {
-		font-family: 'Bungee Outline', cursive;
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 700;
 	}
 
 	.carousel-section {

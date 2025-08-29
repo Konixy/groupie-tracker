@@ -2,6 +2,18 @@
 	import type { Artist } from '@/types';
 	import { Vibrant } from 'node-vibrant/browser';
 
+	// Import des polices
+	const link1 = document.createElement('link');
+	link1.rel = 'stylesheet';
+	link1.href = 'https://fonts.googleapis.com/css2?family=Russo+One&display=swap';
+	document.head.appendChild(link1);
+
+	const link2 = document.createElement('link');
+	link2.rel = 'stylesheet';
+	link2.href =
+		'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap';
+	document.head.appendChild(link2);
+
 	let {
 		artists = [],
 		selectedArtist = $bindable(),
@@ -374,8 +386,8 @@
 
 	.clickable-card h2 {
 		margin: 0;
-		font-family: var(--font-brutalista);
-		font-weight: 900;
+		font-family: 'Russo One', sans-serif;
+		font-weight: 400;
 		color: white;
 		letter-spacing: -0.05em;
 		position: absolute;
@@ -388,7 +400,6 @@
 		max-width: 90%;
 		width: 90%;
 		transition: all 0.3s ease;
-		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 		text-align: center;
 		line-height: 1.1;
 	}
@@ -411,6 +422,7 @@
 		transition: all 0.3s ease;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		display: block;
+		font-family: 'Montserrat', sans-serif;
 	}
 
 	.view-more-button:hover {

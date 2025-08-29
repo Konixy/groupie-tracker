@@ -3,6 +3,23 @@
 	import { Map, TileLayer, Control, Marker, DivIcon } from 'leaflet';
 	import { onMount, untrack } from 'svelte';
 
+	// Import des polices
+	const link1 = document.createElement('link');
+	link1.rel = 'stylesheet';
+	link1.href = 'https://fonts.googleapis.com/css2?family=Russo+One&display=swap';
+	document.head.appendChild(link1);
+
+	const link2 = document.createElement('link');
+	link2.rel = 'stylesheet';
+	link2.href = 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap';
+	document.head.appendChild(link2);
+
+	const link3 = document.createElement('link');
+	link3.rel = 'stylesheet';
+	link3.href =
+		'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap';
+	document.head.appendChild(link3);
+
 	const addressTypes = {
 		country: 'pays',
 		state: 'état',
@@ -300,12 +317,40 @@
 	.loading h4 {
 		font-size: 1.3rem;
 		margin: 0;
+		font-family: 'Russo One', sans-serif;
 	}
 
 	.loading p {
 		margin: 0;
 		font-size: 0.9rem;
 		color: color-mix(in srgb, var(--light-vibrant), transparent 30%);
+		font-family: 'Jost', sans-serif;
+		font-weight: 400;
+	}
+
+	.concerts-list h2 {
+		font-family: 'Russo One', sans-serif;
+		font-weight: 400;
+	}
+
+	.concerts-list button {
+		font-family: 'Jost', sans-serif;
+		font-weight: 500;
+	}
+
+	.concert-item {
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 600;
+	}
+
+	.concert-item-type {
+		font-family: 'Jost', sans-serif;
+		font-weight: 400;
+	}
+
+	.concert-item-date {
+		font-family: 'Jost', sans-serif;
+		font-weight: 400;
 	}
 
 	:global(.popup-content) {

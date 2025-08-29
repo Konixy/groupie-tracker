@@ -2,6 +2,12 @@
 	import { scale } from 'svelte/transition';
 	import type { Artist } from '@/types';
 
+	// Import de la police Jost
+	const link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap';
+	document.head.appendChild(link);
+
 	let {
 		artists = [],
 		current = $bindable(),
@@ -324,7 +330,8 @@
 		padding: 1rem;
 		width: 400px;
 		font-size: 1rem;
-		font-family: inherit;
+		font-family: 'Jost', sans-serif;
+		font-weight: 400;
 		outline: none;
 		background: var(--light-vibrant);
 		color: var(--dark-vibrant);
@@ -377,7 +384,7 @@
 		border: none;
 		background: none;
 		outline: none;
-		font-family: inherit;
+		font-family: 'Jost', sans-serif;
 		font-size: 1rem;
 		color: var(--dark-vibrant);
 		display: flex;
