@@ -98,6 +98,11 @@
 </script>
 
 <main>
+	<!-- Élément décoratif SVG -->
+	<div class="decorative-svg">
+		<img src="/fondaccueil.svg" alt="Décoration" />
+	</div>
+
 	<!-- Section 1: Titre Groupie Tracker -->
 	<section id="hero-section" class="hero-section">
 		<div class="hero-content">
@@ -169,10 +174,36 @@
 </main>
 
 <style>
+	:global(body) {
+		background: linear-gradient(135deg, var(--dark-muted) 0%, var(--dark-vibrant) 100%);
+	}
+
 	main {
 		display: flex;
 		flex-direction: column;
 		scroll-snap-type: y mandatory;
+		position: relative;
+	}
+
+	.decorative-svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		z-index: -1;
+		overflow: hidden;
+	}
+
+	.decorative-svg img {
+		width: 190%;
+		height: auto;
+		position: absolute;
+		top: 40%;
+		left: 55%;
+		transform: translate(-50%, -50%);
+		opacity: 0.15;
 	}
 
 	.hero-section {
