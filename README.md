@@ -4,8 +4,6 @@ Application web moderne pour explorer et suivre des artistes de musique et leurs
 
 ## 🚧 À FAIRE - Priorités de développement
 
-### **Fonctionnalités principales à implémenter :**
-
 - [ ] **Finir la map** - Compléter l'affichage et l'interactivité de la carte des concerts
 - [ ] **Ajouter des filtres à la map** - Permettre de filtrer les concerts par date, lieu, artiste
 - [x] **Barre de recherche universelle** - ✅ Implémentée avec recherche par artiste, membre, lieu et date
@@ -14,19 +12,12 @@ Application web moderne pour explorer et suivre des artistes de musique et leurs
 
 ---
 
-## Architecture
-
-- **Frontend** : Svelte 5 avec TypeScript
-- **Backend** : Go avec API REST
-- **Données** : API publique Groupie Tracker
-
 ## Installation
 
 ### Prérequis
 
 - Node.js 18+
 - Go 1.21+
-- Python 3.8+ (pour les scripts de génération de données)
 
 ### Backend
 
@@ -47,51 +38,3 @@ npm run dev
 ```
 
 L'application démarre sur `http://localhost:3000`
-
-## Structure du projet
-
-```
-groupie-tracker/
-├── backend/           # API Go
-│   ├── api/          # Client API et cache
-│   ├── handlers/     # Gestionnaires HTTP (artists, images, locations)
-│   ├── assets/       # Images des artistes
-│   └── main.go       # Point d'entrée
-├── frontend/         # Interface Svelte
-│   ├── src/
-│   │   ├── lib/      # Composants (Carousel, ArtistDetail, Map, SearchBar)
-│   │   ├── App.svelte
-│   │   └── types.ts
-│   └── package.json
-└── scripts/          # Scripts Python
-    └── generate_real_data.py
-```
-
-## Fonctionnalités
-
-- **Carousel interactif** des artistes avec navigation 3D
-- **Recherche universelle** par artiste, membre, lieu de concert, date de création et premier album
-- **Détails des artistes** avec informations complètes
-- **Carte des concerts** avec localisation
-- **Design responsive** et animations fluides
-
-## Scripts utiles
-
-### Génération de données
-
-```bash
-# Générer les données d'artistes
-python generate_real_data.py
-```
-
-## 📚 Documentation
-
-- **`SEARCH_FEATURES.md`** - Documentation complète des fonctionnalités de recherche
-
-## Technologies utilisées
-
-- **Frontend** : Svelte 5, TypeScript, Vite
-- **Backend** : Go, HTTP/JSON
-- **Styling** : CSS moderne avec variables
-- **Images** : Extraction de couleurs avec Vibrant.js
-- **Données** : API REST avec CORS
