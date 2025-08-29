@@ -3,19 +3,7 @@
 	import type { Artist } from '@/types';
 	import { expoOut } from 'svelte/easing';
 
-	let {
-		artist = $bindable(),
-		onClose,
-		highlightedMember = null,
-		highlightedDate = null,
-		highlightedAlbum = null
-	}: {
-		artist: Artist;
-		onClose: () => void;
-		highlightedMember?: string | null;
-		highlightedDate?: string | null;
-		highlightedAlbum?: string | null;
-	} = $props();
+	let { artist = $bindable(), onClose }: { artist: Artist; onClose: () => void } = $props();
 
 	let concerts = $state<Record<string, [string, string]>>({});
 	let loadingConcerts = $state(false);
@@ -52,6 +40,17 @@
 		}
 	}
 
+	function handleViewConcerts() {
+		onClose();
+
+		setTimeout(() => {
+			window.scrollTo({
+				top: window.scrollY + 720,
+				behavior: 'smooth'
+			});
+		}, 100);
+	}
+
 	function formatDate(dateStr: string) {
 		try {
 			const d = dateStr.split('-');
@@ -64,10 +63,6 @@
 		} catch {
 			return dateStr;
 		}
-	}
-
-	function formatCountryName(country: string) {
-		return country.replaceAll('_', ' ');
 	}
 </script>
 
@@ -109,67 +104,38 @@
 			<img src={artist.image} alt="Photo de {artist.name}" class="artist-image" />
 			<div class="artist-info">
 				<h1 id="artist-name">{artist.name}</h1>
-				<p><strong>Date de création :</strong> {artist.creationDate}</p>
-				<p><strong>Premier album :</strong> {formatDate(artist.firstAlbum)}</p>
+				<div class="members-section">
+					<h2>Membres du groupe</h2>
+					<div class="members-list">
+						{#each artist.members as member}
+							<span class="member-tag">{member}</span>
+						{/each}
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="artist-content">
-			<div class="sticky-gradient"></div>
-
-			<div class="members-section">
-				<h2>Membres du groupe</h2>
-				<div class="members-list">
-					{#each artist.members as member}
-						<span class="member-tag" class:highlighted={highlightedMember === member}>
-							{member}
-						</span>
-					{/each}
+			<div class="concerts-banners-container">
+				<div class="concerts-info-banner">
+					<span>Nombre de concerts recensés par l'API : {Object.keys(concerts).length}</span>
 				</div>
+				<button class="view-concerts-btn" onclick={handleViewConcerts}>Voir les concerts</button>
 			</div>
 
 			<div class="stats-grid">
 				<div class="stat-card">
 					<h3>Date de création</h3>
-					<p class:highlighted={highlightedDate === artist.creationDate.toString()}>
-						{artist.creationDate}
-					</p>
+					<p>{artist.creationDate}</p>
 				</div>
 				<div class="stat-card">
 					<h3>Premier album</h3>
-					<p class:highlighted={highlightedAlbum === artist.firstAlbum}>
-						{formatDate(artist.firstAlbum)}
-					</p>
+					<p>{formatDate(artist.firstAlbum)}</p>
 				</div>
 				<div class="stat-card">
 					<h3>Nombre de membres</h3>
 					<p>{artist.members.length}</p>
 				</div>
-			</div>
-
-			<div class="concerts-section">
-				<h2>Concerts</h2>
-				{#if loadingConcerts}
-					<div class="loading" role="status" aria-live="polite">Chargement des concerts...</div>
-				{:else if Object.keys(concerts).length > 0}
-					<div class="concerts-list">
-						{#each Object.entries(concerts) as [date, locations]}
-							<div class="concert-item">
-								<div class="concert-date">{formatDate(date)}</div>
-								<div class="concert-locations">
-									{#each locations.slice(0, 2) as location}
-										<div class="location-item">📍 {formatCountryName(location)}</div>
-									{/each}
-									{#if locations.length > 2}
-										<div class="location-item">... et {locations.length - 2} autres lieux</div>
-									{/if}
-								</div>
-							</div>
-						{/each}
-					</div>
-				{:else}
-					<div class="no-concerts">Aucun concert trouvé</div>
-				{/if}
 			</div>
 		</div>
 	</div>
@@ -191,7 +157,7 @@
 		top: 50%;
 		transform: translateY(-50%);
 		width: 60vw;
-		height: 90vh;
+		height: 95vh;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -209,7 +175,7 @@
 		position: relative;
 		z-index: 1000;
 		background: var(--light-vibrant);
-		border-radius: 20px;
+		border-radius: 80px;
 		padding: 1rem;
 		width: 100%;
 		height: 100%;
@@ -220,19 +186,21 @@
 
 	.close-button {
 		position: absolute;
-		width: 2rem;
-		height: 2rem;
-		top: 2rem;
-		right: 2rem;
+		width: 3rem;
+		height: 3rem;
+		bottom: 0.5rem;
+		left: 50%;
+		transform: translateX(-50%);
 		background: var(--light-muted);
 		color: var(--dark-vibrant);
 		border-radius: 50%;
 		border: none;
 		outline: none;
-		padding: 0.5rem;
-		font-size: 0.8rem;
+		padding: 0.8rem;
+		font-size: 1rem;
 		cursor: pointer;
 		transition: background 0.3s ease;
+		z-index: 10;
 	}
 
 	.close-button:hover {
@@ -247,52 +215,71 @@
 	}
 
 	.artist-image {
-		width: 200px;
-		height: 200px;
+		width: 300px;
+		height: 300px;
 		object-fit: cover;
-		border-radius: 16px;
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+		border-radius: 60px;
 	}
 
 	.artist-info h1 {
 		margin: 0 0 1rem 0;
-		font-size: 2.5rem;
+		font-size: 3.5rem;
 		color: var(--dark-vibrant);
-	}
-
-	.artist-info p {
-		margin: 0.5rem 0;
-		font-size: 1.1rem;
-		color: var(--dark-muted);
+		text-align: left;
 	}
 
 	.artist-content {
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		overflow-y: auto;
 		padding: 0 2rem;
+		height: 100%;
+		justify-content: flex-start;
 	}
 
-	.sticky-gradient {
-		position: sticky;
-		top: 0;
-		background: linear-gradient(to bottom, var(--light-vibrant), transparent);
-		min-height: 4rem;
-		margin: 0 -3rem;
-		padding: 0 3rem;
-		width: calc(100% + 6rem - 20px);
+	.concerts-banners-container {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		justify-content: center;
+		margin-top: -0.8rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.concerts-info-banner {
+		background: var(--dark-vibrant);
+		color: white;
+		padding: 0.6rem 5rem;
+		border-radius: 40px;
+		font-size: 1rem;
+		font-weight: 500;
+	}
+
+	.view-concerts-btn {
+		background: var(--dark-vibrant);
+		color: white;
+		border: none;
+		padding: 0.6rem 1.5rem;
+		border-radius: 40px;
+		font-size: 1rem;
+		cursor: pointer;
+		transition: background 0.2s ease;
+	}
+
+	.view-concerts-btn:hover {
+		background: var(--dark-muted);
 	}
 
 	.members-section h2 {
-		margin-top: -1rem;
+		margin: 0 0 0.9rem 0;
 		color: var(--dark-vibrant);
+		font-size: 1.2rem;
 	}
 
 	.members-list {
 		display: flex;
 		flex-wrap: wrap;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 		gap: 0.5rem;
 	}
 
@@ -309,127 +296,43 @@
 		background: var(--muted);
 	}
 
-	.member-tag.highlighted {
-		background: var(--vibrant);
-		color: var(--dark-muted);
-		animation: blink 0.8s ease-in-out infinite;
-		box-shadow: 0 0 20px var(--vibrant);
-	}
-
-	@keyframes blink {
-		0%,
-		100% {
-			opacity: 1;
-			transform: scale(1);
-		}
-		50% {
-			opacity: 0.7;
-			transform: scale(1.05);
-		}
-	}
-
-	.stat-card p.highlighted {
-		background: var(--vibrant);
-		color: var(--light-vibrant);
-		animation: blink 0.8s ease-in-out infinite;
-		box-shadow: 0 0 20px var(--vibrant);
-		border-radius: 8px;
-		padding: 0.5rem;
-		margin: 0.5rem 0;
-	}
-
 	.stats-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 		gap: 1.5rem;
-		margin-bottom: 2rem;
+		margin-top: -0.8rem;
+		margin-bottom: 1rem;
+		justify-items: center;
 	}
 
 	.stat-card {
 		background: var(--light-muted);
-		padding: 1.5rem;
-		border-radius: 12px;
+		padding: 2.5rem 1.5rem;
+		border-radius: 50%;
 		text-align: center;
-		transition: transform 0.2s ease;
-	}
-
-	.stat-card:hover {
-		transform: translateY(-2px);
+		transition: all 0.3s ease;
+		width: 160px;
+		height: 160px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.stat-card h3 {
 		margin: 0 0 0.5rem 0;
 		color: var(--dark-vibrant);
-		font-size: 1.1rem;
+		font-size: 0.9rem;
+		font-weight: 600;
+		line-height: 1.2;
 	}
 
 	.stat-card p {
 		margin: 0;
 		color: var(--dark-muted);
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		font-weight: bold;
-	}
-
-	.concerts-section {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 2rem;
-	}
-
-	.concerts-section h2 {
-		color: var(--dark-vibrant);
-		margin-bottom: 1rem;
-	}
-
-	.concerts-list {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.concert-item {
-		background: #fff3e0;
-		border-radius: 12px;
-		padding: 1rem;
-		border-left: 4px solid #ff9800;
-		opacity: 0.9;
-		transition: transform 0.2s ease;
-	}
-
-	.concert-item:hover {
-		transform: translateY(-2px);
-	}
-
-	.concert-date {
-		font-weight: bold;
-		color: var(--dark-vibrant);
-		font-size: 1rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.concert-locations {
-		color: var(--dark-muted);
-	}
-
-	.location-item {
-		margin: 0.2rem 0;
-		padding-left: 0.5rem;
-		border-left: 2px solid var(--light-muted);
-		font-size: 0.9rem;
-		text-transform: capitalize;
-	}
-
-	.loading {
-		text-align: center;
-		color: var(--dark-muted);
-		font-style: italic;
-		margin: 1rem 0;
-	}
-
-	.no-concerts {
-		text-align: center;
-		color: var(--dark-muted);
-		font-style: italic;
-		margin: 1rem 0;
+		line-height: 1.2;
 	}
 
 	@media (max-width: 768px) {
@@ -449,7 +352,36 @@
 		}
 
 		.stats-grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+		}
+
+		.stat-card {
+			width: 130px;
+			height: 130px;
+			padding: 2rem 1rem;
+		}
+
+		.stat-card h3 {
+			font-size: 0.8rem;
+		}
+
+		.stat-card p {
+			font-size: 1rem;
+		}
+
+		.close-button {
+			width: 2.5rem;
+			height: 2.5rem;
+			bottom: 1.5rem;
+			padding: 0.6rem;
+		}
+
+		.concerts-banner {
+			flex-direction: column;
+			gap: 1rem;
+			text-align: center;
+			padding: 1rem;
 		}
 	}
 </style>
