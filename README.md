@@ -4,10 +4,12 @@ Application web moderne pour explorer et suivre des artistes de musique et leurs
 
 ## 🚧 À FAIRE - Priorités de développement
 
-- [ ] **Finir la map** - Compléter l'affichage et l'interactivité de la carte des concerts
-- [ ] **Ajouter des filtres à la map** - Permettre de filtrer les concerts par date, lieu, artiste
-- [x] **Barre de recherche universelle** - ✅ Implémentée avec recherche par artiste, membre, lieu et date
+- [x] **Barre de recherche universelle** - Implémentée avec recherche par artiste, membre, lieu et date
+- [x] **Finir la map** - Compléter l'affichage et l'interactivité de la carte des concerts
 - [ ] **Finir le fond du site** - Ajouter des détails graphiques et améliorer l'esthétique générale
+- [ ] **Redesign des détails sur les artistes : card** - Améliorer l'esthétique générale
+- [ ] **Redesign des détails de la map** - Améliorer l'esthétique générale de la liste des concerts
+- [ ] **Changer la police des cards du carousel** - Améliorer l'esthétique générale de la liste des concerts
 - [ ] **Responsive** - Adapter le site pour mobile (toutes taille d'écran au finale)
 
 ---
