@@ -241,6 +241,8 @@
 		height: 300px;
 		object-fit: cover;
 		border-radius: 60px;
+		border: 7px solid var(--dark-vibrant);
+		filter: brightness(1.1) contrast(0.8);
 	}
 
 	.artist-info h1 {
