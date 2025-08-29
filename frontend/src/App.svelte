@@ -10,6 +10,12 @@
 	import Footer from './lib/components/Footer.svelte';
 	import { fade } from 'svelte/transition';
 
+	// Import de la police Bungee Outline
+	const link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = 'https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap';
+	document.head.appendChild(link);
+
 	let artists = $state<Artist[]>([]);
 	let selectedArtist = $state<Artist | null>(null);
 	let loading = $state(true);
@@ -135,13 +141,7 @@
 				{highlightedAlbum}
 			/>
 			{#if selectedArtist}
-				<ArtistDetail
-					bind:artist={selectedArtist}
-					onClose={closeArtistDetail}
-					{highlightedMember}
-					{highlightedDate}
-					{highlightedAlbum}
-				/>
+				<ArtistDetail bind:artist={selectedArtist} onClose={closeArtistDetail} />
 			{/if}
 		</div>
 		<div class="side-navigation">
@@ -244,6 +244,10 @@
 		margin-bottom: 1rem;
 		border-radius: 1rem;
 		font-size: 1.5rem;
+	}
+
+	.title h1 {
+		font-family: 'Bungee Outline', cursive;
 	}
 
 	.carousel-section {

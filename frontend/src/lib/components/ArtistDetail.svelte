@@ -3,6 +3,23 @@
 	import type { Artist } from '@/types';
 	import { expoOut } from 'svelte/easing';
 
+	// Import des polices
+	const link1 = document.createElement('link');
+	link1.rel = 'stylesheet';
+	link1.href = 'https://fonts.googleapis.com/css2?family=Russo+One&display=swap';
+	document.head.appendChild(link1);
+
+	const link2 = document.createElement('link');
+	link2.rel = 'stylesheet';
+	link2.href =
+		'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap';
+	document.head.appendChild(link2);
+
+	const link3 = document.createElement('link');
+	link3.rel = 'stylesheet';
+	link3.href = 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap';
+	document.head.appendChild(link3);
+
 	let { artist = $bindable(), onClose }: { artist: Artist; onClose: () => void } = $props();
 
 	let concerts = $state<Record<string, [string, string]>>({});
@@ -182,6 +199,11 @@
 		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 		display: flex;
 		flex-direction: column;
+		background-image: url('/line1.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+		background-blend-mode: overlay;
 	}
 
 	.close-button {
@@ -223,9 +245,11 @@
 
 	.artist-info h1 {
 		margin: 0 0 1rem 0;
-		font-size: 3.5rem;
+		font-size: 3rem;
 		color: var(--dark-vibrant);
 		text-align: left;
+		font-family: 'Russo One', sans-serif;
+		line-height: 1;
 	}
 
 	.artist-content {
@@ -249,19 +273,26 @@
 	.concerts-info-banner {
 		background: var(--dark-vibrant);
 		color: white;
-		padding: 0.6rem 5rem;
+		padding: 0.65rem 5rem;
 		border-radius: 40px;
-		font-size: 1rem;
+		font-size: 0.9rem;
 		font-weight: 500;
+	}
+
+	.concerts-info-banner span {
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 700;
 	}
 
 	.view-concerts-btn {
 		background: var(--dark-vibrant);
 		color: white;
 		border: none;
-		padding: 0.6rem 1.5rem;
+		padding: 0.5rem 1.5rem;
 		border-radius: 40px;
 		font-size: 1rem;
+		font-family: 'Jost', sans-serif;
+		font-weight: 500;
 		cursor: pointer;
 		transition: background 0.2s ease;
 	}
@@ -274,6 +305,8 @@
 		margin: 0 0 0.9rem 0;
 		color: var(--dark-vibrant);
 		font-size: 1.2rem;
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 700;
 	}
 
 	.members-list {
@@ -288,7 +321,7 @@
 		padding: 0.5rem 1rem;
 		border-radius: 20px;
 		font-size: 0.9rem;
-		color: var(--dark-vibrant);
+		color: white;
 		transition: background 0.2s ease;
 	}
 
@@ -323,16 +356,18 @@
 		margin: 0 0 0.5rem 0;
 		color: var(--dark-vibrant);
 		font-size: 0.9rem;
+		font-family: 'Jost', sans-serif;
 		font-weight: 600;
 		line-height: 1.2;
 	}
 
 	.stat-card p {
 		margin: 0;
-		color: var(--dark-muted);
+		color: white;
 		font-size: 1.1rem;
 		font-weight: bold;
 		line-height: 1.2;
+		font-family: 'Montserrat', sans-serif;
 	}
 
 	@media (max-width: 768px) {
@@ -374,7 +409,7 @@
 			width: 2.5rem;
 			height: 2.5rem;
 			bottom: 1.5rem;
-			padding: 0.6rem;
+			padding: 0.5rem;
 		}
 
 		.concerts-banner {

@@ -40,3 +40,9 @@ npm run dev
 ```
 
 L'application démarre sur `http://localhost:3000`
+
+## les typos
+
+- Titres : Russo One
+- Sous titres : Montserrat
+- textes : Jost
