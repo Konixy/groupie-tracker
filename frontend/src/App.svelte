@@ -155,9 +155,24 @@
 				<ArtistDetail bind:artist={selectedArtist} onClose={closeArtistDetail} />
 			{/if}
 		</div>
-		<div class="side-navigation">
-			<button class="side-nav-button left" onclick={() => scrollToSection('map-section')}>
-				image tqt
+		<div class="center-navigation">
+			<button class="center-nav-button" onclick={() => scrollToSection('map-section')}>
+				Concerts
+				<!-- INSERT_YOUR_CODE -->
+				<!-- Flèche vers le bas pour indiquer la navigation vers la section suivante -->
+				<svg
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					style="display: block; margin: 0 auto;"
+				>
+					<path d="M6 9l6 6 6-6" />
+				</svg>
 			</button>
 		</div>
 	</section>
@@ -174,9 +189,9 @@
 </main>
 
 <style>
-	:global(body) {
+	/* :global(body) {
 		background: linear-gradient(135deg, var(--dark-muted) 0%, var(--dark-vibrant) 100%);
-	}
+	} */
 
 	main {
 		display: flex;
@@ -307,37 +322,35 @@
 		margin-top: -1rem;
 	}
 
-	.side-navigation {
+	.center-navigation {
 		position: absolute;
-		bottom: 3rem;
-		left: 0;
-		right: 0;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
 		display: flex;
 		justify-content: space-between;
 		padding: 0 3rem;
 		pointer-events: none;
 	}
 
-	.side-nav-button {
-		background: var(--dark-muted);
+	.center-nav-button {
+		background: none;
 		color: var(--light-vibrant);
 		border: none;
-		padding: 0.8rem 1.5rem;
-		border-radius: 8px;
 		cursor: pointer;
 		font-size: 1rem;
 		transition: all 0.3s ease;
 		pointer-events: auto;
 		opacity: 0.8;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.2rem;
 	}
 
-	.side-nav-button:hover {
-		background: var(--muted);
+	.center-nav-button:hover {
 		opacity: 1;
 		transform: translateY(-2px);
-	}
-
-	.side-nav-button.left {
-		margin-right: auto;
 	}
 </style>
