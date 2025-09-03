@@ -202,31 +202,47 @@
 
 <style>
 	.map-container {
-		display: flex;
+		position: relative;
 		width: 100%;
-		gap: 2rem;
-		padding: 0 2rem;
 		height: calc(100vh - 4rem);
 	}
 
 	.side-panel {
-		flex: 2;
+		position: absolute;
+		top: 2rem;
+		left: 2rem;
+		width: 350px;
+		max-height: calc(100% - 4rem);
+		z-index: 1000;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		padding: 2rem;
-		background-color: var(--dark-muted);
+		padding: 1.5rem;
+		background-color: rgba(102, 102, 102, 0.95);
+		backdrop-filter: blur(10px);
 		border-radius: 1.5rem;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+	}
+
+	.map {
+		width: 100%;
+		height: 100%;
+		border-radius: 1.5rem;
+		overflow: hidden;
+		background-color: var(--dark-muted);
 	}
 
 	@media (max-width: 1000px) {
-		.map-container {
-			flex-direction: column;
+		.side-panel {
+			position: relative;
+			top: 0;
+			left: 0;
+			width: 100%;
+			max-height: 40vh;
+			margin-bottom: 1rem;
 		}
 
-		.side-panel,
 		.map {
-			flex: 1;
+			height: calc(60vh - 2rem);
 		}
 	}
 
@@ -293,15 +309,6 @@
 	.concert-item-date {
 		font-size: 0.8rem;
 		color: color-mix(in srgb, var(--light-vibrant), transparent 70%);
-	}
-
-	.map {
-		flex: 4;
-		height: calc(100vh - 4rem);
-		width: 100%;
-		border-radius: 1.5rem;
-		overflow: hidden;
-		background-color: var(--dark-muted);
 	}
 
 	.loading {

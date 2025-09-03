@@ -178,9 +178,10 @@
 	</section>
 
 	<!-- Section 3: Map -->
-	<section id="map-section" class="content-section">
+	<section id="map-section" class="map-section">
 		<div class="title">
-			<h1>Concerts de {artists?.[currentIndex]?.name || '...'}</h1>
+			<h1 class="concerts-title">Concerts</h1>
+			<h2 class="artist-subtitle">de {artists?.[currentIndex]?.name || '...'}</h2>
 		</div>
 		<Map artist={artists?.[currentIndex]} />
 	</section>
@@ -290,6 +291,16 @@
 		align-items: center;
 	}
 
+	.map-section {
+		scroll-snap-align: start;
+		height: 100vh;
+		box-sizing: border-box;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.title {
 		width: 100%;
 		text-align: center;
@@ -298,9 +309,19 @@
 		font-size: 1.5rem;
 	}
 
-	.title h1 {
+	.concerts-title {
+		font-family: 'Bukhari Script', cursive;
+		font-weight: normal;
+		margin: 0;
+		font-size: 2.5rem;
+	}
+
+	.artist-subtitle {
 		font-family: 'Montserrat', sans-serif;
-		font-weight: 700;
+		font-weight: 600;
+		margin: 0;
+		font-size: 1.2rem;
+		color: color-mix(in srgb, var(--light-vibrant), transparent 20%);
 	}
 
 	.carousel-section {
