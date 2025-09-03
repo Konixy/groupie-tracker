@@ -213,6 +213,37 @@ func FetchLocations(artistID int) (Relation, error) {
 	return relation, nil
 }
 
+type Location struct {
+	ID        int      `json:"id"`
+	Locations []string `json:"locations"`
+}
+
+func FetchAllLocations() ([]Location, error) {
+	response, err := http.Get(BaseURL + "/locations")
+	if err != nil {
+		log.Printf("Error fetching all locations: %v", err)
+		return []Location{}, err
+	}
+	defer response.Body.Close()
+
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Printf("Error reading response body: %v", err)
+		return []Location{}, err
+	}
+
+	var locations struct {
+		Index []Location `json:"index"`
+	}
+	err = json.Unmarshal(body, &locations)
+	if err != nil {
+		log.Printf("Error unmarshaling all locations JSON: %v", err)
+		return []Location{}, err
+	}
+
+	return locations.Index, nil
+}
+
 func formatLocation(location string) string {
 	parts := strings.Split(location, "-")
 	if len(parts) >= 2 {

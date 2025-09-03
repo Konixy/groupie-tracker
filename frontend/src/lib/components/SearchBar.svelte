@@ -125,8 +125,8 @@
 		Object.entries(allLocations).forEach(([location, artistNames]) => {
 			const locationName = location.toLowerCase();
 			if (locationName.includes(searchTerm)) {
-				const artist = artists.find((a) => artistNames.includes(a.name));
-				if (artist) {
+				const foundArtists = artists.filter((a) => artistNames.includes(a.name));
+				foundArtists.forEach((artist) => {
 					allResults.push({
 						type: 'location',
 						artist,
@@ -134,7 +134,7 @@
 						subText: `Lieu: ${location}`,
 						score: 800
 					});
-				}
+				});
 			}
 		});
 
@@ -185,11 +185,11 @@
 				};
 				return typePriority[a.type] - typePriority[b.type];
 			})
-			.filter(
-				(result, index, self) =>
-					index ===
-					self.findIndex((r) => r.artist.id === result.artist.id && r.type === result.type)
-			)
+			// .filter(
+			// 	(result, index, self) =>
+			// 		index ===
+			// 		self.findIndex((r) => r.artist.id === result.artist.id && r.type === result.type)
+			// )
 			.slice(0, 10);
 
 		results = finalResults;

@@ -77,37 +77,41 @@ func AllLocationsHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Collecter tous les lieux uniques
 	allLocations := make(map[string][]string) // lieu -> [artistes]
+	locations, err := api.FetchAllLocations()
+	if err != nil {
+		http.Error(w, "Erreur lors de la récupération des lieux", http.StatusInternalServerError)
+		return
+	}
 
-	for _, artist := range artists {
-		// Récupérer les concerts de cet artiste
-		concerts, err := api.FetchArtistConcerts(artist.ID)
-		if err != nil {
-			continue // Ignorer les erreurs pour cet artiste
+	for _, locationObject := range locations {
+		var artist api.ArtistWithCustomImage
+
+		for _, a := range artists {
+			if a.ID == locationObject.ID {
+				artist = a
+			}
 		}
 
-		// Parcourir tous les concerts
-		for _, locations := range concerts.Concerts {
-			for _, location := range locations {
-				// Nettoyer le nom du lieu
-				cleanLocation := strings.TrimSpace(location)
-				if cleanLocation != "" {
-					// Ajouter l'artiste à ce lieu
-					if _, exists := allLocations[cleanLocation]; !exists {
-						allLocations[cleanLocation] = []string{}
-					}
+		for _, location := range locationObject.Locations {
+			// Nettoyer le nom du lieu
+			cleanLocation := strings.TrimSpace(location)
+			if cleanLocation != "" {
+				// Ajouter l'artiste à ce lieu
+				if _, exists := allLocations[cleanLocation]; !exists {
+					allLocations[cleanLocation] = []string{}
+				}
 
-					// Éviter les doublons d'artistes pour le même lieu
-					artistExists := false
-					for _, existingArtist := range allLocations[cleanLocation] {
-						if existingArtist == artist.Name {
-							artistExists = true
-							break
-						}
+				// Éviter les doublons d'artistes pour le même lieu
+				artistExists := false
+				for _, existingArtist := range allLocations[cleanLocation] {
+					if existingArtist == artist.Name {
+						artistExists = true
+						break
 					}
+				}
 
-					if !artistExists {
-						allLocations[cleanLocation] = append(allLocations[cleanLocation], artist.Name)
-					}
+				if !artistExists {
+					allLocations[cleanLocation] = append(allLocations[cleanLocation], artist.Name)
 				}
 			}
 		}

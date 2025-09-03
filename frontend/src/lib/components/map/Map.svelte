@@ -95,7 +95,6 @@
 
 		for (const location of currentArtistLocations) {
 			new Marker([Number(location.lat), Number(location.lon)], {
-				title: `(${location.dates.length} concerts)`,
 				icon: new DivIcon({
 					className: '',
 					iconSize: [32, 32],
@@ -211,7 +210,7 @@
 				[maxLat + latMargin, maxLon + lonMargin]
 			],
 			{
-				paddingTopLeft: [414, 0] // 350px (sidebar) + 64px (4rem de marge)
+				paddingTopLeft: [300, 0]
 			}
 		);
 	}
@@ -224,7 +223,7 @@
 				[Number(location.boundingbox[1]), Number(location.boundingbox[3])]
 			],
 			{
-				paddingTopLeft: [414, 0] // 350px (sidebar) + 64px (4rem de marge)
+				paddingTopLeft: [300, 0]
 			}
 		);
 	}
