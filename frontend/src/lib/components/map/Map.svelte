@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Artist, Location } from '@/types';
-	import { Map, TileLayer, Control, Marker, DivIcon } from 'leaflet';
+	import { Map, TileLayer, Marker, DivIcon } from 'leaflet';
 	import { onMount, untrack } from 'svelte';
 
 	// Import des polices
@@ -149,6 +149,13 @@
 
 			marker.addEventListener('mouseleave', () => {
 				hoverCard.classList.remove('active');
+			});
+
+			marker.addEventListener('click', () => {
+				const location = currentArtistLocations.find((location) => location.slug === marker.id);
+				if (location) {
+					handleSelectLocation(location);
+				}
 			});
 		}
 	}
