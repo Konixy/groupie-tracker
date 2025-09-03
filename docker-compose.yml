@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  # Service Backend Go
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: groupie-tracker-backend
+    ports:
+      - "89:8080"
+    environment:
+      - GO_ENV=production
+    networks:
+      - groupie-tracker-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Service Frontend Svelte
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: groupie-tracker-frontend
+    ports:
+      - "88:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - groupie-tracker-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+# Réseau personnalisé pour la communication entre services
+networks:
+  groupie-tracker-network:
+    driver: bridge
+    name: groupie-tracker-net
+
+# Volumes pour la persistance des données (optionnel pour cette application)
+volumes:
+  backend_data:
+    driver: local
