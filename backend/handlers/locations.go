@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"groupie-tracker/api"
+	"groupie-tracker/config"
 )
 
 type Location struct {
@@ -20,7 +21,7 @@ type Location struct {
 
 // Handler for the /locations/ route
 func LocationsHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Origin", config.GetFrontendURL())
 
 	pathParts := strings.Split(r.URL.Path, "/")
 	if len(pathParts) < 3 {
@@ -60,7 +61,7 @@ func LocationsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Origin", config.GetFrontendURL())
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
 }
@@ -113,7 +114,7 @@ func AllLocationsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Origin", config.GetFrontendURL())
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(allLocations)
 }

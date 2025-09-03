@@ -7,10 +7,12 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"groupie-tracker/config"
 )
 
 func ImagesHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Origin", config.GetFrontendURL())
 
 	// Extraire le nom du fichier de l'URL
 	path := r.URL.Path

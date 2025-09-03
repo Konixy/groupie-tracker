@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { scale } from 'svelte/transition';
 	import type { Artist } from '@/types';
+	import { config } from '@/config/config';
 
 	// Import de la police Jost
 	const link = document.createElement('link');
@@ -47,7 +48,7 @@
 
 	async function loadAllLocations() {
 		try {
-			const response = await fetch('http://localhost:8080/all-locations');
+			const response = await fetch(`${config.apiBaseUrl}/all-locations`);
 			if (response.ok) {
 				allLocations = await response.json();
 			}

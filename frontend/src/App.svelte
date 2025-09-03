@@ -9,6 +9,7 @@
 	import type { Artist } from './types';
 	import Footer from './lib/components/Footer.svelte';
 	import { fade } from 'svelte/transition';
+	import { config } from './config/config';
 
 	// Import des polices
 	const link1 = document.createElement('link');
@@ -47,7 +48,7 @@
 	});
 
 	async function loadArtists() {
-		const res = await fetch('http://localhost:8080/artists');
+		const res = await fetch(`${config.apiBaseUrl}/artists`);
 		const data = await res.json();
 		artists = Array.isArray(data) ? data : data.artists;
 	}

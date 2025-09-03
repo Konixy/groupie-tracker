@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"groupie-tracker/api"
+	"groupie-tracker/config"
 )
 
 // Handler for the /artists route
@@ -17,7 +18,7 @@ func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Origin", config.GetFrontendURL())
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(artists)
 }
@@ -45,7 +46,7 @@ func ArtistConcertsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	w.Header().Set("Access-Control-Allow-Origin", config.GetFrontendURL())
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(concerts)
 }

@@ -2,6 +2,7 @@
 	import type { Artist, Location } from '@/types';
 	import { Map, TileLayer, Marker, DivIcon } from 'leaflet';
 	import { onMount, untrack } from 'svelte';
+	import { config } from '@/config/config';
 
 	// Import des polices
 	const link1 = document.createElement('link');
@@ -82,7 +83,7 @@
 		clearAllMarkers();
 
 		loading = true;
-		const response = await fetch(`http://localhost:8080/locations/${artist.id}`, {
+		const response = await fetch(`${config.apiBaseUrl}/locations/${artist.id}`, {
 			signal: abortController?.signal
 		});
 		const data: Record<string, Location> = await response.json();

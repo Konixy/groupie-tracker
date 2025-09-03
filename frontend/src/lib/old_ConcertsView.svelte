@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Artist } from '../types';
+	import { config } from '../config/config';
 
 	let { artist, onBack } = $props();
 	let concerts = $state<Record<string, string[]>>({});
@@ -17,7 +18,7 @@
 			loading = true;
 			error = null;
 
-			const response = await fetch(`http://localhost:8080/artists/${artist.id}`);
+			const response = await fetch(`${config.apiBaseUrl}/artists/${artist.id}`);
 			if (!response.ok) {
 				throw new Error('Erreur lors de la récupération des concerts');
 			}

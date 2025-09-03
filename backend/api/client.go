@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	"groupie-tracker/config"
 )
 
 // BaseURL est l'adresse racine de l'API groupie tracker
@@ -81,7 +83,7 @@ func FetchArtists() ([]ArtistWithCustomImage, error) {
 	for _, artist := range parsed {
 		newArtist := ArtistWithCustomImage{
 			Artist:      artist,
-			CustomImage: fmt.Sprintf("http://localhost:8080/images/id%d.jpg", artist.ID),
+			CustomImage: fmt.Sprintf("%s/images/id%d.jpg", config.GetAPIBaseURL(), artist.ID),
 		}
 		artists = append(artists, newArtist)
 	}
