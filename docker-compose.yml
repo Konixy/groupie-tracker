@@ -17,12 +17,6 @@ services:
     networks:
       - groupie-tracker-network
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "https://groupie-api.konixy.fr/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
 
   # Service Frontend Svelte
   frontend:
@@ -42,12 +36,6 @@ services:
     networks:
       - groupie-tracker-network
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "https://groupie-tracker.konixy.fr/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
 
 # Réseau personnalisé pour la communication entre services
 networks:
