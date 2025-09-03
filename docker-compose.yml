@@ -30,9 +30,6 @@ services:
       - "88:80"
     environment:
       - NODE_ENV=production
-    depends_on:
-      backend:
-        condition: service_healthy
     networks:
       - groupie-tracker-network
     restart: unless-stopped
