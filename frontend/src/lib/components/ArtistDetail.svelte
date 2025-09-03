@@ -413,12 +413,5 @@
 			bottom: 1.5rem;
 			padding: 0.5rem;
 		}
-
-		.concerts-banner {
-			flex-direction: column;
-			gap: 1rem;
-			text-align: center;
-			padding: 1rem;
-		}
 	}
 </style>

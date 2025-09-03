@@ -11,6 +11,7 @@ Application web moderne pour explorer et suivre des artistes de musique et leurs
 - [ ] **Redesign des détails de la map** - Améliorer l'esthétique générale de la liste des concerts
 - [ ] **Changer la police des cards du carousel** - Améliorer l'esthétique générale de la liste des concerts
 - [ ] **Responsive** - Adapter le site pour mobile (toutes taille d'écran au finale)
+- [ ] 
 
 ---
 

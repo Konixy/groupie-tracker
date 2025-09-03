@@ -99,7 +99,7 @@
 					className: '',
 					iconSize: [32, 32],
 					iconAnchor: [16, 32],
-					html: `<svg class="map-marker" width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+					html: `<svg id="${location.slug}" class="map-marker" width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
 										fill="var(--dark-vibrant)">
 										<path fill="inherit"
 											d="M11.291 21.706 12 21l-.709.706zM12 21l.708.706a1 1 0 0 1-1.417 0l-.006-.007-.017-.017-.062-.063a47.708 47.708 0 0 1-1.04-1.106 49.562 49.562 0 0 1-2.456-2.908c-.892-1.15-1.804-2.45-2.497-3.734C4.535 12.612 4 11.248 4 10c0-4.539 3.592-8 8-8 4.408 0 8 3.461 8 8 0 1.248-.535 2.612-1.213 3.87-.693 1.286-1.604 2.585-2.497 3.735a49.583 49.583 0 0 1-3.496 4.014l-.062.063-.017.017-.006.006L12 21z" />
@@ -109,9 +109,48 @@
 			}).addTo(map);
 		}
 
+		setUpHoverCards();
 		handleMoveToGeneralView();
 
 		loading = false;
+	}
+
+	function setUpHoverCards() {
+		const markers = document.querySelectorAll('.map-marker');
+		const hoverCard = document.querySelector('.hover-card') as HTMLElement;
+		if (!hoverCard) return;
+		for (const marker of markers) {
+			marker.addEventListener('mouseenter', () => {
+				hoverCard.classList.add('active');
+				// On récupère la position du marqueur par rapport à la page
+				const markerRect = marker.getBoundingClientRect();
+				// On récupère la position du conteneur de la carte par rapport à la page
+				const mapContainer = document.querySelector('.map-container');
+				if (mapContainer) {
+					const containerRect = mapContainer.getBoundingClientRect();
+					// On calcule la position du marqueur par rapport au conteneur
+					const relativeLeft = markerRect.left - containerRect.left;
+					const relativeTop = markerRect.top - containerRect.top + 32;
+					hoverCard.style.left = `${relativeLeft}px`;
+					hoverCard.style.top = `${relativeTop}px`;
+				}
+				const title = document.querySelector('.hover-card-title');
+				if (title) {
+					title.innerHTML =
+						currentArtistLocations.find((location) => location.slug === marker.id)?.name || '';
+				}
+				const content = document.querySelector('.hover-card-content') as HTMLElement;
+				if (content) {
+					const dates =
+						currentArtistLocations.find((location) => location.slug === marker.id)?.dates || [];
+					content.innerText = `${dates.length} concert${dates.length > 1 ? 's' : ''}`;
+				}
+			});
+
+			marker.addEventListener('mouseleave', () => {
+				hoverCard.classList.remove('active');
+			});
+		}
 	}
 
 	function handleMoveToGeneralView() {
@@ -157,24 +196,39 @@
 		const lonMargin = (maxLon - minLon) * 0.1;
 
 		// Application de la vue globale avec les limites calculées
-		map.fitBounds([
-			[minLat - latMargin, minLon - lonMargin],
-			[maxLat + latMargin, maxLon + lonMargin]
-		]);
+		// Ajout d'un padding à gauche pour compenser la sidebar (350px + 4rem)
+		map.fitBounds(
+			[
+				[minLat - latMargin, minLon - lonMargin],
+				[maxLat + latMargin, maxLon + lonMargin]
+			],
+			{
+				paddingTopLeft: [414, 0] // 350px (sidebar) + 64px (4rem de marge)
+			}
+		);
 	}
 
 	function handleSelectLocation(location: Location) {
 		map.setView([Number(location.lat), Number(location.lon)]);
-		map.fitBounds([
-			[Number(location.boundingbox[0]), Number(location.boundingbox[2])],
-			[Number(location.boundingbox[1]), Number(location.boundingbox[3])]
-		]);
+		map.fitBounds(
+			[
+				[Number(location.boundingbox[0]), Number(location.boundingbox[2])],
+				[Number(location.boundingbox[1]), Number(location.boundingbox[3])]
+			],
+			{
+				paddingTopLeft: [414, 0] // 350px (sidebar) + 64px (4rem de marge)
+			}
+		);
 	}
 </script>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@2.0.0-alpha/dist/leaflet.css" />
 
 <div class="map-container">
+	<div class="hover-card">
+		<div class="hover-card-title"></div>
+		<div class="hover-card-content"></div>
+	</div>
 	<div bind:this={mapRef} class="map" aria-label="Carte des concerts"></div>
 	<button class="general-view-button" onclick={() => handleMoveToGeneralView()}>
 		Vue générale
@@ -236,6 +290,7 @@
 		flex-direction: column;
 		padding: 1.5rem;
 		background-color: var(--dark-vibrant);
+		transition: background-color 1s ease;
 		backdrop-filter: blur(10px);
 		border-radius: 1.5rem;
 		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -463,5 +518,34 @@
 
 	:global(.map-marker-circle) {
 		fill: color-mix(in srgb, var(--dark-vibrant), white 90%);
+	}
+
+	.hover-card {
+		position: absolute;
+		display: none;
+		padding: 1rem;
+		background-color: var(--dark-vibrant);
+		border-radius: 0.5rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		z-index: 1000;
+		transform: translateY(-100%) scale(0.8);
+		transition: transform 0.3s ease;
+	}
+
+	:global(.hover-card.active) {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		transform: translateY(0) scale(1);
+	}
+
+	.hover-card-title {
+		font-size: 1.2rem;
+		font-family: 'Russo One', sans-serif;
+		font-weight: 400;
+	}
+
+	.hover-card-content {
+		font-size: 0.8rem;
 	}
 </style>

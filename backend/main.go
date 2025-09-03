@@ -16,7 +16,6 @@ func main() {
 	http.HandleFunc("/locations/", handlers.LocationsHandler)
 	http.HandleFunc("/all-locations", handlers.AllLocationsHandler)
 
-
 	// Message d'accueil sur /
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
