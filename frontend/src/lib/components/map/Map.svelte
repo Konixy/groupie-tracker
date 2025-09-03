@@ -423,12 +423,14 @@
 		font-weight: bold;
 		font-size: 0.9rem;
 		color: var(--light-vibrant);
+		transition: color 1s ease;
 	}
 
 	.concert-type {
 		font-size: 0.75rem;
 		color: color-mix(in srgb, var(--light-vibrant), transparent 30%);
 		font-style: italic;
+		transition: color 1s ease;
 	}
 
 	.concert-dates {
@@ -437,12 +439,14 @@
 		font-size: 0.7rem;
 		color: color-mix(in srgb, var(--light-vibrant), transparent 20%);
 		margin-left: auto;
+		transition: color 1s ease;
 	}
 
 	.concert-separator {
 		height: 1px;
 		background: color-mix(in srgb, var(--light-vibrant), transparent 80%);
 		margin: 0.5rem 0;
+		transition: background 1s ease;
 	}
 
 	.loading {
@@ -472,6 +476,8 @@
 	.concerts-list h2 {
 		font-family: 'Bukhari Script', cursive;
 		font-weight: 400;
+		color: var(--light-vibrant);
+		transition: color 1s ease;
 	}
 
 	.concerts-list button {

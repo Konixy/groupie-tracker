@@ -2,6 +2,18 @@
 	import type { Artist } from '@/types';
 	import { Vibrant } from 'node-vibrant/browser';
 
+	// Import local de la police Hanson
+	const hansonStyle = document.createElement('style');
+	hansonStyle.textContent = `
+		@font-face {
+			font-family: 'Hanson';
+			src: url('/font/Hanson-Bold.ttf') format('truetype');
+			font-weight: bold;
+			font-style: normal;
+		}
+	`;
+	document.head.appendChild(hansonStyle);
+
 	let {
 		artists = [],
 		selectedArtist = $bindable(),
@@ -19,8 +31,6 @@
 		highlightedDate?: string | null;
 		highlightedAlbum?: string | null;
 	} = $props();
-	// let current = $state(Math.floor(Math.random() * 52));
-	// let current = $state(0);
 	let isAnimating = $state(false);
 
 	$effect(() => {
@@ -250,7 +260,24 @@
 
 {#if artists.length}
 	<div class="carousel-container">
-		<button class="arrow" onclick={prev} disabled={isAnimating}>&larr;</button>
+		<button class="arrow" onclick={prev} disabled={isAnimating} aria-label="Artiste précédent">
+			<svg
+				class="arrow-icon"
+				width="80"
+				height="80"
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M17 12H7M7 12L11 16M7 12L11 8"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		</button>
 		<div class="cards">
 			{#each artists as artist, index}
 				{@const position = getCardPosition(index)}
@@ -284,7 +311,24 @@
 				</button>
 			{/each}
 		</div>
-		<button class="arrow" onclick={next} disabled={isAnimating}>&rarr;</button>
+		<button class="arrow" onclick={next} disabled={isAnimating} aria-label="Artiste suivant">
+			<svg
+				class="arrow-icon"
+				width="80"
+				height="80"
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M7 12H17M17 12L13 8M17 12L13 16"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		</button>
 	</div>
 
 	<button class="view-more-button" onclick={() => (selectedArtist = artists[current])}>
@@ -307,26 +351,84 @@
 	}
 
 	.arrow {
-		background: #fff3;
+		background: none;
 		border: none;
-		border-radius: 50%;
-		color: #fff;
-		font-size: 2rem;
-		width: 50px;
-		height: 50px;
+		color: var(--light-vibrant);
+		width: 120px;
+		height: 120px;
 		cursor: pointer;
 		margin: 0 2rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		opacity: 0.7;
-		transition: opacity 0.2s;
+		opacity: 0.8;
+		transition:
+			opacity 0.2s,
+			transform 0.2s ease;
 		z-index: 2000;
+	}
+
+	.arrow-icon {
+		width: 80px;
+		height: 80px;
+		color: var(--light-vibrant);
+		transition:
+			color 0.2s ease,
+			transform 0.2s ease;
 	}
 
 	.arrow:hover {
 		opacity: 1;
-		background: #fff6;
+	}
+
+	.arrow:hover .arrow-icon {
+		animation: pulse 0.6s ease-in-out;
+	}
+
+	/* Animation pour la flèche gauche */
+	.arrow:first-child:hover .arrow-icon {
+		animation: slideLeft 0.6s ease-in-out;
+	}
+
+	/* Animation pour la flèche droite */
+	.arrow:last-child:hover .arrow-icon {
+		animation: slideRight 0.6s ease-in-out;
+	}
+
+	@keyframes slideLeft {
+		0% {
+			transform: translateX(0);
+		}
+		50% {
+			transform: translateX(-8px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes slideRight {
+		0% {
+			transform: translateX(0);
+		}
+		50% {
+			transform: translateX(8px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes pulse {
+		0% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.1);
+		}
+		100% {
+			transform: scale(1);
+		}
 	}
 
 	.arrow:disabled {
@@ -374,10 +476,10 @@
 
 	.clickable-card h2 {
 		margin: 0;
-		font-family: 'Russo One', sans-serif;
-		font-weight: 400;
+		font-family: 'Hanson', sans-serif;
+		font-weight: bold;
 		color: white;
-		letter-spacing: -0.05em;
+		letter-spacing: 0.05em;
 		position: absolute;
 		bottom: 18px;
 		left: 50%;

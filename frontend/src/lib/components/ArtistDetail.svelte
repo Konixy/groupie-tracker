@@ -6,19 +6,20 @@
 	// Import des polices
 	const link1 = document.createElement('link');
 	link1.rel = 'stylesheet';
-	link1.href = 'https://fonts.googleapis.com/css2?family=Russo+One&display=swap';
+	link1.href = 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap';
 	document.head.appendChild(link1);
 
-	const link2 = document.createElement('link');
-	link2.rel = 'stylesheet';
-	link2.href =
-		'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap';
-	document.head.appendChild(link2);
-
-	const link3 = document.createElement('link');
-	link3.rel = 'stylesheet';
-	link3.href = 'https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap';
-	document.head.appendChild(link3);
+	// Import local de la police Hanson
+	const hansonStyle = document.createElement('style');
+	hansonStyle.textContent = `
+		@font-face {
+			font-family: 'Hanson';
+			src: url('/font/Hanson-Bold.ttf') format('truetype');
+			font-weight: bold;
+			font-style: normal;
+		}
+	`;
+	document.head.appendChild(hansonStyle);
 
 	let { artist = $bindable(), onClose }: { artist: Artist; onClose: () => void } = $props();
 
@@ -101,19 +102,16 @@
 	>
 		<button class="close-button" onclick={onClose} aria-label="Fermer">
 			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
+				width="40px"
+				height="40px"
 				viewBox="0 0 24 24"
 				fill="none"
-				stroke="currentColor"
-				stroke-width="3"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				aria-hidden="true"
+				xmlns="http://www.w3.org/2000/svg"
 			>
-				<path d="M18 6 6 18" />
-				<path d="m6 6 12 12" />
+				<path
+					d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM15.36 14.3C15.65 14.59 15.65 15.07 15.36 15.36C15.21 15.51 15.02 15.58 14.83 15.58C14.64 15.58 14.45 15.51 14.3 15.36L12 13.06L9.7 15.36C9.55 15.51 9.36 15.58 9.17 15.58C8.98 15.58 8.79 15.51 8.64 15.36C8.35 15.07 8.35 14.59 8.64 14.3L10.94 12L8.64 9.7C8.35 9.41 8.35 8.93 8.64 8.64C8.93 8.35 9.41 8.35 9.7 8.64L12 10.94L14.3 8.64C14.59 8.35 15.07 8.35 15.36 8.64C15.65 8.93 15.65 9.41 15.36 9.7L13.06 12L15.36 14.3Z"
+					fill="currentColor"
+				/>
 			</svg>
 		</button>
 
@@ -191,7 +189,7 @@
 	.artist-card {
 		position: relative;
 		z-index: 1000;
-		background: var(--light-vibrant);
+		background: var(--dark-vibrant);
 		border-radius: 80px;
 		padding: 1rem;
 		width: 100%;
@@ -199,34 +197,44 @@
 		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 		display: flex;
 		flex-direction: column;
+	}
+
+	.artist-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 		background-image: url('/lines1.svg');
 		background-repeat: no-repeat;
 		background-position: 90% 85%;
 		background-size: 180%;
-		background-blend-mode: overlay;
+		opacity: 0.15;
+		filter: brightness(0) saturate(100%) invert(1);
+		pointer-events: none;
+		z-index: -1;
 	}
 
 	.close-button {
 		position: absolute;
-		width: 3rem;
-		height: 3rem;
-		bottom: 0.5rem;
-		left: 50%;
-		transform: translateX(-50%);
-		background: var(--light-muted);
-		color: var(--dark-vibrant);
-		border-radius: 50%;
+		width: 5rem;
+		height: 5rem;
+		top: 2rem;
+		right: 2rem;
+		background: transparent;
+		color: var(--light-vibrant);
 		border: none;
 		outline: none;
-		padding: 0.8rem;
+		padding: 1.2rem;
 		font-size: 1rem;
 		cursor: pointer;
-		transition: background 0.3s ease;
+		transition: opacity 0.3s ease;
 		z-index: 10;
 	}
 
 	.close-button:hover {
-		background: var(--muted);
+		opacity: 0.7;
 	}
 
 	.artist-header {
@@ -241,16 +249,15 @@
 		height: 300px;
 		object-fit: cover;
 		border-radius: 60px;
-		border: 7px solid var(--dark-vibrant);
 		filter: brightness(1.1) contrast(0.8);
 	}
 
 	.artist-info h1 {
 		margin: 0 0 1rem 0;
 		font-size: 3rem;
-		color: var(--dark-vibrant);
+		color: var(--light-vibrant);
 		text-align: left;
-		font-family: 'Russo One', sans-serif;
+		font-family: 'Bukhari Script', cursive;
 		line-height: 1;
 	}
 
@@ -260,7 +267,7 @@
 		flex-direction: column;
 		padding: 0 2rem;
 		height: 100%;
-		justify-content: flex-start;
+		justify-content: space-between;
 	}
 
 	.concerts-banners-container {
@@ -282,8 +289,8 @@
 	}
 
 	.concerts-info-banner span {
-		font-family: 'Montserrat', sans-serif;
-		font-weight: 700;
+		font-family: 'Hanson', sans-serif;
+		font-weight: bold;
 	}
 
 	.view-concerts-btn {
@@ -293,8 +300,8 @@
 		padding: 0.5rem 1.5rem;
 		border-radius: 40px;
 		font-size: 1rem;
-		font-family: 'Jost', sans-serif;
-		font-weight: 500;
+		font-family: 'Hanson', sans-serif;
+		font-weight: bold;
 		cursor: pointer;
 		transition: background 0.2s ease;
 	}
@@ -305,10 +312,10 @@
 
 	.members-section h2 {
 		margin: 0 0 0.9rem 0;
-		color: var(--dark-vibrant);
+		color: var(--light-vibrant);
 		font-size: 1.2rem;
-		font-family: 'Montserrat', sans-serif;
-		font-weight: 700;
+		font-family: 'Hanson', sans-serif;
+		font-weight: bold;
 	}
 
 	.members-list {
@@ -332,44 +339,56 @@
 	}
 
 	.stats-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-		gap: 1.5rem;
-		margin-top: -0.8rem;
-		margin-bottom: 1rem;
-		justify-items: center;
+		display: flex;
+		gap: 0;
+		margin-top: auto;
+		margin-bottom: 0;
+		justify-content: center;
+		width: 100%;
+		flex: 1;
 	}
 
 	.stat-card {
-		background: var(--light-muted);
-		padding: 2.5rem 1.5rem;
-		border-radius: 50%;
+		background: var(--dark-muted);
+		padding: 1.5rem 1rem;
+		border-radius: 0;
 		text-align: center;
 		transition: all 0.3s ease;
-		width: 160px;
-		height: 160px;
+		flex: 1;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		border: 2px solid color-mix(in srgb, var(--light-vibrant), transparent 70%);
+		border-right: none;
+	}
+
+	.stat-card:first-child {
+		border-radius: 0.5rem 0 0 0.5rem;
+	}
+
+	.stat-card:last-child {
+		border-radius: 0 0.5rem 0.5rem 0;
+		border-right: 2px solid color-mix(in srgb, var(--light-vibrant), transparent 70%);
 	}
 
 	.stat-card h3 {
 		margin: 0 0 0.5rem 0;
-		color: var(--dark-vibrant);
-		font-size: 0.9rem;
+		color: color-mix(in srgb, var(--light-vibrant), transparent 30%);
+		font-size: 0.8rem;
 		font-family: 'Jost', sans-serif;
-		font-weight: 600;
+		font-weight: 400;
 		line-height: 1.2;
 	}
 
 	.stat-card p {
 		margin: 0;
-		color: white;
-		font-size: 1.1rem;
+		color: var(--light-vibrant);
+		font-size: 1.2rem;
 		font-weight: bold;
 		line-height: 1.2;
-		font-family: 'Montserrat', sans-serif;
+		font-family: 'Hanson', sans-serif;
 	}
 
 	@media (max-width: 768px) {
@@ -408,10 +427,12 @@
 		}
 
 		.close-button {
-			width: 2.5rem;
-			height: 2.5rem;
-			bottom: 1.5rem;
-			padding: 0.5rem;
+			width: 4.5rem;
+			height: 4.5rem;
+			top: 2rem;
+			right: 2rem;
+			padding: 1rem;
+			background: transparent;
 		}
 	}
 </style>

@@ -11,7 +11,7 @@ Application web moderne pour explorer et suivre des artistes de musique et leurs
 - [ ] **Redesign des détails de la map** - Améliorer l'esthétique générale de la liste des concerts
 - [ ] **Changer la police des cards du carousel** - Améliorer l'esthétique générale de la liste des concerts
 - [ ] **Responsive** - Adapter le site pour mobile (toutes taille d'écran au finale)
-- [ ] 
+- [ ]
 
 ---
 
@@ -44,6 +44,6 @@ L'application démarre sur `http://localhost:3000`
 
 ## les typos
 
-- Titres : Russo One
-- Sous titres : Montserrat
+- Titres : Bukhari Script
+- Sous titres : Hanson Bold
 - textes : Jost

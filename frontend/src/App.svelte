@@ -321,6 +321,8 @@
 		font-weight: normal;
 		margin: 0;
 		font-size: 3.5rem;
+		color: var(--light-vibrant);
+		transition: color 1s ease;
 	}
 
 	.artist-subtitle {
@@ -331,6 +333,7 @@
 		color: color-mix(in srgb, var(--light-vibrant), transparent 20%);
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
+		transition: color 1s ease;
 	}
 
 	.carousel-section {
