@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  # Service Backend Go
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: groupie-tracker-backend
+    ports:
+      - "89:8080"
+    environment:
+      - GO_ENV=production
+      - PORT=8080
+      - FRONTEND_URL=https://groupie-tracker.konixy.fr
+      - API_BASE_URL=https://groupie-api.konixy.fr
+    networks:
+      - groupie-tracker-network
+    restart: unless-stopped
+
+  # Service Frontend Svelte
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=https://groupie-api.konixy.fr
+    container_name: groupie-tracker-frontend
+    ports:
+      - "88:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - groupie-tracker-network
+    restart: unless-stopped
+
+# Réseau personnalisé pour la communication entre services
+networks:
+  groupie-tracker-network:
+    driver: bridge
+    name: groupie-tracker-net
+
+# Volumes pour la persistance des données (optionnel pour cette application)
+volumes:
+  backend_data:
+    driver: local

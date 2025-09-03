@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	"groupie-tracker/config"
 )
 
 // BaseURL est l'adresse racine de l'API groupie tracker
@@ -81,7 +83,7 @@ func FetchArtists() ([]ArtistWithCustomImage, error) {
 	for _, artist := range parsed {
 		newArtist := ArtistWithCustomImage{
 			Artist:      artist,
-			CustomImage: fmt.Sprintf("http://localhost:8080/images/id%d.jpg", artist.ID),
+			CustomImage: fmt.Sprintf("%s/images/id%d.jpg", config.GetAPIBaseURL(), artist.ID),
 		}
 		artists = append(artists, newArtist)
 	}
@@ -209,6 +211,37 @@ func FetchLocations(artistID int) (Relation, error) {
 	}
 
 	return relation, nil
+}
+
+type Location struct {
+	ID        int      `json:"id"`
+	Locations []string `json:"locations"`
+}
+
+func FetchAllLocations() ([]Location, error) {
+	response, err := http.Get(BaseURL + "/locations")
+	if err != nil {
+		log.Printf("Error fetching all locations: %v", err)
+		return []Location{}, err
+	}
+	defer response.Body.Close()
+
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Printf("Error reading response body: %v", err)
+		return []Location{}, err
+	}
+
+	var locations struct {
+		Index []Location `json:"index"`
+	}
+	err = json.Unmarshal(body, &locations)
+	if err != nil {
+		log.Printf("Error unmarshaling all locations JSON: %v", err)
+		return []Location{}, err
+	}
+
+	return locations.Index, nil
 }
 
 func formatLocation(location string) string {

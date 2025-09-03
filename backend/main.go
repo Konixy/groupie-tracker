@@ -5,10 +5,15 @@ import (
 	"log"
 	"net/http"
 
+	"groupie-tracker/config"
 	"groupie-tracker/handlers"
 )
 
 func main() {
+	// Configuration via variables d'environnement
+	port := config.GetPort()
+	frontendURL := config.GetFrontendURL()
+
 	// Route API REST
 	http.HandleFunc("/artists", handlers.ArtistsHandler)
 	http.HandleFunc("/artists/", handlers.ArtistConcertsHandler)
@@ -19,12 +24,12 @@ func main() {
 	// Message d'accueil sur /
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Access-Control-Allow-Origin", frontendURL)
 		json.NewEncoder(w).Encode(map[string]string{"message": "Bienvenue sur l'API Groupie Tracker en Go"})
 	})
 
 	// Start server
-	port := ":8080"
-	log.Printf("Server starting on http://localhost%s", port)
-	log.Fatal(http.ListenAndServe(port, nil))
+	serverPort := ":" + port
+	log.Printf("Server starting on port %s", port)
+	log.Fatal(http.ListenAndServe(serverPort, nil))
 }

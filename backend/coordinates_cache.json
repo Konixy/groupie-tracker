@@ -1,0 +1,3971 @@
+{
+  "aalborg-denmark": [
+    {
+      "place_id": 151203939,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 2247730880,
+      "boundingbox": [
+        "56.8862626",
+        "57.2062626",
+        "9.7615263",
+        "10.0815263"
+      ],
+      "lat": "57.0462626",
+      "lon": "9.9215263",
+      "name": "Aalborg",
+      "display_name": "Aalborg, Commune d'Aalborg, Jutland du Nord, 9000, Danemark",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.607448831015228
+    }
+  ],
+  "aarhus-denmark": [
+    {
+      "place_id": 152651561,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 26559213,
+      "boundingbox": [
+        "55.9896278",
+        "56.3096278",
+        "10.0534046",
+        "10.3734046"
+      ],
+      "lat": "56.1496278",
+      "lon": "10.2134046",
+      "name": "Aarhus",
+      "display_name": "Aarhus, Aarhus Kommune, Jutland central, 8000, Danemark",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.6428297394611684
+    }
+  ],
+  "aberdeen-uk": [
+    {
+      "place_id": 251283436,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1900654,
+      "boundingbox": [
+        "57.0761867",
+        "57.2353072",
+        "-2.3609399",
+        "-2.0161507"
+      ],
+      "lat": "57.1482429",
+      "lon": "-2.0928095",
+      "name": "Aberdeen",
+      "display_name": "Aberdeen, Écosse, Royaume-Uni",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6451378861305533
+    }
+  ],
+  "abu_dhabi-united_arab_emirates": [
+    {
+      "place_id": 41191185,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 4479763,
+      "boundingbox": [
+        "24.2810331",
+        "24.6018540",
+        "54.2971553",
+        "54.7659108"
+      ],
+      "lat": "24.4538352",
+      "lon": "54.3774014",
+      "name": "Abou Dabi",
+      "display_name": "Abou Dabi, أبوظبي, Abou Dabi, Émirats arabes unis",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6671901909953964
+    }
+  ],
+  "alabama-usa": [
+    {
+      "place_id": 317995997,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 161950,
+      "boundingbox": [
+        "30.1433760",
+        "35.0081121",
+        "-88.4731014",
+        "-84.8882885"
+      ],
+      "lat": "33.2588817",
+      "lon": "-86.8295337",
+      "name": "Alabama",
+      "display_name": "Alabama, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7627816796630609
+    }
+  ],
+  "amityville-usa": [
+    {
+      "place_id": 333680469,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 175498,
+      "boundingbox": [
+        "40.6515870",
+        "40.6929170",
+        "-73.4277270",
+        "-73.4039780"
+      ],
+      "lat": "40.6789893",
+      "lon": "-73.4170673",
+      "name": "Village of Amityville",
+      "display_name": "Village of Amityville, Town of Babylon, Suffolk County, New York, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.49990816436192753
+    }
+  ],
+  "amsterdam-netherlands": [
+    {
+      "place_id": 144817366,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 271110,
+      "boundingbox": [
+        "52.2781742",
+        "52.4310638",
+        "4.7287776",
+        "5.0791622"
+      ],
+      "lat": "52.3730796",
+      "lon": "4.8924534",
+      "name": "Amsterdam",
+      "display_name": "Amsterdam, Hollande-Septentrionale, Pays-Bas",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7777888520200694
+    }
+  ],
+  "anaheim-usa": [
+    {
+      "place_id": 293302928,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 253985,
+      "boundingbox": [
+        "33.7889241",
+        "33.8790572",
+        "-118.0173585",
+        "-117.6739673"
+      ],
+      "lat": "33.8347516",
+      "lon": "-117.9117320",
+      "name": "Anaheim",
+      "display_name": "Anaheim, Orange County, Californie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6367878560129473
+    }
+  ],
+  "antwerp-belgium": [
+    {
+      "place_id": 399046513,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 59518,
+      "boundingbox": [
+        "51.1432868",
+        "51.3776356",
+        "4.2175769",
+        "4.5090543"
+      ],
+      "lat": "51.2211097",
+      "lon": "4.3997081",
+      "name": "Anvers",
+      "display_name": "Anvers, Flandre, Belgique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7324045363590299
+    }
+  ],
+  "arizona-usa": [
+    {
+      "place_id": 307330143,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 162018,
+      "boundingbox": [
+        "31.3322135",
+        "37.0038722",
+        "-114.8183584",
+        "-109.0451310"
+      ],
+      "lat": "34.3953420",
+      "lon": "-111.7632750",
+      "name": "Arizona",
+      "display_name": "Arizona, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7702840834982027
+    }
+  ],
+  "arras-france": [
+    {
+      "place_id": 93650252,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1121015,
+      "boundingbox": [
+        "50.2680554",
+        "50.3104992",
+        "2.7251442",
+        "2.8106849"
+      ],
+      "lat": "50.2910480",
+      "lon": "2.7772211",
+      "name": "Arras",
+      "display_name": "Arras, Pas-de-Calais, Hauts-de-France, France métropolitaine, 62000, France",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6543790007534251
+    }
+  ],
+  "athens-greece": [
+    {
+      "place_id": 51165918,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 441183,
+      "boundingbox": [
+        "37.8155648",
+        "38.1355648",
+        "23.5748324",
+        "23.8948324"
+      ],
+      "lat": "37.9755648",
+      "lon": "23.7348324",
+      "name": "Athènes",
+      "display_name": "Athènes, Δήμος Αθηναίων, Περιφερειακή Ενότητα Κεντρικού Τομέα Αθηνών, Attique, 105 57, Grèce",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.7764643114669393
+    }
+  ],
+  "atlanta-usa": [
+    {
+      "place_id": 315449731,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 119557,
+      "boundingbox": [
+        "33.6479187",
+        "33.8868230",
+        "-84.5508540",
+        "-84.2895600"
+      ],
+      "lat": "33.7544657",
+      "lon": "-84.3898151",
+      "name": "Atlanta",
+      "display_name": "Atlanta, Fulton County, Géorgie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7425328777265271
+    }
+  ],
+  "auckland-new_zealand": [
+    {
+      "place_id": 21786103,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 292806332,
+      "boundingbox": [
+        "-37.0120950",
+        "-36.6920950",
+        "174.6031803",
+        "174.9231803"
+      ],
+      "lat": "-36.8520950",
+      "lon": "174.7631803",
+      "name": "Auckland",
+      "display_name": "Auckland, Waitematā, Auckland, 1010, Nouvelle-Zélande",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.7043776305610081
+    }
+  ],
+  "bangkok-thailand": [
+    {
+      "place_id": 237070232,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 92277,
+      "boundingbox": [
+        "13.2191019",
+        "13.9551693",
+        "100.3278772",
+        "100.9386039"
+      ],
+      "lat": "13.7524938",
+      "lon": "100.4935089",
+      "name": "Bangkok",
+      "display_name": "Bangkok, Thaïlande",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7184393549603005
+    }
+  ],
+  "barcelona-spain": [
+    {
+      "place_id": 75980625,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 347950,
+      "boundingbox": [
+        "41.3170353",
+        "41.4679135",
+        "2.0524977",
+        "2.2283555"
+      ],
+      "lat": "41.3825802",
+      "lon": "2.1770730",
+      "name": "Barcelone",
+      "display_name": "Barcelone, Barcelonais, Barcelone, Catalogne, Espagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7941955033182714
+    }
+  ],
+  "belo_horizonte-brazil": [
+    {
+      "place_id": 406283839,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 368782,
+      "boundingbox": [
+        "-20.0594646",
+        "-19.7765437",
+        "-44.0632916",
+        "-43.8572199"
+      ],
+      "lat": "-19.9227318",
+      "lon": "-43.9450948",
+      "name": "Belo Horizonte",
+      "display_name": "Belo Horizonte, Região Geográfica Imediata de Belo Horizonte, Região Metropolitana de Belo Horizonte, Região Geográfica Intermediária de Belo Horizonte, Minas Gerais, Région Sud-est, Brésil",
+      "category": "boundary",
+      "addresstype": "municipality",
+      "importance": 0.6659321483646783
+    }
+  ],
+  "berlin-germany": [
+    {
+      "place_id": 134060781,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 62422,
+      "boundingbox": [
+        "52.3382448",
+        "52.6755087",
+        "13.0883450",
+        "13.7611609"
+      ],
+      "lat": "52.5108850",
+      "lon": "13.3989367",
+      "name": "Berlin",
+      "display_name": "Berlin, Allemagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.840425236063765
+    }
+  ],
+  "berwyn-usa": [
+    {
+      "place_id": 343434643,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 123130,
+      "boundingbox": [
+        "41.8211530",
+        "41.8653966",
+        "-87.8042199",
+        "-87.7777800"
+      ],
+      "lat": "41.8505874",
+      "lon": "-87.7936685",
+      "name": "Berwyn",
+      "display_name": "Berwyn, Cook County, Illinois, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.5369469020924413
+    }
+  ],
+  "bilbao-spain": [
+    {
+      "place_id": 265492580,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 339549,
+      "boundingbox": [
+        "43.2137176",
+        "43.2901315",
+        "-2.9859808",
+        "-2.8802639"
+      ],
+      "lat": "43.2630018",
+      "lon": "-2.9350039",
+      "name": "Bilbao",
+      "display_name": "Bilbao, Biscaye, Pays basque autonome, Espagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6816014772836319
+    }
+  ],
+  "birmingham-uk": [
+    {
+      "place_id": 257697442,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 162378,
+      "boundingbox": [
+        "52.3810530",
+        "52.6087058",
+        "-2.0336486",
+        "-1.7288417"
+      ],
+      "lat": "52.4796992",
+      "lon": "-1.9026911",
+      "name": "Birmingham",
+      "display_name": "Birmingham, West Midlands, Angleterre, Royaume-Uni",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.723448144853279
+    }
+  ],
+  "bogota-colombia": [
+    {
+      "place_id": 396247330,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 7426387,
+      "boundingbox": [
+        "4.4655960",
+        "4.8332542",
+        "-74.2235137",
+        "-74.0102577"
+      ],
+      "lat": "4.6533815",
+      "lon": "-74.0836331",
+      "name": "Bogota",
+      "display_name": "Bogota, Bogotá, Distrito Capital, RAP (Especial) Central, Colombie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6991143125127902
+    }
+  ],
+  "boston-usa": [
+    {
+      "place_id": 331951787,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2315704,
+      "boundingbox": [
+        "42.2279112",
+        "42.3969775",
+        "-71.1912442",
+        "-70.8044881"
+      ],
+      "lat": "42.3554334",
+      "lon": "-71.0605110",
+      "name": "Boston",
+      "display_name": "Boston, Suffolk County, Massachusetts, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7627411749352166
+    }
+  ],
+  "boulogne_billancourt-france": [
+    {
+      "place_id": 88314860,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 72020,
+      "boundingbox": [
+        "48.8214969",
+        "48.8534420",
+        "2.2227990",
+        "2.2627757"
+      ],
+      "lat": "48.8356649",
+      "lon": "2.2402060",
+      "name": "Boulogne-Billancourt",
+      "display_name": "Boulogne-Billancourt, Hauts-de-Seine, Île-de-France, France métropolitaine, 92100, France",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6097169945287907
+    }
+  ],
+  "brasilia-brazil": [
+    {
+      "place_id": 11755978,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 59470,
+      "boundingbox": [
+        "-33.8694284",
+        "5.2695808",
+        "-73.9830625",
+        "-28.6289646"
+      ],
+      "lat": "-10.3333333",
+      "lon": "-53.2000000",
+      "name": "Brésil",
+      "display_name": "Brésil",
+      "category": "boundary",
+      "addresstype": "country",
+      "importance": 0.8954966110329021
+    }
+  ],
+  "bratislava-slovakia": [
+    {
+      "place_id": 390018651,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1702499,
+      "boundingbox": [
+        "48.0066643",
+        "48.2650685",
+        "16.9460440",
+        "17.2845310"
+      ],
+      "lat": "48.1516988",
+      "lon": "17.1093063",
+      "name": "Bratislava",
+      "display_name": "Bratislava, Région de Bratislava, Slovaquie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7234793297039108
+    }
+  ],
+  "brisbane-australia": [
+    {
+      "place_id": 23391102,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 11677792,
+      "boundingbox": [
+        "-27.6602190",
+        "-27.0220140",
+        "152.6796930",
+        "153.4682750"
+      ],
+      "lat": "-27.4689623",
+      "lon": "153.0235009",
+      "name": "Brisbane",
+      "display_name": "Brisbane, Queensland, Australie",
+      "category": "boundary",
+      "addresstype": "municipality",
+      "importance": 0.7021067844920259
+    }
+  ],
+  "brixton-uk": [
+    {
+      "place_id": 260003405,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 21521237,
+      "boundingbox": [
+        "51.4433914",
+        "51.4833914",
+        "-0.1348023",
+        "-0.0948023"
+      ],
+      "lat": "51.4633914",
+      "lon": "-0.1148023",
+      "name": "Brixton",
+      "display_name": "Brixton, London Borough of Lambeth, Londres, Grand Londres, Angleterre, SW9 8BH, Royaume-Uni",
+      "category": "place",
+      "addresstype": "suburb",
+      "importance": 0.53027162823881
+    }
+  ],
+  "brooklyn-usa": [
+    {
+      "place_id": 338754609,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 9691750,
+      "boundingbox": [
+        "40.5503390",
+        "40.7394340",
+        "-74.0566880",
+        "-73.8329450"
+      ],
+      "lat": "40.6526006",
+      "lon": "-73.9497211",
+      "name": "Brooklyn",
+      "display_name": "Brooklyn, Kings County, New York, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "suburb",
+      "importance": 0.7286537007765631
+    }
+  ],
+  "budapest-hungary": [
+    {
+      "place_id": 59206420,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1244004,
+      "boundingbox": [
+        "47.3496899",
+        "47.6131468",
+        "18.9251057",
+        "19.3349258"
+      ],
+      "lat": "47.4978789",
+      "lon": "19.0402383",
+      "name": "Budapest",
+      "display_name": "Budapest, Hongrie centrale, Hongrie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7954227641897471
+    }
+  ],
+  "buenos_aires-argentina": [
+    {
+      "place_id": 409597036,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1224652,
+      "boundingbox": [
+        "-34.7058155",
+        "-34.5265535",
+        "-58.5314504",
+        "-58.3351423"
+      ],
+      "lat": "-34.6083696",
+      "lon": "-58.4440583",
+      "name": "Buenos Aires",
+      "display_name": "Buenos Aires, Comuna 6, Ciudad Autónoma de Buenos Aires, Argentine",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7722578508053152
+    }
+  ],
+  "burriana-spain": [
+    {
+      "place_id": 270245986,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 339850,
+      "boundingbox": [
+        "39.8419537",
+        "39.9328061",
+        "-0.1376900",
+        "-0.0090356"
+      ],
+      "lat": "39.8876912",
+      "lon": "-0.0846321",
+      "name": "Borriana / Burriana",
+      "display_name": "Borriana / Burriana, la Plana Baixa, Castellón, Communauté Valencienne, 12530, Espagne",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.4978221397760994
+    }
+  ],
+  "burswood-australia": [
+    {
+      "place_id": 28704903,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 11325870,
+      "boundingbox": [
+        "-31.9720560",
+        "-31.9399600",
+        "115.8843110",
+        "115.9038120"
+      ],
+      "lat": "-31.9602196",
+      "lon": "115.8962701",
+      "name": "Burswood",
+      "display_name": "Burswood, Town of Victoria Park, Australie occidentale, 6100, Australie",
+      "category": "boundary",
+      "addresstype": "suburb",
+      "importance": 0.30982093646679715
+    }
+  ],
+  "california-usa": [
+    {
+      "place_id": 404138241,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 165475,
+      "boundingbox": [
+        "32.5295236",
+        "42.0094990",
+        "-124.4820030",
+        "-114.1307816"
+      ],
+      "lat": "36.7014631",
+      "lon": "-118.7559970",
+      "name": "Californie",
+      "display_name": "Californie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.8614438867843363
+    }
+  ],
+  "canton-usa": [
+    {
+      "place_id": 342844914,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 182492,
+      "boundingbox": [
+        "40.7436591",
+        "40.8658640",
+        "-81.4292779",
+        "-81.2847360"
+      ],
+      "lat": "40.7985464",
+      "lon": "-81.3749508",
+      "name": "Canton",
+      "display_name": "Canton, Stark County, Ohio, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.5706766014348656
+    }
+  ],
+  "cardiff-uk": [
+    {
+      "place_id": 260804668,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 738885245,
+      "boundingbox": [
+        "51.3216546",
+        "51.6416546",
+        "-3.3391934",
+        "-3.0191934"
+      ],
+      "lat": "51.4816546",
+      "lon": "-3.1791934",
+      "name": "Cardiff",
+      "display_name": "Cardiff, Pays de Galles, CF10 2AF, Royaume-Uni",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.6902678700101542
+    }
+  ],
+  "changzhou-china": [
+    {
+      "place_id": 408075693,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 3429666,
+      "boundingbox": [
+        "31.1530205",
+        "32.0620891",
+        "119.1348516",
+        "120.2011368"
+      ],
+      "lat": "31.8122623",
+      "lon": "119.9691539",
+      "name": "Changzhou",
+      "display_name": "Changzhou, Jiangsu, 213000, Chine",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.5819376629343103
+    }
+  ],
+  "charlotte-usa": [
+    {
+      "place_id": 315650353,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 177415,
+      "boundingbox": [
+        "35.0105195",
+        "35.4002508",
+        "-81.0096282",
+        "-80.6348755"
+      ],
+      "lat": "35.2272086",
+      "lon": "-80.8430827",
+      "name": "Charlotte",
+      "display_name": "Charlotte, Mecklenburg County, Caroline du Nord, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6608110637468726
+    }
+  ],
+  "chicago-usa": [
+    {
+      "place_id": 344128700,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 122604,
+      "boundingbox": [
+        "41.6445310",
+        "42.0230396",
+        "-87.9400876",
+        "-87.5240812"
+      ],
+      "lat": "41.8755616",
+      "lon": "-87.6244212",
+      "name": "Chicago",
+      "display_name": "Chicago, Cook County, Illinois, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.8027259419416765
+    }
+  ],
+  "cincinnati-usa": [
+    {
+      "place_id": 312117616,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 183453,
+      "boundingbox": [
+        "39.0520565",
+        "39.2210368",
+        "-84.7123900",
+        "-84.3695773"
+      ],
+      "lat": "39.1014537",
+      "lon": "-84.5124602",
+      "name": "Cincinnati",
+      "display_name": "Cincinnati, Comté de Hamilton, Ohio, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6838944782924962
+    }
+  ],
+  "cleveland-usa": [
+    {
+      "place_id": 342666654,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 182130,
+      "boundingbox": [
+        "41.3906280",
+        "41.6044360",
+        "-81.8790937",
+        "-81.5327440"
+      ],
+      "lat": "41.4996574",
+      "lon": "-81.6936772",
+      "name": "Cleveland",
+      "display_name": "Cleveland, Cuyahoga County, Ohio, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6952330131061538
+    }
+  ],
+  "colorado-usa": [
+    {
+      "place_id": 306657599,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 161961,
+      "boundingbox": [
+        "36.9925245",
+        "41.0034002",
+        "-109.0601879",
+        "-102.0415850"
+      ],
+      "lat": "38.7251776",
+      "lon": "-105.6077160",
+      "name": "Colorado",
+      "display_name": "Colorado, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7660265402754156
+    }
+  ],
+  "columbia-usa": [
+    {
+      "place_id": 314831633,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 194000,
+      "boundingbox": [
+        "33.9432480",
+        "34.1315970",
+        "-81.1709780",
+        "-80.7038161"
+      ],
+      "lat": "34.0007540",
+      "lon": "-81.0352313",
+      "name": "Columbia",
+      "display_name": "Columbia, Richland County, Caroline du Sud, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6145872709942612
+    }
+  ],
+  "copenhagen-denmark": [
+    {
+      "place_id": 135565872,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 13707878,
+      "boundingbox": [
+        "55.5267243",
+        "55.8467243",
+        "12.4100724",
+        "12.7300724"
+      ],
+      "lat": "55.6867243",
+      "lon": "12.5700724",
+      "name": "Copenhague",
+      "display_name": "Copenhague, Commune de Copenhague, Region Hovedstaden, 1357, Danemark",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.7694250381526939
+    }
+  ],
+  "cuxhaven-germany": [
+    {
+      "place_id": 130439349,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1518688,
+      "boundingbox": [
+        "53.7588756",
+        "53.8922850",
+        "8.5520184",
+        "8.8639060"
+      ],
+      "lat": "53.8687800",
+      "lon": "8.6982860",
+      "name": "Cuxhaven",
+      "display_name": "Cuxhaven, Cuxhaven (arrondissement), Basse-Saxe, Allemagne",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.5655931329163592
+    }
+  ],
+  "dallas-usa": [
+    {
+      "place_id": 400456026,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 6571629,
+      "boundingbox": [
+        "32.6132160",
+        "33.0239366",
+        "-97.0004820",
+        "-96.4636317"
+      ],
+      "lat": "32.7762719",
+      "lon": "-96.7968559",
+      "name": "Dallas",
+      "display_name": "Dallas, Dallas County, Texas, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7114433186231126
+    }
+  ],
+  "del_mar-usa": [
+    {
+      "place_id": 295036210,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2296283,
+      "boundingbox": [
+        "32.9374166",
+        "32.9804454",
+        "-117.2725136",
+        "-117.2555074"
+      ],
+      "lat": "32.9589630",
+      "lon": "-117.2621063",
+      "name": "Del Mar",
+      "display_name": "Del Mar, San Diego County, Californie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.48786632699115473
+    }
+  ],
+  "detroit-usa": [
+    {
+      "place_id": 340989856,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 134591,
+      "boundingbox": [
+        "42.2551920",
+        "42.4503959",
+        "-83.2879590",
+        "-82.9104391"
+      ],
+      "lat": "42.3315509",
+      "lon": "-83.0466403",
+      "name": "Détroit",
+      "display_name": "Détroit, Wayne County, Michigan, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7234767315422267
+    }
+  ],
+  "doha-qatar": [
+    {
+      "place_id": 40646249,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 27332,
+      "boundingbox": [
+        "25.1505411",
+        "25.6832009",
+        "51.3957733",
+        "52.4171167"
+      ],
+      "lat": "25.2856329",
+      "lon": "51.5264162",
+      "name": "Doha",
+      "display_name": "Doha, Qatar",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7044497940103103
+    }
+  ],
+  "dubai-united_arab_emirates": [
+    {
+      "place_id": 397470794,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 4479752,
+      "boundingbox": [
+        "24.6230661",
+        "25.5250676",
+        "54.7153981",
+        "56.2052980"
+      ],
+      "lat": "25.0742823",
+      "lon": "55.1885387",
+      "name": "Doubaï",
+      "display_name": "Doubaï, Émirats arabes unis",
+      "category": "boundary",
+      "addresstype": "administrative",
+      "importance": 0.6934036776052183
+    }
+  ],
+  "dublin-ireland": [
+    {
+      "place_id": 255256506,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1109531,
+      "boundingbox": [
+        "53.2987342",
+        "53.4105416",
+        "-6.3870259",
+        "-6.1148829"
+      ],
+      "lat": "53.3493795",
+      "lon": "-6.2605593",
+      "name": "Dublin",
+      "display_name": "Dublin, Comté de Dublin, Leinster, Irlande",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7489448474158283
+    }
+  ],
+  "dunedin-new_zealand": [
+    {
+      "place_id": 20290465,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 1037917163,
+      "boundingbox": [
+        "-46.0340984",
+        "-45.7140984",
+        "170.3435755",
+        "170.6635755"
+      ],
+      "lat": "-45.8740984",
+      "lon": "170.5035755",
+      "name": "Dunedin",
+      "display_name": "Dunedin, Dunedin City, Otago, 9054, Nouvelle-Zélande",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.6085182713207135
+    }
+  ],
+  "dusseldorf-germany": [
+    {
+      "place_id": 102124007,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 62539,
+      "boundingbox": [
+        "51.1243747",
+        "51.3524872",
+        "6.6888147",
+        "6.9399324"
+      ],
+      "lat": "51.2254018",
+      "lon": "6.7763137",
+      "name": "Düsseldorf",
+      "display_name": "Düsseldorf, Rhénanie-du-Nord-Westphalie, Allemagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7211658467231066
+    }
+  ],
+  "eindhoven-netherlands": [
+    {
+      "place_id": 100848667,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 296014,
+      "boundingbox": [
+        "51.4000475",
+        "51.4970779",
+        "5.3567184",
+        "5.5488528"
+      ],
+      "lat": "51.4392648",
+      "lon": "5.4786330",
+      "name": "Eindhoven",
+      "display_name": "Eindhoven, Brabant-Septentrional, Pays-Bas",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6515887168760466
+    }
+  ],
+  "florence-italy": [
+    {
+      "place_id": 74140076,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 42602,
+      "boundingbox": [
+        "43.7258716",
+        "43.8354631",
+        "11.1497598",
+        "11.3389044"
+      ],
+      "lat": "43.7697955",
+      "lon": "11.2556404",
+      "name": "Florence",
+      "display_name": "Florence, Firenze, Toscane, Italie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7619824451078252
+    }
+  ],
+  "florida-usa": [
+    {
+      "place_id": 281826483,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 162050,
+      "boundingbox": [
+        "24.3963080",
+        "31.0007620",
+        "-87.6348960",
+        "-79.9743060"
+      ],
+      "lat": "27.7567667",
+      "lon": "-81.4639835",
+      "name": "Floride",
+      "display_name": "Floride, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.8002647513292488
+    }
+  ],
+  "frankfurt-germany": [
+    {
+      "place_id": 127389583,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 62400,
+      "boundingbox": [
+        "50.0153529",
+        "50.2271424",
+        "8.4727605",
+        "8.8004049"
+      ],
+      "lat": "50.1106444",
+      "lon": "8.6820917",
+      "name": "Francfort-sur-le-Main",
+      "display_name": "Francfort-sur-le-Main, Hesse, Allemagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7473970382925892
+    }
+  ],
+  "frauenfeld-switzerland": [
+    {
+      "place_id": 64318391,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1684522,
+      "boundingbox": [
+        "47.5270307",
+        "47.5865626",
+        "8.8377421",
+        "8.9458269"
+      ],
+      "lat": "47.5561915",
+      "lon": "8.8963347",
+      "name": "Frauenfeld",
+      "display_name": "Frauenfeld, Neunforn, Bezirk Frauenfeld, Thurgovie, Suisse",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.5323175413516076
+    }
+  ],
+  "freyming_merlebach-france": [
+    {
+      "place_id": 108523435,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 115250,
+      "boundingbox": [
+        "49.1389603",
+        "49.1684313",
+        "6.7639981",
+        "6.8355568"
+      ],
+      "lat": "49.1469437",
+      "lon": "6.8184829",
+      "name": "Freyming-Merlebach",
+      "display_name": "Freyming-Merlebach, Forbach-Boulay-Moselle, Moselle, Grand Est, France métropolitaine, 57800, France",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.578660338389883
+    }
+  ],
+  "gdynia-poland": [
+    {
+      "place_id": 163773535,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2723260,
+      "boundingbox": [
+        "54.4227500",
+        "54.6241605",
+        "18.3579808",
+        "18.9098262"
+      ],
+      "lat": "54.5233304",
+      "lon": "18.6040279",
+      "name": "Gdynia",
+      "display_name": "Gdynia, Voïvodie de Poméranie, Pologne",
+      "category": "boundary",
+      "addresstype": "administrative",
+      "importance": 0.6299475366749597
+    }
+  ],
+  "georgia-usa": [
+    {
+      "place_id": 313131234,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 161957,
+      "boundingbox": [
+        "30.3556558",
+        "35.0006769",
+        "-85.6051650",
+        "-80.7514290"
+      ],
+      "lat": "32.3293809",
+      "lon": "-83.1137366",
+      "name": "Géorgie",
+      "display_name": "Géorgie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7759066575810222
+    }
+  ],
+  "glasgow-uk": [
+    {
+      "place_id": 254852643,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 11127374,
+      "boundingbox": [
+        "55.7011550",
+        "56.0211550",
+        "-4.4101687",
+        "-4.0901687"
+      ],
+      "lat": "55.8611550",
+      "lon": "-4.2501687",
+      "name": "Glasgow",
+      "display_name": "Glasgow, Glasgow City, Écosse, G2 1AR, Royaume-Uni",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.7411788310193502
+    }
+  ],
+  "gothenburg-sweden": [
+    {
+      "place_id": 151610855,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 25930131,
+      "boundingbox": [
+        "57.5472326",
+        "57.8672326",
+        "11.8070171",
+        "12.1270171"
+      ],
+      "lat": "57.7072326",
+      "lon": "11.9670171",
+      "name": "Göteborg",
+      "display_name": "Göteborg, Göteborgs Stad, Comté de Västra Götaland, 411 10, Suède",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.7240604125679804
+    }
+  ],
+  "grand_rapids-usa": [
+    {
+      "place_id": 344534119,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 134444,
+      "boundingbox": [
+        "42.8836480",
+        "43.0290471",
+        "-85.7518691",
+        "-85.5686460"
+      ],
+      "lat": "42.9632425",
+      "lon": "-85.6678639",
+      "name": "Grand Rapids",
+      "display_name": "Grand Rapids, Kent County, Michigan, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6096209000872583
+    }
+  ],
+  "groningen-netherlands": [
+    {
+      "place_id": 139384236,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 409863,
+      "boundingbox": [
+        "53.1786103",
+        "53.2649469",
+        "6.4627456",
+        "6.6668727"
+      ],
+      "lat": "53.2190652",
+      "lon": "6.5680077",
+      "name": "Groningue",
+      "display_name": "Groningue, Pays-Bas",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.643668070675493
+    }
+  ],
+  "hamburg-germany": [
+    {
+      "place_id": 129789555,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 62782,
+      "boundingbox": [
+        "53.3951118",
+        "54.0276500",
+        "8.1044993",
+        "10.3252805"
+      ],
+      "lat": "53.5503410",
+      "lon": "10.0006540",
+      "name": "Hambourg",
+      "display_name": "Hambourg, Allemagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.77665406610303
+    }
+  ],
+  "hershey-usa": [
+    {
+      "place_id": 394415528,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 188234,
+      "boundingbox": [
+        "40.2460970",
+        "40.3240180",
+        "-76.6897630",
+        "-76.5957534"
+      ],
+      "lat": "40.2850285",
+      "lon": "-76.6534662",
+      "name": "Hershey",
+      "display_name": "Hershey, Derry Township, Dauphin County, Pennsylvanie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "census",
+      "importance": 0.5060170723829673
+    }
+  ],
+  "hong_kong-china": [
+    {
+      "place_id": 218472527,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 913110,
+      "boundingbox": [
+        "22.1367246",
+        "22.5683333",
+        "113.8172408",
+        "114.5024867"
+      ],
+      "lat": "22.3506270",
+      "lon": "114.1849161",
+      "name": "Hong Kong",
+      "display_name": "Hong Kong, Chine",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.8156493232680251
+    }
+  ],
+  "houston-usa": [
+    {
+      "place_id": 281239887,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2688911,
+      "boundingbox": [
+        "29.5370705",
+        "30.1103506",
+        "-95.9097419",
+        "-95.0120525"
+      ],
+      "lat": "29.7589382",
+      "lon": "-95.3676974",
+      "name": "Houston",
+      "display_name": "Houston, Harris County, Texas, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7273179768405511
+    }
+  ],
+  "huizhou-china": [
+    {
+      "place_id": 403960892,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 3209912,
+      "boundingbox": [
+        "22.2573270",
+        "23.9628812",
+        "113.8080517",
+        "115.4215540"
+      ],
+      "lat": "23.1125153",
+      "lon": "114.4127007",
+      "name": "Huizhou",
+      "display_name": "Huizhou, District de Huicheng, Guangdong, Chine",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.5762178937781278
+    }
+  ],
+  "illinois-usa": [
+    {
+      "place_id": 310348625,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 122586,
+      "boundingbox": [
+        "36.9701313",
+        "42.5083736",
+        "-91.5130518",
+        "-87.0199244"
+      ],
+      "lat": "40.0796606",
+      "lon": "-89.4337288",
+      "name": "Illinois",
+      "display_name": "Illinois, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.8012327270699493
+    }
+  ],
+  "imola-italy": [
+    {
+      "place_id": 70707094,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 43020,
+      "boundingbox": [
+        "44.2837558",
+        "44.5685492",
+        "11.5849797",
+        "11.8109244"
+      ],
+      "lat": "44.3535145",
+      "lon": "11.7141233",
+      "name": "Imola",
+      "display_name": "Imola, Nuovo Circondario Imolese, Bologna, Émilie-Romagne, 40026, Italie",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.5994148372068356
+    }
+  ],
+  "indianapolis-usa": [
+    {
+      "place_id": 394601237,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 18438530,
+      "boundingbox": [
+        "39.6321626",
+        "39.9275253",
+        "-86.3281207",
+        "-85.9380401"
+      ],
+      "lat": "39.7683331",
+      "lon": "-86.1583502",
+      "name": "Indianapolis",
+      "display_name": "Indianapolis, Marion County, Indiana, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6876892656703354
+    }
+  ],
+  "inglewood-usa": [
+    {
+      "place_id": 293677537,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 112090,
+      "boundingbox": [
+        "33.9251770",
+        "33.9829700",
+        "-118.3788417",
+        "-118.3177470"
+      ],
+      "lat": "33.9562003",
+      "lon": "-118.3531320",
+      "name": "Inglewood",
+      "display_name": "Inglewood, Los Angeles County, Californie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6011521990551356
+    }
+  ],
+  "jakarta-indonesia": [
+    {
+      "place_id": 403288855,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 6362934,
+      "boundingbox": [
+        "-6.3744575",
+        "-4.9993635",
+        "106.3146732",
+        "106.9739750"
+      ],
+      "lat": "-6.1754049",
+      "lon": "106.8271680",
+      "name": "Jakarta",
+      "display_name": "Jakarta, Jawa, Indonésie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7369674934554961
+    }
+  ],
+  "kansas_city-usa": [
+    {
+      "place_id": 308870908,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 141008,
+      "boundingbox": [
+        "38.8271760",
+        "39.3566620",
+        "-94.7659170",
+        "-94.3855220"
+      ],
+      "lat": "39.1001050",
+      "lon": "-94.5781416",
+      "name": "Kansas City",
+      "display_name": "Kansas City, Jackson County, Missouri, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6776040593693308
+    }
+  ],
+  "klagenfurt-austria": [
+    {
+      "place_id": 61427023,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 105870,
+      "boundingbox": [
+        "46.5743838",
+        "46.7087065",
+        "14.2102806",
+        "14.4162580"
+      ],
+      "lat": "46.6239430",
+      "lon": "14.3075976",
+      "name": "Klagenfurt",
+      "display_name": "Klagenfurt, Carinthie, Autriche",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.612853702142459
+    }
+  ],
+  "krakow-poland": [
+    {
+      "place_id": 167402527,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 449696,
+      "boundingbox": [
+        "49.9676668",
+        "50.1261338",
+        "19.7922355",
+        "20.2173455"
+      ],
+      "lat": "50.0619474",
+      "lon": "19.9368564",
+      "name": "Cracovie",
+      "display_name": "Cracovie, Voïvodie de Petite-Pologne, Pologne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7443578372353242
+    }
+  ],
+  "la_plata-argentina": [
+    {
+      "place_id": 16679724,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 3266014,
+      "boundingbox": [
+        "-34.9539303",
+        "-34.8875541",
+        "-57.9940849",
+        "-57.9131216"
+      ],
+      "lat": "-34.9206797",
+      "lon": "-57.9537638",
+      "name": "La Plata",
+      "display_name": "La Plata, Partido de La Plata, Province de Buenos Aires, Argentine",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6122977123224269
+    }
+  ],
+  "landgraaf-netherlands": [
+    {
+      "place_id": 106612041,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 406384,
+      "boundingbox": [
+        "50.8702199",
+        "50.9347014",
+        "5.9906272",
+        "6.0941840"
+      ],
+      "lat": "50.9024566",
+      "lon": "6.0293103",
+      "name": "Landgraaf",
+      "display_name": "Landgraaf, Limbourg, Pays-Bas",
+      "category": "boundary",
+      "addresstype": "municipality",
+      "importance": 0.4965490396184245
+    }
+  ],
+  "las_vegas-usa": [
+    {
+      "place_id": 410687123,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 170117,
+      "boundingbox": [
+        "36.1295540",
+        "36.4014810",
+        "-115.4065750",
+        "-115.0620660"
+      ],
+      "lat": "36.1674263",
+      "lon": "-115.1484131",
+      "name": "Las Vegas",
+      "display_name": "Las Vegas, Clark County, Nevada, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7126172021753994
+    }
+  ],
+  "lausanne-switzerland": [
+    {
+      "place_id": 83502999,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1685018,
+      "boundingbox": [
+        "46.4548726",
+        "46.6025773",
+        "6.5838681",
+        "6.7208137"
+      ],
+      "lat": "46.5218269",
+      "lon": "6.6327025",
+      "name": "Lausanne",
+      "display_name": "Lausanne, District de Lausanne, Vaud, Suisse",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6940998709071154
+    }
+  ],
+  "leipzig-germany": [
+    {
+      "place_id": 124045847,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 62649,
+      "boundingbox": [
+        "51.2381704",
+        "51.4481145",
+        "12.2366519",
+        "12.5425373"
+      ],
+      "lat": "51.3406321",
+      "lon": "12.3747329",
+      "name": "Leipzig",
+      "display_name": "Leipzig, Saxe, Allemagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7437371056556823
+    }
+  ],
+  "lima-peru": [
+    {
+      "place_id": 3306328,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 4289361265,
+      "boundingbox": [
+        "-12.2221065",
+        "-11.9021065",
+        "-77.1965256",
+        "-76.8765256"
+      ],
+      "lat": "-12.0621065",
+      "lon": "-77.0365256",
+      "name": "Lima",
+      "display_name": "Lima, Lima Metropolitana, Lima, 15083, Pérou",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.7282254739756526
+    }
+  ],
+  "lisbon-portugal": [
+    {
+      "place_id": 274299220,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 5400890,
+      "boundingbox": [
+        "38.6913994",
+        "38.7967584",
+        "-9.2298356",
+        "-9.0863328"
+      ],
+      "lat": "38.7077507",
+      "lon": "-9.1365919",
+      "name": "Lisbonne",
+      "display_name": "Lisbonne, Portugal",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.765771724823051
+    }
+  ],
+  "london-uk": [
+    {
+      "place_id": 258689701,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 65606,
+      "boundingbox": [
+        "51.2867601",
+        "51.6918741",
+        "-0.5103751",
+        "0.3340155"
+      ],
+      "lat": "51.4893335",
+      "lon": "-0.1440551",
+      "name": "Londres",
+      "display_name": "Londres, Grand Londres, Angleterre, Royaume-Uni",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.8820890292539882
+    }
+  ],
+  "los_angeles-usa": [
+    {
+      "place_id": 408587103,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 207359,
+      "boundingbox": [
+        "33.6595410",
+        "34.3373060",
+        "-118.6681798",
+        "-118.1552983"
+      ],
+      "lat": "34.0536909",
+      "lon": "-118.2427660",
+      "name": "Los Angeles",
+      "display_name": "Los Angeles, Los Angeles County, Californie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.8280182952483853
+    }
+  ],
+  "lyon-france": [
+    {
+      "place_id": 81817520,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 120965,
+      "boundingbox": [
+        "45.7073666",
+        "45.8082628",
+        "4.7718132",
+        "4.8984245"
+      ],
+      "lat": "45.7578137",
+      "lon": "4.8320114",
+      "name": "Lyon",
+      "display_name": "Lyon, Métropole de Lyon, Rhône, Auvergne-Rhône-Alpes, France métropolitaine, France",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7385820546397593
+    }
+  ],
+  "madison-usa": [
+    {
+      "place_id": 406975782,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 3352040,
+      "boundingbox": [
+        "42.9981494",
+        "43.1719160",
+        "-89.5716610",
+        "-89.2320848"
+      ],
+      "lat": "43.0747610",
+      "lon": "-89.3837613",
+      "name": "Madison",
+      "display_name": "Madison, Dane County, Wisconsin, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6420355041837517
+    }
+  ],
+  "madrid-spain": [
+    {
+      "place_id": 274636975,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 5326784,
+      "boundingbox": [
+        "40.3119774",
+        "40.6437293",
+        "-3.8889539",
+        "-3.5179163"
+      ],
+      "lat": "40.4167047",
+      "lon": "-3.7035825",
+      "name": "Madrid",
+      "display_name": "Madrid, Communauté de Madrid, Espagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.8072010063004837
+    }
+  ],
+  "maine-usa": [
+    {
+      "place_id": 337189171,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 63512,
+      "boundingbox": [
+        "42.9222206",
+        "47.4598397",
+        "-71.0841694",
+        "-66.8854053"
+      ],
+      "lat": "45.7090970",
+      "lon": "-68.8590201",
+      "name": "Maine",
+      "display_name": "Maine, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7470800853630394
+    }
+  ],
+  "manchester-uk": [
+    {
+      "place_id": 256068956,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 146656,
+      "boundingbox": [
+        "53.3401044",
+        "53.5445923",
+        "-2.3199185",
+        "-2.1468288"
+      ],
+      "lat": "53.4794892",
+      "lon": "-2.2451148",
+      "name": "Manchester",
+      "display_name": "Manchester, Grand Manchester, Angleterre, Royaume-Uni",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7302810816515201
+    }
+  ],
+  "manila-philippines": [
+    {
+      "place_id": 239264227,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 103703,
+      "boundingbox": [
+        "14.5508249",
+        "14.6395473",
+        "120.7917034",
+        "121.0261672"
+      ],
+      "lat": "14.5904492",
+      "lon": "120.9803621",
+      "name": "Manille",
+      "display_name": "Manille, Capital District, Métro Manile, Philippines",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.698962501067567
+    }
+  ],
+  "mannheim-germany": [
+    {
+      "place_id": 411594387,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 62691,
+      "boundingbox": [
+        "49.4103401",
+        "49.5904701",
+        "8.4141602",
+        "8.5899902"
+      ],
+      "lat": "49.4892913",
+      "lon": "8.4673098",
+      "name": "Mannheim",
+      "display_name": "Mannheim, Bade-Wurtemberg, Allemagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6703948819066478
+    }
+  ],
+  "massachusetts-usa": [
+    {
+      "place_id": 335408266,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 61315,
+      "boundingbox": [
+        "41.1888589",
+        "42.8867783",
+        "-73.5082102",
+        "-69.8601042"
+      ],
+      "lat": "42.3788774",
+      "lon": "-72.0323660",
+      "name": "Massachusetts",
+      "display_name": "Massachusetts, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7833858378725858
+    }
+  ],
+  "melbourne-australia": [
+    {
+      "place_id": 407902063,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 4246124,
+      "boundingbox": [
+        "-38.4993700",
+        "-37.4017500",
+        "144.4440500",
+        "146.1925000"
+      ],
+      "lat": "-37.8142454",
+      "lon": "144.9631732",
+      "name": "Melbourne",
+      "display_name": "Melbourne, City of Melbourne, Victoria, Australie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.752619858192843
+    }
+  ],
+  "merkers-germany": [
+    {
+      "place_id": 124782239,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 253240481,
+      "boundingbox": [
+        "50.8041612",
+        "50.8441612",
+        "10.0976283",
+        "10.1376283"
+      ],
+      "lat": "50.8241612",
+      "lon": "10.1176283",
+      "name": "Merkers",
+      "display_name": "Merkers, Krayenberggemeinde, Wartburgkreis, Thuringe, 36460, Allemagne",
+      "category": "place",
+      "addresstype": "village",
+      "importance": 0.3129171471429899
+    }
+  ],
+  "mexico_city-mexico": [
+    {
+      "place_id": 402743203,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 17483459,
+      "boundingbox": [
+        "19.2419543",
+        "19.5796926",
+        "-99.3150003",
+        "-98.9750504"
+      ],
+      "lat": "19.4326296",
+      "lon": "-99.1331785",
+      "name": "Mexico",
+      "display_name": "Mexico, Cuauhtémoc, Ciudad de México, Mexique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7709947704767882
+    }
+  ],
+  "michigan-usa": [
+    {
+      "place_id": 340546581,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 165789,
+      "boundingbox": [
+        "41.6961278",
+        "48.3060630",
+        "-90.4186202",
+        "-82.1228056"
+      ],
+      "lat": "43.6211955",
+      "lon": "-84.6824346",
+      "name": "Michigan",
+      "display_name": "Michigan, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7830036365113349
+    }
+  ],
+  "milan-italy": [
+    {
+      "place_id": 397873886,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 44915,
+      "boundingbox": [
+        "45.3867381",
+        "45.5358482",
+        "9.0408867",
+        "9.2781103"
+      ],
+      "lat": "45.4641943",
+      "lon": "9.1896346",
+      "name": "Milan",
+      "display_name": "Milan, Lombardie, Italie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7899494338273202
+    }
+  ],
+  "minneapolis-usa": [
+    {
+      "place_id": 342813503,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 136712,
+      "boundingbox": [
+        "44.8901500",
+        "45.0512498",
+        "-93.3291250",
+        "-93.1938590"
+      ],
+      "lat": "44.9772995",
+      "lon": "-93.2654692",
+      "name": "Minneapolis",
+      "display_name": "Minneapolis, Hennepin County, Minnesota, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6869168244297812
+    }
+  ],
+  "minnesota-usa": [
+    {
+      "place_id": 347029523,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 165471,
+      "boundingbox": [
+        "43.4994288",
+        "49.3844722",
+        "-97.2392619",
+        "-89.4833850"
+      ],
+      "lat": "45.9896587",
+      "lon": "-94.6113288",
+      "name": "Minnesota",
+      "display_name": "Minnesota, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.776977526715785
+    }
+  ],
+  "minsk-belarus": [
+    {
+      "place_id": 159423554,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 59195,
+      "boundingbox": [
+        "53.7938470",
+        "53.9717897",
+        "27.3740176",
+        "28.0799469"
+      ],
+      "lat": "53.9024716",
+      "lon": "27.5618225",
+      "name": "Minsk",
+      "display_name": "Minsk, Bélarus",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7215756733776197
+    }
+  ],
+  "missouri-usa": [
+    {
+      "place_id": 311311320,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 161638,
+      "boundingbox": [
+        "35.9957227",
+        "40.6136347",
+        "-95.7741441",
+        "-89.0988430"
+      ],
+      "lat": "38.7604815",
+      "lon": "-92.5617875",
+      "name": "Missouri",
+      "display_name": "Missouri, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7762365543843811
+    }
+  ],
+  "monchengladbach-germany": [
+    {
+      "place_id": 102211374,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 62410,
+      "boundingbox": [
+        "51.0857840",
+        "51.2478874",
+        "6.2910981",
+        "6.5366448"
+      ],
+      "lat": "51.1947131",
+      "lon": "6.4353792",
+      "name": "Mönchengladbach",
+      "display_name": "Mönchengladbach, Rhénanie-du-Nord-Westphalie, Allemagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6267837862518809
+    }
+  ],
+  "monterrey-mexico": [
+    {
+      "place_id": 290199834,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 4145210488,
+      "boundingbox": [
+        "25.5202019",
+        "25.8402019",
+        "-100.4752580",
+        "-100.1552580"
+      ],
+      "lat": "25.6802019",
+      "lon": "-100.3152580",
+      "name": "Monterrey",
+      "display_name": "Monterrey, Nuevo León, 64010, Mexique",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.6390206074460697
+    }
+  ],
+  "montreal-canada": [
+    {
+      "place_id": 337883586,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1634158,
+      "boundingbox": [
+        "45.4100756",
+        "45.7047897",
+        "-73.9741567",
+        "-73.4742952"
+      ],
+      "lat": "45.5031824",
+      "lon": "-73.5698065",
+      "name": "Montréal",
+      "display_name": "Montréal, Agglomération de Montréal, Montréal (région administrative), Québec, Canada",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.758619869264456
+    }
+  ],
+  "montreal-usa": [
+    {
+      "place_id": 309786268,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 15987492,
+      "boundingbox": [
+        "37.9607770",
+        "37.9762940",
+        "-92.6093590",
+        "-92.5731240"
+      ],
+      "lat": "37.9684745",
+      "lon": "-92.5913386",
+      "name": "Montreal",
+      "display_name": "Montreal, Camden County, Missouri, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "census",
+      "importance": 0.3658839774319802
+    }
+  ],
+  "mumbai-india": [
+    {
+      "place_id": 354030949,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 7964375,
+      "boundingbox": [
+        "18.9916479",
+        "19.2694771",
+        "72.7763330",
+        "72.9817485"
+      ],
+      "lat": "19.0549990",
+      "lon": "72.8692035",
+      "name": "Mumbai",
+      "display_name": "Mumbai, Maharashtra, Inde",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7097856287700112
+    }
+  ],
+  "munich-germany": [
+    {
+      "place_id": 117173815,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 62428,
+      "boundingbox": [
+        "48.0616244",
+        "48.2481162",
+        "11.3607770",
+        "11.7229099"
+      ],
+      "lat": "48.1371079",
+      "lon": "11.5753822",
+      "name": "Munich",
+      "display_name": "Munich, Bavière, Allemagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.799006337353957
+    }
+  ],
+  "nagoya-japan": [
+    {
+      "place_id": 246691145,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 4576938,
+      "boundingbox": [
+        "35.0259512",
+        "35.2602290",
+        "136.7919690",
+        "137.0608990"
+      ],
+      "lat": "35.1851045",
+      "lon": "136.8998438",
+      "name": "Nagoya",
+      "display_name": "Nagoya, Préfecture d'Aichi, Japon",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6916444858274238
+    }
+  ],
+  "napoca-romania": [
+    {
+      "place_id": 56614423,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 3277038,
+      "boundingbox": [
+        "46.6899711",
+        "46.8618320",
+        "23.4992430",
+        "23.7183267"
+      ],
+      "lat": "46.7693790",
+      "lon": "23.5899542",
+      "name": "Cluj-Napoca",
+      "display_name": "Cluj-Napoca, Zona Metropolitană Cluj, Cluj, Roumanie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.676027456124194
+    }
+  ],
+  "nevada-usa": [
+    {
+      "place_id": 297290911,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 165473,
+      "boundingbox": [
+        "35.0018894",
+        "42.0003800",
+        "-120.0065184",
+        "-114.0402955"
+      ],
+      "lat": "39.5158825",
+      "lon": "-116.8537220",
+      "name": "Nevada",
+      "display_name": "Nevada, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.745818516698056
+    }
+  ],
+  "new_hampshire-usa": [
+    {
+      "place_id": 336030903,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 67213,
+      "boundingbox": [
+        "42.6972286",
+        "45.3057789",
+        "-72.5572359",
+        "-70.5613593"
+      ],
+      "lat": "43.4849133",
+      "lon": "-71.6553992",
+      "name": "New Hampshire",
+      "display_name": "New Hampshire, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.732445998924136
+    }
+  ],
+  "new_orleans-usa": [
+    {
+      "place_id": 279378703,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 131885,
+      "boundingbox": [
+        "29.8654809",
+        "30.1994687",
+        "-90.1399307",
+        "-89.6251763"
+      ],
+      "lat": "29.9559145",
+      "lon": "-90.0730259",
+      "name": "La Nouvelle-Orléans",
+      "display_name": "La Nouvelle-Orléans, Paroisse d'Orléans, Louisiane, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7147006329338063
+    }
+  ],
+  "new_south_wales-australia": [
+    {
+      "place_id": 19031987,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2316593,
+      "boundingbox": [
+        "-37.5280139",
+        "-28.1415262",
+        "140.9992723",
+        "159.3390311"
+      ],
+      "lat": "-31.8759835",
+      "lon": "147.2869493",
+      "name": "Nouvelle Galles du Sud",
+      "display_name": "Nouvelle Galles du Sud, Australie",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7397742225306602
+    }
+  ],
+  "new_york-usa": [
+    {
+      "place_id": 332469196,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 175905,
+      "boundingbox": [
+        "40.4765780",
+        "40.9176300",
+        "-74.2588430",
+        "-73.7002330"
+      ],
+      "lat": "40.7127281",
+      "lon": "-74.0060152",
+      "name": "New York",
+      "display_name": "New York, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.8716708671039277
+    }
+  ],
+  "newark-usa": [
+    {
+      "place_id": 331041696,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 170486,
+      "boundingbox": [
+        "40.6746818",
+        "40.7881387",
+        "-74.2513334",
+        "-74.1141786"
+      ],
+      "lat": "40.7356570",
+      "lon": "-74.1723667",
+      "name": "Newark",
+      "display_name": "Newark, Essex County, New Jersey, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6518469487319686
+    }
+  ],
+  "nickelsdorf-austria": [
+    {
+      "place_id": 60133582,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 304251,
+      "boundingbox": [
+        "47.8744352",
+        "47.9928428",
+        "16.9961762",
+        "17.1170151"
+      ],
+      "lat": "47.9403019",
+      "lon": "17.0661763",
+      "name": "Nickelsdorf",
+      "display_name": "Nickelsdorf, Bezirk Neusiedl am See, Burgenland, 2425, Autriche",
+      "category": "boundary",
+      "addresstype": "village",
+      "importance": 0.441229481330408
+    }
+  ],
+  "nimes-france": [
+    {
+      "place_id": 75072551,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 378685,
+      "boundingbox": [
+        "43.7412659",
+        "43.9230177",
+        "4.2356708",
+        "4.4496605"
+      ],
+      "lat": "43.8374249",
+      "lon": "4.3600687",
+      "name": "Nîmes",
+      "display_name": "Nîmes, Gard, Occitanie, France métropolitaine, France",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6452661530490741
+    }
+  ],
+  "north_carolina-usa": [
+    {
+      "place_id": 314906421,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 224045,
+      "boundingbox": [
+        "33.7528780",
+        "36.5881570",
+        "-84.3218293",
+        "-75.4001190"
+      ],
+      "lat": "35.6729639",
+      "lon": "-79.0392919",
+      "name": "Caroline du Nord",
+      "display_name": "Caroline du Nord, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7660739825877708
+    }
+  ],
+  "noumea-new_caledonia": [
+    {
+      "place_id": 22838372,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 377752,
+      "boundingbox": [
+        "-22.3125269",
+        "-22.2167228",
+        "166.3857934",
+        "166.5040433"
+      ],
+      "lat": "-22.2745264",
+      "lon": "166.4424190",
+      "name": "Nouméa",
+      "display_name": "Nouméa, Province Sud, Nouvelle-Calédonie, 98800, France",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.5753368301059751
+    }
+  ],
+  "oakland-usa": [
+    {
+      "place_id": 299681938,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2833530,
+      "boundingbox": [
+        "37.6301063",
+        "37.8854257",
+        "-122.3558935",
+        "-122.1144203"
+      ],
+      "lat": "37.8044557",
+      "lon": "-122.2713560",
+      "name": "Oakland",
+      "display_name": "Oakland, Comté d'Alameda, Californie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6778224079271288
+    }
+  ],
+  "oklahoma-usa": [
+    {
+      "place_id": 305790325,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 161645,
+      "boundingbox": [
+        "33.6191533",
+        "37.0022994",
+        "-103.0024413",
+        "-94.4312145"
+      ],
+      "lat": "34.9550817",
+      "lon": "-97.2684063",
+      "name": "Oklahoma",
+      "display_name": "Oklahoma, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7556370366388713
+    }
+  ],
+  "omaha-usa": [
+    {
+      "place_id": 413916893,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 169759,
+      "boundingbox": [
+        "41.1905850",
+        "41.3930618",
+        "-96.2682000",
+        "-95.8711410"
+      ],
+      "lat": "41.2587459",
+      "lon": "-95.9383758",
+      "name": "Omaha",
+      "display_name": "Omaha, Douglas County, Nebraska, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.647692443749262
+    }
+  ],
+  "oregon-usa": [
+    {
+      "place_id": 301888014,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 165476,
+      "boundingbox": [
+        "41.9917940",
+        "46.2923948",
+        "-124.7035410",
+        "-116.4631465"
+      ],
+      "lat": "43.9792797",
+      "lon": "-120.7372570",
+      "name": "Oregon",
+      "display_name": "Oregon, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7674006663240467
+    }
+  ],
+  "osaka-japan": [
+    {
+      "place_id": 407375543,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 358674,
+      "boundingbox": [
+        "34.5861540",
+        "34.7688490",
+        "135.3099784",
+        "135.5991702"
+      ],
+      "lat": "34.6937569",
+      "lon": "135.5014539",
+      "name": "Osaka",
+      "display_name": "Osaka, Préfecture d'Osaka, Japon",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7298219728348557
+    }
+  ],
+  "oslo-norway": [
+    {
+      "place_id": 150893086,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 406091,
+      "boundingbox": [
+        "59.8093113",
+        "60.1351064",
+        "10.4891652",
+        "10.9513894"
+      ],
+      "lat": "59.9133301",
+      "lon": "10.7389701",
+      "name": "Oslo",
+      "display_name": "Oslo, Norvège",
+      "category": "boundary",
+      "addresstype": "county",
+      "importance": 0.7626360265737919
+    }
+  ],
+  "ostrava-czechia": [
+    {
+      "place_id": 171721257,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 437354,
+      "boundingbox": [
+        "49.7257571",
+        "49.9137759",
+        "18.0984110",
+        "18.3762911"
+      ],
+      "lat": "49.8349139",
+      "lon": "18.2820084",
+      "name": "Ostrava",
+      "display_name": "Ostrava, okres Ostrava-město, Moravskoslezský kraj, Moravie-Silésie, Tchéquie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6555888483367875
+    }
+  ],
+  "oulu-finland": [
+    {
+      "place_id": 252944067,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2711874,
+      "boundingbox": [
+        "64.8444120",
+        "65.5643522",
+        "24.1184654",
+        "26.7715283"
+      ],
+      "lat": "65.0117869",
+      "lon": "25.4701983",
+      "name": "Oulu",
+      "display_name": "Oulu, Oulun seutukunta, Ostrobotnie du Nord, Manner-Suomi, Finlande",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6332727144052127
+    }
+  ],
+  "pagney_derriere_barine-france": [
+    {
+      "place_id": 109367776,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2259739,
+      "boundingbox": [
+        "48.6867670",
+        "48.7149732",
+        "5.8165060",
+        "5.8834406"
+      ],
+      "lat": "48.6943000",
+      "lon": "5.8447000",
+      "name": "Pagney-derrière-Barine",
+      "display_name": "Pagney-derrière-Barine, Toul, Meurthe-et-Moselle, Grand Est, France métropolitaine, 54200, France",
+      "category": "boundary",
+      "addresstype": "village",
+      "importance": 0.5693010941844856
+    }
+  ],
+  "papeete-french_polynesia": [
+    {
+      "place_id": 140285,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 5829526,
+      "boundingbox": [
+        "-17.5921867",
+        "-17.5242891",
+        "-149.5826050",
+        "-149.5270154"
+      ],
+      "lat": "-17.5373835",
+      "lon": "-149.5659964",
+      "name": "Papeete",
+      "display_name": "Papeete, Îles du Vent, Polynésie française, 98714, France",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.56102762459594
+    }
+  ],
+  "paris-france": [
+    {
+      "place_id": 88664949,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 71525,
+      "boundingbox": [
+        "48.8155755",
+        "48.9021560",
+        "2.2241220",
+        "2.4697602"
+      ],
+      "lat": "48.8534951",
+      "lon": "2.3483915",
+      "name": "Paris",
+      "display_name": "Paris, Île-de-France, France métropolitaine, France",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.8845663630228834
+    }
+  ],
+  "pennsylvania-usa": [
+    {
+      "place_id": 323721176,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 162109,
+      "boundingbox": [
+        "39.7197662",
+        "42.5161334",
+        "-80.5210906",
+        "-74.6896720"
+      ],
+      "lat": "40.9699889",
+      "lon": "-77.7278831",
+      "name": "Pennsylvanie",
+      "display_name": "Pennsylvanie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.8056495597965124
+    }
+  ],
+  "penrose-new_zealand": [
+    {
+      "place_id": 22078617,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 62201548,
+      "boundingbox": [
+        "-36.9311443",
+        "-36.8911443",
+        "174.7947813",
+        "174.8347813"
+      ],
+      "lat": "-36.9111443",
+      "lon": "174.8147813",
+      "name": "Penrose",
+      "display_name": "Penrose, Maungakiekie-Tāmaki, Auckland, 1061, Nouvelle-Zélande",
+      "category": "place",
+      "addresstype": "suburb",
+      "importance": 0.3031433907580771
+    }
+  ],
+  "philadelphia-usa": [
+    {
+      "place_id": 328176169,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 188022,
+      "boundingbox": [
+        "39.8670050",
+        "40.1379593",
+        "-75.2802977",
+        "-74.9558314"
+      ],
+      "lat": "39.9527237",
+      "lon": "-75.1635262",
+      "name": "Philadelphie",
+      "display_name": "Philadelphie, Comté de Philadelphie, Pennsylvanie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7664927328891414
+    }
+  ],
+  "pico_rivera-usa": [
+    {
+      "place_id": 293037588,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2312930,
+      "boundingbox": [
+        "33.9504801",
+        "34.0290947",
+        "-118.1228268",
+        "-118.0408072"
+      ],
+      "lat": "33.9830688",
+      "lon": "-118.0967350",
+      "name": "Pico Rivera",
+      "display_name": "Pico Rivera, Los Angeles County, Californie, 90660, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.5164326079830208
+    }
+  ],
+  "pittsburgh-usa": [
+    {
+      "place_id": 323254481,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 188553,
+      "boundingbox": [
+        "40.3615200",
+        "40.5012021",
+        "-80.0955170",
+        "-79.8657280"
+      ],
+      "lat": "40.4416941",
+      "lon": "-79.9900861",
+      "name": "Pittsburgh",
+      "display_name": "Pittsburgh, Allegheny County, Pennsylvanie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7093806288152192
+    }
+  ],
+  "playa_del_carmen-mexico": [
+    {
+      "place_id": 278981187,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 6329645,
+      "boundingbox": [
+        "20.5756935",
+        "20.7574257",
+        "-87.2160909",
+        "-86.9837060"
+      ],
+      "lat": "20.6461095",
+      "lon": "-87.0809021",
+      "name": "Playa del Carmen",
+      "display_name": "Playa del Carmen, Quintana Roo, Mexique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.48032039299368884
+    }
+  ],
+  "porto_alegre-brazil": [
+    {
+      "place_id": 7592742,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 242397,
+      "boundingbox": [
+        "-30.2694499",
+        "-29.9324744",
+        "-51.3034404",
+        "-51.0188522"
+      ],
+      "lat": "-30.0324999",
+      "lon": "-51.2303767",
+      "name": "Porto Alegre",
+      "display_name": "Porto Alegre, Região Geográfica Imediata de Porto Alegre, Région métropolitaine de Porto Alegre, Região Geográfica Intermediária de Porto Alegre, Rio Grande do Sul, Région Sud, Brésil",
+      "category": "boundary",
+      "addresstype": "municipality",
+      "importance": 0.6724448845777806
+    }
+  ],
+  "prague-czechia": [
+    {
+      "place_id": 122233276,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 435514,
+      "boundingbox": [
+        "49.9419006",
+        "50.1774301",
+        "14.2244355",
+        "14.7067867"
+      ],
+      "lat": "50.0874654",
+      "lon": "14.4212535",
+      "name": "Capitale de Prague",
+      "display_name": "Capitale de Prague, Prague, Tchéquie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7966059304592609
+    }
+  ],
+  "quebec-canada": [
+    {
+      "place_id": 347794811,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 61549,
+      "boundingbox": [
+        "44.9913689",
+        "62.5824657",
+        "-79.7628726",
+        "-57.1074889"
+      ],
+      "lat": "52.4760892",
+      "lon": "-71.8258668",
+      "name": "Québec",
+      "display_name": "Québec, Canada",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7681813462760879
+    }
+  ],
+  "queensland-australia": [
+    {
+      "place_id": 22908692,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2316595,
+      "boundingbox": [
+        "-29.1792660",
+        "-9.0880125",
+        "137.9946464",
+        "153.6116035"
+      ],
+      "lat": "-22.1646782",
+      "lon": "144.5844903",
+      "name": "Queensland",
+      "display_name": "Queensland, Australie",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7283894020512254
+    }
+  ],
+  "recife-brazil": [
+    {
+      "place_id": 13883315,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 303585,
+      "boundingbox": [
+        "-8.1551869",
+        "-7.9289670",
+        "-35.0186478",
+        "-34.8515401"
+      ],
+      "lat": "-8.0584933",
+      "lon": "-34.8848193",
+      "name": "Recife",
+      "display_name": "Recife, Região Geográfica Imediata do Recife, Região Metropolitana do Recife, Região Geográfica Intermediária do Recife, Pernambouc, Région Nord-est, Brésil",
+      "category": "boundary",
+      "addresstype": "municipality",
+      "importance": 0.6409143593221559
+    }
+  ],
+  "rio_de_janeiro-brazil": [
+    {
+      "place_id": 410209222,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2697338,
+      "boundingbox": [
+        "-23.0827051",
+        "-22.7460878",
+        "-43.7962520",
+        "-43.0990811"
+      ],
+      "lat": "-22.9110137",
+      "lon": "-43.2093727",
+      "name": "Rio de Janeiro",
+      "display_name": "Rio de Janeiro, Região Geográfica Imediata do Rio de Janeiro, Região Metropolitana do Rio de Janeiro, Região Geográfica Intermediária do Rio de Janeiro, Rio de Janeiro, Région Sud-est, Brésil",
+      "category": "boundary",
+      "addresstype": "municipality",
+      "importance": 0.7734942754270069
+    }
+  ],
+  "riyadh-saudi_arabia": [
+    {
+      "place_id": 40208740,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 3678409,
+      "boundingbox": [
+        "19.2083336",
+        "27.7020999",
+        "41.6811300",
+        "48.2582000"
+      ],
+      "lat": "23.3333330",
+      "lon": "45.3333330",
+      "name": "Riyad",
+      "display_name": "Riyad, Arabie saoudite",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.5535939838799924
+    }
+  ],
+  "rosemont-usa": [
+    {
+      "place_id": 343570862,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 5728807,
+      "boundingbox": [
+        "41.9737370",
+        "42.0096230",
+        "-87.8970844",
+        "-87.8554951"
+      ],
+      "lat": "41.9941334",
+      "lon": "-87.8756737",
+      "name": "Rosemont",
+      "display_name": "Rosemont, Leyden Township, Cook County, Illinois, 60018, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "village",
+      "importance": 0.5510592523601299
+    }
+  ],
+  "rotselaar-belgium": [
+    {
+      "place_id": 95170029,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 214462,
+      "boundingbox": [
+        "50.9284250",
+        "50.9862828",
+        "4.6699517",
+        "4.8033347"
+      ],
+      "lat": "50.9514713",
+      "lon": "4.7094054",
+      "name": "Rotselaer",
+      "display_name": "Rotselaer, Louvain, Brabant flamand, Flandre, Belgique",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.47338334657241415
+    }
+  ],
+  "saitama-japan": [
+    {
+      "place_id": 416174848,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1768185,
+      "boundingbox": [
+        "35.7533840",
+        "36.2834120",
+        "138.7113580",
+        "139.9003330"
+      ],
+      "lat": "35.9754168",
+      "lon": "139.4160114",
+      "name": "Préfecture de Saitama",
+      "display_name": "Préfecture de Saitama, Japon",
+      "category": "boundary",
+      "addresstype": "province",
+      "importance": 0.7053875232750809
+    }
+  ],
+  "salem-germany": [
+    {
+      "place_id": 131648105,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1476157,
+      "boundingbox": [
+        "53.6212168",
+        "53.6809416",
+        "10.7820049",
+        "10.9349371"
+      ],
+      "lat": "53.6563082",
+      "lon": "10.8253152",
+      "name": "Salem",
+      "display_name": "Salem, Lauenburgische Seen, Kreis Herzogtum Lauenburg, Schleswig-Holstein, Allemagne",
+      "category": "boundary",
+      "addresstype": "village",
+      "importance": 0.4842920675609961
+    }
+  ],
+  "san_francisco-usa": [
+    {
+      "place_id": 390665289,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 111968,
+      "boundingbox": [
+        "37.6403143",
+        "37.9296678",
+        "-123.1738250",
+        "-122.2814578"
+      ],
+      "lat": "37.7792588",
+      "lon": "-122.4193286",
+      "name": "San Francisco",
+      "display_name": "San Francisco, Californie, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7718570210055521
+    }
+  ],
+  "san_isidro-argentina": [
+    {
+      "place_id": 16020249,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1877221,
+      "boundingbox": [
+        "-34.4989542",
+        "-34.4565417",
+        "-58.5643747",
+        "-58.4958356"
+      ],
+      "lat": "-34.4739792",
+      "lon": "-58.5264866",
+      "name": "San Isidro",
+      "display_name": "San Isidro, Partido de San Isidro, Province de Buenos Aires, 1642, Argentine",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.4978507837927114
+    }
+  ],
+  "san_jose-costa_rica": [
+    {
+      "place_id": 286155610,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 197698100,
+      "boundingbox": [
+        "9.7725427",
+        "10.0925427",
+        "-84.2395782",
+        "-83.9195782"
+      ],
+      "lat": "9.9325427",
+      "lon": "-84.0795782",
+      "name": "San José",
+      "display_name": "San José, Ciudad de San José, San José, 10103, Costa Rica",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.6297292769009681
+    }
+  ],
+  "santiago-chile": [
+    {
+      "place_id": 1468684,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 50016356,
+      "boundingbox": [
+        "-33.5977756",
+        "-33.2777756",
+        "-70.8104502",
+        "-70.4904502"
+      ],
+      "lat": "-33.4377756",
+      "lon": "-70.6504502",
+      "name": "Santiago",
+      "display_name": "Santiago, Provincia de Santiago, Métropolitaine de Santiago, 8320000, Chili",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.7175122107535223
+    }
+  ],
+  "sanya-china": [
+    {
+      "place_id": 402933449,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2128284,
+      "boundingbox": [
+        "18.1438431",
+        "18.6302034",
+        "108.9281747",
+        "109.8069484"
+      ],
+      "lat": "18.2534658",
+      "lon": "109.5034392",
+      "name": "Sanya",
+      "display_name": "Sanya, Hainan, Chine",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.5573438939285458
+    }
+  ],
+  "sao_paulo-brazil": [
+    {
+      "place_id": 414760979,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 298285,
+      "boundingbox": [
+        "-24.0079003",
+        "-23.3577551",
+        "-46.8262692",
+        "-46.3650898"
+      ],
+      "lat": "-23.5506507",
+      "lon": "-46.6333824",
+      "name": "São Paulo",
+      "display_name": "São Paulo, Região Imediata de São Paulo, Região Metropolitana de São Paulo, Região Geográfica Intermediária de São Paulo, São Paulo, Région Sud-est, Brésil",
+      "category": "boundary",
+      "addresstype": "municipality",
+      "importance": 0.7446516338789693
+    }
+  ],
+  "scheessel-germany": [
+    {
+      "place_id": 131996170,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 357189,
+      "boundingbox": [
+        "53.1082424",
+        "53.2466724",
+        "9.3604066",
+        "9.6513373"
+      ],
+      "lat": "53.1667961",
+      "lon": "9.4840648",
+      "name": "Scheeßel",
+      "display_name": "Scheeßel, Rotenbourg-sur-la-Wümme (arrondissement), Basse-Saxe, 27383, Allemagne",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.46901153416383246
+    }
+  ],
+  "seattle-usa": [
+    {
+      "place_id": 299540338,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 237385,
+      "boundingbox": [
+        "47.4810022",
+        "47.7341503",
+        "-122.4596960",
+        "-122.2244330"
+      ],
+      "lat": "47.6038321",
+      "lon": "-122.3300620",
+      "name": "Seattle",
+      "display_name": "Seattle, King County, Washington, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7256641497695181
+    }
+  ],
+  "seoul-south_korea": [
+    {
+      "place_id": 411375934,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2297418,
+      "boundingbox": [
+        "37.4285424",
+        "37.7014794",
+        "126.7644328",
+        "127.1837702"
+      ],
+      "lat": "37.5666791",
+      "lon": "126.9782914",
+      "name": "Séoul",
+      "display_name": "Séoul, Corée du Sud",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7656069953535114
+    }
+  ],
+  "seville-spain": [
+    {
+      "place_id": 272030762,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 342563,
+      "boundingbox": [
+        "37.3002036",
+        "37.4529579",
+        "-6.0329183",
+        "-5.8191571"
+      ],
+      "lat": "37.3886303",
+      "lon": "-5.9953403",
+      "name": "Séville",
+      "display_name": "Séville, Andalousie, Espagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7201707754694435
+    }
+  ],
+  "sion-switzerland": [
+    {
+      "place_id": 82906692,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2757528,
+      "boundingbox": [
+        "46.1780461",
+        "46.2558485",
+        "7.3053566",
+        "7.4252740"
+      ],
+      "lat": "46.2311749",
+      "lon": "7.3588795",
+      "name": "Sion",
+      "display_name": "Sion, Valais, 1950, Suisse",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.5680693640502402
+    }
+  ],
+  "skanderborg-denmark": [
+    {
+      "place_id": 151385869,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 26559266,
+      "boundingbox": [
+        "55.9951868",
+        "56.0751868",
+        "9.8917878",
+        "9.9717878"
+      ],
+      "lat": "56.0351868",
+      "lon": "9.9317878",
+      "name": "Skanderborg",
+      "display_name": "Skanderborg, Skanderborg Kommune, Jutland central, 8660, Danemark",
+      "category": "place",
+      "addresstype": "town",
+      "importance": 0.4782194905337343
+    }
+  ],
+  "sochaux-france": [
+    {
+      "place_id": 85175592,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 123561,
+      "boundingbox": [
+        "47.5078491",
+        "47.5213153",
+        "6.8173070",
+        "6.8437928"
+      ],
+      "lat": "47.5138641",
+      "lon": "6.8305344",
+      "name": "Sochaux",
+      "display_name": "Sochaux, Montbéliard, Doubs, Bourgogne-Franche-Comté, France métropolitaine, 25600, France",
+      "category": "boundary",
+      "addresstype": "village",
+      "importance": 0.5697534730833946
+    }
+  ],
+  "south_carolina-usa": [
+    {
+      "place_id": 317906459,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 224040,
+      "boundingbox": [
+        "32.0334540",
+        "35.2154852",
+        "-83.3539979",
+        "-78.5413536"
+      ],
+      "lat": "33.6874388",
+      "lon": "-80.4363743",
+      "name": "Caroline du Sud",
+      "display_name": "Caroline du Sud, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7461551212472758
+    }
+  ],
+  "st_gallen-switzerland": [
+    {
+      "place_id": 65257890,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1683941,
+      "boundingbox": [
+        "47.3951582",
+        "47.4530776",
+        "9.2915068",
+        "9.4352403"
+      ],
+      "lat": "47.4256180",
+      "lon": "9.3762397",
+      "name": "Saint-Gall",
+      "display_name": "Saint-Gall, Wahlkreis St. Gallen, Saint-Gall, Suisse",
+      "category": "boundary",
+      "addresstype": "town",
+      "importance": 0.6265039097250832
+    }
+  ],
+  "st_louis-usa": [
+    {
+      "place_id": 309933274,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1180533,
+      "boundingbox": [
+        "38.5318587",
+        "38.7743018",
+        "-90.3206525",
+        "-90.1641941"
+      ],
+      "lat": "38.6280278",
+      "lon": "-90.1910154",
+      "name": "Saint-Louis",
+      "display_name": "Saint-Louis, Missouri, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7078550940195126
+    }
+  ],
+  "stockholm-sweden": [
+    {
+      "place_id": 153218692,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 25929985,
+      "boundingbox": [
+        "59.1651172",
+        "59.4851172",
+        "17.9110935",
+        "18.2310935"
+      ],
+      "lat": "59.3251172",
+      "lon": "18.0710935",
+      "name": "Stockholm",
+      "display_name": "Stockholm, Stockholms kommun, Comté de Stockholm, 111 29, Suède",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.7931429266585293
+    }
+  ],
+  "sydney-australia": [
+    {
+      "place_id": 407902064,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 5750005,
+      "boundingbox": [
+        "-34.1732416",
+        "-33.3641864",
+        "150.2608250",
+        "151.3438980"
+      ],
+      "lat": "-33.8698439",
+      "lon": "151.2082848",
+      "name": "Sydney",
+      "display_name": "Sydney, Council of the City of Sydney, Nouvelle Galles du Sud, Australie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7708117000857773
+    }
+  ],
+  "taipei-taiwan": [
+    {
+      "place_id": 213967229,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1293250,
+      "boundingbox": [
+        "24.9605158",
+        "25.2102357",
+        "121.4571436",
+        "121.6659425"
+      ],
+      "lat": "25.0375198",
+      "lon": "121.5636796",
+      "name": "Taipei",
+      "display_name": "Taipei, Taïwan",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7009467966616727
+    }
+  ],
+  "texas-usa": [
+    {
+      "place_id": 292161812,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 114690,
+      "boundingbox": [
+        "25.8370600",
+        "36.5004529",
+        "-106.6458459",
+        "-93.5078217"
+      ],
+      "lat": "31.2638905",
+      "lon": "-98.5456116",
+      "name": "Texas",
+      "display_name": "Texas, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.8065410066558738
+    }
+  ],
+  "toronto-canada": [
+    {
+      "place_id": 323850010,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 324211,
+      "boundingbox": [
+        "43.5796082",
+        "43.8554425",
+        "-79.6392832",
+        "-79.1132193"
+      ],
+      "lat": "43.6534817",
+      "lon": "-79.3839347",
+      "name": "Toronto",
+      "display_name": "Toronto, Golden Horseshoe, Ontario, Canada",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7657078633351999
+    }
+  ],
+  "toronto-usa": [
+    {
+      "place_id": 344173895,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 128413,
+      "boundingbox": [
+        "41.8987461",
+        "41.9065584",
+        "-90.8672568",
+        "-90.8594528"
+      ],
+      "lat": "41.9048584",
+      "lon": "-90.8640346",
+      "name": "Toronto",
+      "display_name": "Toronto, Clinton County, Iowa, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "village",
+      "importance": 0.4592117151387016
+    }
+  ],
+  "turku-finland": [
+    {
+      "place_id": 154247165,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 399906,
+      "boundingbox": [
+        "60.3335222",
+        "60.7372962",
+        "22.0661599",
+        "22.4581649"
+      ],
+      "lat": "60.4517531",
+      "lon": "22.2670522",
+      "name": "Turku",
+      "display_name": "Turku, Turun seutukunta, Finlande-Propre, Manner-Suomi, Finlande",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6841866047911243
+    }
+  ],
+  "uniondale-usa": [
+    {
+      "place_id": 395395769,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 175613,
+      "boundingbox": [
+        "40.6840160",
+        "40.7475789",
+        "-73.6170710",
+        "-73.5748700"
+      ],
+      "lat": "40.7157545",
+      "lon": "-73.5898872",
+      "name": "Uniondale",
+      "display_name": "Uniondale, Town of Hempstead, Nassau County, New York, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "census",
+      "importance": 0.5269481199549023
+    }
+  ],
+  "utah-usa": [
+    {
+      "place_id": 304681196,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 161993,
+      "boundingbox": [
+        "36.9978085",
+        "42.0017020",
+        "-114.0528506",
+        "-109.0415767"
+      ],
+      "lat": "39.4225192",
+      "lon": "-111.7143580",
+      "name": "Utah",
+      "display_name": "Utah, États-Unis d'Amérique",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.7465172490784725
+    }
+  ],
+  "vancouver-canada": [
+    {
+      "place_id": 348152566,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1852574,
+      "boundingbox": [
+        "49.1989306",
+        "49.3161714",
+        "-123.2249611",
+        "-123.0232419"
+      ],
+      "lat": "49.2608724",
+      "lon": "-123.1139520",
+      "name": "Vancouver",
+      "display_name": "Vancouver, District régional du Grand Vancouver, Colombie-Britannique, Canada",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7340028794430691
+    }
+  ],
+  "victoria-australia": [
+    {
+      "place_id": 18878664,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2316741,
+      "boundingbox": [
+        "-39.1984867",
+        "-33.9807974",
+        "140.9619017",
+        "150.0332821"
+      ],
+      "lat": "-36.5986096",
+      "lon": "144.6780052",
+      "name": "Victoria",
+      "display_name": "Victoria, Australie",
+      "category": "boundary",
+      "addresstype": "state",
+      "importance": 0.6738977707050955
+    }
+  ],
+  "vienna-austria": [
+    {
+      "place_id": 408516806,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 109166,
+      "boundingbox": [
+        "48.1179069",
+        "48.3226679",
+        "16.1818310",
+        "16.5775132"
+      ],
+      "lat": "48.2083537",
+      "lon": "16.3725042",
+      "name": "Vienne",
+      "display_name": "Vienne, Autriche",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.8187832446377734
+    }
+  ],
+  "warsaw-poland": [
+    {
+      "place_id": 415345214,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 336074,
+      "boundingbox": [
+        "52.0978497",
+        "52.3681531",
+        "20.8516882",
+        "21.2711512"
+      ],
+      "lat": "52.2333742",
+      "lon": "21.0711489",
+      "name": "Varsovie",
+      "display_name": "Varsovie, Voïvodie de Mazovie, Pologne",
+      "category": "boundary",
+      "addresstype": "administrative",
+      "importance": 0.7900149029306864
+    }
+  ],
+  "washington-usa": [
+    {
+      "place_id": 394537071,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 5396194,
+      "boundingbox": [
+        "38.7916303",
+        "38.9959680",
+        "-77.1197949",
+        "-76.9093660"
+      ],
+      "lat": "38.8950368",
+      "lon": "-77.0365427",
+      "name": "Washington",
+      "display_name": "Washington, District de Columbia, États-Unis d'Amérique",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.8030666834340177
+    }
+  ],
+  "wellington-new_zealand": [
+    {
+      "place_id": 21056696,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 204648,
+      "boundingbox": [
+        "-41.4487953",
+        "-41.1287953",
+        "174.6172114",
+        "174.9372114"
+      ],
+      "lat": "-41.2887953",
+      "lon": "174.7772114",
+      "name": "Wellington",
+      "display_name": "Wellington, Wellington City, Wellington, 6011, Nouvelle-Zélande",
+      "category": "place",
+      "addresstype": "city",
+      "importance": 0.6619655117341691
+    }
+  ],
+  "werchter-belgium": [
+    {
+      "place_id": 95227286,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2999936,
+      "boundingbox": [
+        "50.9551344",
+        "50.9862828",
+        "4.6699517",
+        "4.7682779"
+      ],
+      "lat": "50.9705840",
+      "lon": "4.6937963",
+      "name": "Werchter",
+      "display_name": "Werchter, Rotselaer, Louvain, Brabant flamand, Flandre, 3118, Belgique",
+      "category": "boundary",
+      "addresstype": "village",
+      "importance": 0.43776171449460705
+    }
+  ],
+  "west_melbourne-australia": [
+    {
+      "place_id": 18958153,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 2398105,
+      "boundingbox": [
+        "-37.8228210",
+        "-37.7982560",
+        "144.9054550",
+        "144.9564460"
+      ],
+      "lat": "-37.8087470",
+      "lon": "144.9238207",
+      "name": "Melbourne-Ouest",
+      "display_name": "Melbourne-Ouest, Melbourne, City of Melbourne, Victoria, 3003, Australie",
+      "category": "boundary",
+      "addresstype": "suburb",
+      "importance": 0.34696035272295483
+    }
+  ],
+  "westcliff_on_sea-uk": [
+    {
+      "place_id": 91147411,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 598377241,
+      "boundingbox": [
+        "51.5228858",
+        "51.5628858",
+        "0.6659213",
+        "0.7059213"
+      ],
+      "lat": "51.5428858",
+      "lon": "0.6859213",
+      "name": "Westcliff-on-Sea",
+      "display_name": "Westcliff-on-Sea, Leigh on Sea, Southend-on-Sea, Essex, Angleterre, SS0 8FL, Royaume-Uni",
+      "category": "place",
+      "addresstype": "suburb",
+      "importance": 0.3832630312172756
+    }
+  ],
+  "willemstad-netherlands_antilles": [
+    {
+      "place_id": 0,
+      "licence": "",
+      "osm_type": "",
+      "osm_id": 0,
+      "boundingbox": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lat": "",
+      "lon": "",
+      "name": "",
+      "display_name": "",
+      "category": "",
+      "addresstype": "",
+      "importance": 0
+    }
+  ],
+  "windsor-canada": [
+    {
+      "place_id": 340584935,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 7025718,
+      "boundingbox": [
+        "42.2341581",
+        "42.3567913",
+        "-83.1148496",
+        "-82.8911364"
+      ],
+      "lat": "42.2858536",
+      "lon": "-82.9780695",
+      "name": "Windsor",
+      "display_name": "Windsor, Southwestern Ontario, Ontario, Canada",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.5979273708630157
+    }
+  ],
+  "yogyakarta-indonesia": [
+    {
+      "place_id": 27130055,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 5615250,
+      "boundingbox": [
+        "-7.8401773",
+        "-7.7664911",
+        "110.3442608",
+        "110.4067929"
+      ],
+      "lat": "-7.8012646",
+      "lon": "110.3646857",
+      "name": "Kota Yogyakarta",
+      "display_name": "Kota Yogyakarta, Daerah Istimewa Yogyakarta, Jawa, Indonésie",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.5777873647429917
+    }
+  ],
+  "zaragoza-spain": [
+    {
+      "place_id": 271134439,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 345740,
+      "boundingbox": [
+        "41.4516625",
+        "41.9314873",
+        "-1.1737289",
+        "-0.6803895"
+      ],
+      "lat": "41.6521342",
+      "lon": "-0.8809428",
+      "name": "Saragosse",
+      "display_name": "Saragosse, Zaragoza, Saragosse, Aragon, Espagne",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.6816180536478679
+    }
+  ],
+  "zurich-switzerland": [
+    {
+      "place_id": 64636929,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 1682248,
+      "boundingbox": [
+        "47.3202187",
+        "47.4346662",
+        "8.4480061",
+        "8.6254413"
+      ],
+      "lat": "47.3744489",
+      "lon": "8.5410422",
+      "name": "Zurich",
+      "display_name": "Zurich, District de Zurich, Zurich, Suisse",
+      "category": "boundary",
+      "addresstype": "city",
+      "importance": 0.7405764220936834
+    }
+  ]
+}

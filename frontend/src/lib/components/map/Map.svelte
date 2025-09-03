@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { Artist, Location } from '@/types';
-	import { Map, TileLayer, Control, Marker, DivIcon } from 'leaflet';
+	import { Map, TileLayer, Marker, DivIcon } from 'leaflet';
 	import { onMount, untrack } from 'svelte';
+	import { config } from '@/config/config';
 
 	// Import des polices
 	const link1 = document.createElement('link');
@@ -82,7 +83,7 @@
 		clearAllMarkers();
 
 		loading = true;
-		const response = await fetch(`http://localhost:8080/locations/${artist.id}`, {
+		const response = await fetch(`${config.apiBaseUrl}/locations/${artist.id}`, {
 			signal: abortController?.signal
 		});
 		const data: Record<string, Location> = await response.json();
@@ -94,7 +95,6 @@
 
 		for (const location of currentArtistLocations) {
 			new Marker([Number(location.lat), Number(location.lon)], {
-				title: `(${location.dates.length} concerts)`,
 				icon: new DivIcon({
 					className: '',
 					iconSize: [32, 32],
@@ -150,6 +150,13 @@
 			marker.addEventListener('mouseleave', () => {
 				hoverCard.classList.remove('active');
 			});
+
+			marker.addEventListener('click', () => {
+				const location = currentArtistLocations.find((location) => location.slug === marker.id);
+				if (location) {
+					handleSelectLocation(location);
+				}
+			});
 		}
 	}
 
@@ -203,7 +210,7 @@
 				[maxLat + latMargin, maxLon + lonMargin]
 			],
 			{
-				paddingTopLeft: [414, 0] // 350px (sidebar) + 64px (4rem de marge)
+				paddingTopLeft: [300, 0]
 			}
 		);
 	}
@@ -216,7 +223,7 @@
 				[Number(location.boundingbox[1]), Number(location.boundingbox[3])]
 			],
 			{
-				paddingTopLeft: [414, 0] // 350px (sidebar) + 64px (4rem de marge)
+				paddingTopLeft: [300, 0]
 			}
 		);
 	}

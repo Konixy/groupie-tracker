@@ -1,0 +1,39 @@
+# Fichiers de développement
+*.md
+README.md
+
+# Fichiers Git
+.git
+.gitignore
+
+# Fichiers de build locaux
+*.exe
+*.dll
+*.so
+*.dylib
+main
+
+# Fichiers de test
+*_test.go
+test
+
+# Fichiers de configuration IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Fichiers temporaires
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Fichiers OS
+.DS_Store
+Thumbs.db
+
+# Variables d'environnement
+.env
+.env.local

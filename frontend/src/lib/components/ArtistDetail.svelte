@@ -2,6 +2,7 @@
 	import { fade, scale } from 'svelte/transition';
 	import type { Artist } from '@/types';
 	import { expoOut } from 'svelte/easing';
+	import { config } from '@/config/config';
 
 	// Import des polices
 	const link1 = document.createElement('link');
@@ -46,7 +47,7 @@
 	async function fetchConcerts() {
 		try {
 			loadingConcerts = true;
-			const response = await fetch(`http://localhost:8080/artists/${artist.id}`);
+			const response = await fetch(`${config.apiBaseUrl}/artists/${artist.id}`);
 			if (response.ok) {
 				const data = await response.json();
 				concerts = data.concerts || {};
