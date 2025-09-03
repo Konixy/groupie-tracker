@@ -20,6 +20,18 @@
 		'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap';
 	document.head.appendChild(link3);
 
+	// Import local de la police Hanson
+	const hansonStyle = document.createElement('style');
+	hansonStyle.textContent = `
+		@font-face {
+			font-family: 'Hanson';
+			src: url('/font/Hanson-Bold.ttf') format('truetype');
+			font-weight: bold;
+			font-style: normal;
+		}
+	`;
+	document.head.appendChild(hansonStyle);
+
 	const addressTypes = {
 		country: 'pays',
 		state: 'état',
@@ -164,6 +176,9 @@
 
 <div class="map-container">
 	<div bind:this={mapRef} class="map" aria-label="Carte des concerts"></div>
+	<button class="general-view-button" onclick={() => handleMoveToGeneralView()}>
+		Vue générale
+	</button>
 	<div class="side-panel">
 		{#if loading}
 			<div class="loading">
@@ -174,25 +189,28 @@
 			<div class="concerts-list">
 				<div class="concerts-list-header">
 					<h2>Liste des concerts</h2>
-					<button onclick={() => handleMoveToGeneralView()}> General view </button>
+					<div class="header-separator"></div>
 				</div>
 				<div class="concerts-list-content">
-					{#each currentArtistLocations as location (location.slug)}
-						<div>
-							<button onclick={() => handleSelectLocation(location)} class="concert-item">
-								{location.name}
-								<span class="concert-item-type"
-									>({location.type in addressTypes
-										? addressTypes[location.type as keyof typeof addressTypes]
-										: location.type})</span
-								>
-							</button>
-							<div class="concert-item-dates">
-								{#each location.dates as date}
-									<span class="concert-item-date">{date}</span>
-								{/each}
+					{#each currentArtistLocations as location, locationIndex (location.slug)}
+						{#each location.dates as date, dateIndex (date)}
+							<div class="concert-row">
+								<button onclick={() => handleSelectLocation(location)} class="concert-item">
+									<div class="concert-info">
+										<span class="concert-location">{location.name}</span>
+										<span class="concert-type"
+											>({location.type in addressTypes
+												? addressTypes[location.type as keyof typeof addressTypes]
+												: location.type})</span
+										>
+										<span class="concert-dates">{date}</span>
+									</div>
+								</button>
+								{#if !(locationIndex === currentArtistLocations.length - 1 && dateIndex === location.dates.length - 1)}
+									<div class="concert-separator"></div>
+								{/if}
 							</div>
-						</div>
+						{/each}
 					{/each}
 				</div>
 			</div>
@@ -204,7 +222,7 @@
 	.map-container {
 		position: relative;
 		width: 100%;
-		height: calc(100vh - 4rem);
+		height: calc(100vh - 8rem);
 	}
 
 	.side-panel {
@@ -217,7 +235,7 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1.5rem;
-		background-color: rgba(102, 102, 102, 0.95);
+		background-color: var(--dark-vibrant);
 		backdrop-filter: blur(10px);
 		border-radius: 1.5rem;
 		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -231,38 +249,53 @@
 		background-color: var(--dark-muted);
 	}
 
+	.general-view-button {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+		background-color: var(--dark-vibrant);
+		color: var(--light-vibrant);
+		border: none;
+		padding: 0.5rem 1rem;
+		border-radius: 50px;
+		cursor: pointer;
+		z-index: 1000;
+		font-family: 'Jost', sans-serif;
+		font-weight: 500;
+		transition: background-color 0.3s ease;
+	}
+
+	.general-view-button:hover {
+		background-color: var(--dark-muted);
+	}
+
 	@media (max-width: 1000px) {
 		.side-panel {
 			position: relative;
 			top: 0;
 			left: 0;
 			width: 100%;
-			max-height: 40vh;
+			max-height: 35vh;
 			margin-bottom: 1rem;
 		}
 
 		.map {
-			height: calc(60vh - 2rem);
+			height: calc(65vh - 2rem);
 		}
 	}
 
 	.concerts-list-header {
 		display: flex;
-		justify-content: space-between;
+		flex-direction: column;
 		align-items: center;
+		gap: 0.5rem;
 	}
 
-	.concerts-list-header button {
-		background-color: var(--dark-vibrant);
-		color: var(--light-vibrant);
-		border: none;
-		padding: 0.5rem 1rem;
-		border-radius: 0.5rem;
-		cursor: pointer;
-	}
-
-	.concerts-list-header button:hover {
-		background-color: var(--dark-muted);
+	.header-separator {
+		width: 50%;
+		height: 1px;
+		background: color-mix(in srgb, var(--light-vibrant), transparent 60%);
+		margin: 0.5rem;
 	}
 
 	.concerts-list {
@@ -279,36 +312,82 @@
 		gap: 0.5rem;
 		overflow-y: auto;
 		max-height: 100%;
+		scrollbar-width: thin;
+		scrollbar-color: var(--light-vibrant) var(--dark-muted);
+	}
+
+	.concerts-list-content::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	.concerts-list-content::-webkit-scrollbar-track {
+		background: var(--dark-muted);
+		border-radius: 4px;
+	}
+
+	.concerts-list-content::-webkit-scrollbar-thumb {
+		background: var(--light-vibrant);
+		border-radius: 4px;
+		transition: background 0.3s ease;
+	}
+
+	.concerts-list-content::-webkit-scrollbar-thumb:hover {
+		background: var(--muted);
+	}
+
+	.concert-row {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.concert-item {
-		border: 2px solid color-mix(in srgb, var(--light-vibrant), transparent 70%);
+		border: none;
 		outline: none;
 		color: inherit;
-		transition: background-color 0.1s ease;
-		padding: 0.5rem;
+		transition: background-color 0.2s ease;
+		padding: 0.8rem;
 		border-radius: 0.5rem;
-		background-color: var(--dark-muted);
+		background-color: transparent;
+		width: 100%;
+		text-align: left;
 	}
 
 	.concert-item:hover {
-		background-color: var(--dark-vibrant);
+		background-color: var(--dark-muted);
 	}
 
-	.concert-item-type {
-		font-size: 0.8rem;
-		color: color-mix(in srgb, var(--light-vibrant), transparent 70%);
-	}
-
-	.concert-item-dates {
+	.concert-info {
 		display: flex;
-		flex-direction: column;
-		gap: 0.2rem;
+		align-items: center;
+		gap: 0.5rem;
+		flex-wrap: wrap;
 	}
 
-	.concert-item-date {
-		font-size: 0.8rem;
-		color: color-mix(in srgb, var(--light-vibrant), transparent 70%);
+	.concert-location {
+		font-family: 'Hanson', sans-serif;
+		font-weight: bold;
+		font-size: 0.9rem;
+		color: var(--light-vibrant);
+	}
+
+	.concert-type {
+		font-size: 0.75rem;
+		color: color-mix(in srgb, var(--light-vibrant), transparent 30%);
+		font-style: italic;
+	}
+
+	.concert-dates {
+		font-family: 'Hanson', sans-serif;
+		font-weight: bold;
+		font-size: 0.7rem;
+		color: color-mix(in srgb, var(--light-vibrant), transparent 20%);
+		margin-left: auto;
+	}
+
+	.concert-separator {
+		height: 1px;
+		background: color-mix(in srgb, var(--light-vibrant), transparent 80%);
+		margin: 0.5rem 0;
 	}
 
 	.loading {
@@ -336,7 +415,7 @@
 	}
 
 	.concerts-list h2 {
-		font-family: 'Russo One', sans-serif;
+		font-family: 'Bukhari Script', cursive;
 		font-weight: 400;
 	}
 

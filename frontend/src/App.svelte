@@ -22,6 +22,18 @@
 		'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap';
 	document.head.appendChild(link2);
 
+	// Import local de la police Hanson
+	const hansonStyle = document.createElement('style');
+	hansonStyle.textContent = `
+		@font-face {
+			font-family: 'Hanson';
+			src: url('/font/Hanson-Bold.ttf') format('truetype');
+			font-weight: bold;
+			font-style: normal;
+		}
+	`;
+	document.head.appendChild(hansonStyle);
+
 	let artists = $state<Artist[]>([]);
 	let selectedArtist = $state<Artist | null>(null);
 	let loading = $state(true);
@@ -158,8 +170,6 @@
 		<div class="center-navigation">
 			<button class="center-nav-button" onclick={() => scrollToSection('map-section')}>
 				Concerts
-				<!-- INSERT_YOUR_CODE -->
-				<!-- Flèche vers le bas pour indiquer la navigation vers la section suivante -->
 				<svg
 					width="24"
 					height="24"
@@ -181,7 +191,7 @@
 	<section id="map-section" class="map-section">
 		<div class="title">
 			<h1 class="concerts-title">Concerts</h1>
-			<h2 class="artist-subtitle">de {artists?.[currentIndex]?.name || '...'}</h2>
+			<h2 class="artist-subtitle">DE {artists?.[currentIndex]?.name || '...'}</h2>
 		</div>
 		<Map artist={artists?.[currentIndex]} />
 	</section>
@@ -190,10 +200,6 @@
 </main>
 
 <style>
-	/* :global(body) {
-		background: linear-gradient(135deg, var(--dark-muted) 0%, var(--dark-vibrant) 100%);
-	} */
-
 	main {
 		display: flex;
 		flex-direction: column;
@@ -304,7 +310,8 @@
 	.title {
 		width: 100%;
 		text-align: center;
-		margin-bottom: 1rem;
+		margin-top: 3rem;
+		margin-bottom: 3rem;
 		border-radius: 1rem;
 		font-size: 1.5rem;
 	}
@@ -313,15 +320,17 @@
 		font-family: 'Bukhari Script', cursive;
 		font-weight: normal;
 		margin: 0;
-		font-size: 2.5rem;
+		font-size: 3.5rem;
 	}
 
 	.artist-subtitle {
-		font-family: 'Montserrat', sans-serif;
-		font-weight: 600;
+		font-family: 'Hanson', sans-serif;
+		font-weight: bold;
 		margin: 0;
 		font-size: 1.2rem;
 		color: color-mix(in srgb, var(--light-vibrant), transparent 20%);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
 	}
 
 	.carousel-section {
