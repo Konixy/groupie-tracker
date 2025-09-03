@@ -1,5 +1,5 @@
 # Construction de l'application Svelte
-FROM node:18-alpine AS builder
+FROM node:current-alpine AS builder
 
 # Définition du répertoire de travail
 WORKDIR /app
