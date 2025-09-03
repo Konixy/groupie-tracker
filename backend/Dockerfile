@@ -29,7 +29,8 @@ RUN apk --no-cache add ca-certificates
 RUN addgroup -g 1001 -S appgroup && \
     adduser -S appuser -u 1001 -G appgroup
 
-WORKDIR /root/
+# Définition du répertoire de travail accessible à l'utilisateur
+WORKDIR /app
 
 # Copie de l'exécutable depuis l'étape de construction
 COPY --from=builder /app/main .
@@ -37,6 +38,9 @@ COPY --from=builder /app/main .
 # Copie des assets statiques (images des artistes)
 COPY --from=builder /app/assets ./assets
 COPY --from=builder /app/coordinates_cache.json ./coordinates_cache.json
+
+# Changement des permissions pour l'utilisateur appuser
+RUN chown -R appuser:appgroup /app
 
 # Changement vers l'utilisateur non-root
 USER appuser
